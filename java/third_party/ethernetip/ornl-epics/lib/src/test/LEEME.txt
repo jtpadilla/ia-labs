@@ -1,8 +1,0 @@
-
-
-<!-- Integration tests that require hardware -->
-<exclude>etherip/scan/ScanListTest.java</exclude>
-<exclude>etherip/TagListDemo.java</exclude>
-<exclude>etherip/protocol/RegisterSessionDemo.java</exclude>
-<exclude>etherip/EtherIPDemo.java</exclude>
-<exclude>etherip/protocol/ListServicesDemo.java</exclude>

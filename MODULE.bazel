@@ -86,9 +86,6 @@ maven.install(
         ## UI Web con java para prototipar
         "io.javelit:javelit:0.86.0",
 
-        ## Puerto seria para las librerias 'digitalpetri'
-        "com.fazecast:jSerialComm:2.11.4",
-
     ],
     boms = [
         "com.google.cloud:libraries-bom:26.74.0",
