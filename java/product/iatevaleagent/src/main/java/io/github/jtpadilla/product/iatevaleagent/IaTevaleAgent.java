@@ -14,7 +14,7 @@ public class IaTevaleAgent {
 
     final static private String APP_NAME = "IAtevale Agent";
 
-    static final public java.util.logging.Logger LOGGER = Logger.getLogger(IaTevaleAgent.class.getName().replace("com.speedycontrol.labs.", ""));
+    static final public java.util.logging.Logger LOGGER = Logger.getLogger(IaTevaleAgent.class.getName().replace("iatevaleagent.", ""));
 
     static volatile private boolean finishServer = false;
 
