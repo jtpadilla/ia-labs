@@ -3,7 +3,7 @@ load("@rules_java//java:defs.bzl", "java_binary")
 java_binary(
     name = "example01",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "com.speedycontrol.labs.example.vertextai.function.example01.Main",
+    main_class = "io.github.jtpadilla.example.vertex.function.example01.Main",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/vertexai/common",

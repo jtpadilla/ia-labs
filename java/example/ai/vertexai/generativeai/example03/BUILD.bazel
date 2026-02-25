@@ -3,7 +3,7 @@ load("@rules_java//java:defs.bzl", "java_binary")
 java_binary(
     name = "example03",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "com.speedycontrol.labs.example.vertextai.generativeai.example03.TextGenerationWithAsync",
+    main_class = "io.github.jtpadilla.example.vertex.generativeai.example03.TextGenerationWithAsync",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/vertexai/common",
