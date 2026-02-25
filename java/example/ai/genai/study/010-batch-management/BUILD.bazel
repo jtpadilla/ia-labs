@@ -3,7 +3,7 @@ load("@rules_java//java:defs.bzl", "java_binary")
 java_binary(
     name = "010-batch-management",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "com.speedycontrol.labs.example.genai.study.batchmanagement.BatchManagement",
+    main_class = "io.github.jtpadilla.example.genai.study.batchmanagement.BatchManagement",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/genai/common",

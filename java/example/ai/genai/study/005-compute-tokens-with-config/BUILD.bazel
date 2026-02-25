@@ -3,7 +3,7 @@ load("@rules_java//java:defs.bzl", "java_binary")
 java_binary(
     name = "005-compute-tokens-with-config",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "com.speedycontrol.labs.example.genai.study.computetokenswithconfig.ComputeTokensWithConfig",
+    main_class = "io.github.jtpadilla.example.genai.study.computetokenswithconfig.ComputeTokensWithConfig",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/genai/common",

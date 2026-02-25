@@ -3,7 +3,7 @@ load("@rules_java//java:defs.bzl", "java_binary")
 java_binary(
     name = "026-complex-function-calling",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "com.speedycontrol.labs.example.genai.study.complexfunctioncalling.ComplexFunctionCaller",
+    main_class = "io.github.jtpadilla.example.genai.study.complexfunctioncalling.ComplexFunctionCaller",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/genai/common",

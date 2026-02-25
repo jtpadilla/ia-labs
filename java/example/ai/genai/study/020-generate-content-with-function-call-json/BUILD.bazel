@@ -3,7 +3,7 @@ load("@rules_java//java:defs.bzl", "java_binary")
 java_binary(
     name = "020-generate-content-with-function-call",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "com.speedycontrol.labs.example.genai.study.generatecontentwithfunctioncalljson.GenerateContentWithFunctionCallJson",
+    main_class = "io.github.jtpadilla.example.genai.study.generatecontentwithfunctioncalljson.GenerateContentWithFunctionCallJson",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/genai/common",

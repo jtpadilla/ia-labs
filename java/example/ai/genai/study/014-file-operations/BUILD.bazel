@@ -3,7 +3,7 @@ load("@rules_java//java:defs.bzl", "java_binary")
 java_binary(
     name = "014-file-operations",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "com.speedycontrol.labs.example.genai.study.fileoperations.FileOperations",
+    main_class = "io.github.jtpadilla.example.genai.study.fileoperations.FileOperations",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/genai/common",
