@@ -3,9 +3,9 @@ load("@rules_java//java:defs.bzl", "java_binary")
 java_binary(
     name = "simple-text",
     srcs = [
-        "src/main/java/com/google/gemini/interactions/example/simple/SimpleTextInteraction.java",
+        "src/main/java/io/github/jtpadilla/example/interactions/simple/SimpleTextInteraction.java",
     ],
-    main_class = "com.google.gemini.interactions.example.simple.SimpleTextInteraction",
+    main_class = "io.github.jtpadilla.example.interactions.simple.SimpleTextInteraction",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/interactions/util",
@@ -16,9 +16,9 @@ java_binary(
 java_binary(
     name = "streaming-response",
     srcs = [
-        "src/main/java/com/google/gemini/interactions/example/simple/StreamingResponse.java",
+        "src/main/java/io/github/jtpadilla/example/interactions/simple/StreamingResponse.java",
     ],
-    main_class = "com.google.gemini.interactions.example.simple.StreamingResponse",
+    main_class = "io.github.jtpadilla.example.interactions.simple.StreamingResponse",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/interactions/util",
@@ -29,9 +29,9 @@ java_binary(
 java_binary(
     name = "multiturn-conversation-persistente",
     srcs = [
-        "src/main/java/com/google/gemini/interactions/example/simple/MultiturnConversationPersistente.java",
+        "src/main/java/io/github/jtpadilla/example/interactions/simple/MultiturnConversationPersistente.java",
     ],
-    main_class = "com.google.gemini.interactions.example.simple.MultiturnConversationPersistente",
+    main_class = "io.github.jtpadilla.example.interactions.simple.MultiturnConversationPersistente",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/interactions/util",
@@ -42,9 +42,9 @@ java_binary(
 java_binary(
     name = "multiturn-conversation",
     srcs = [
-        "src/main/java/com/google/gemini/interactions/example/simple/MultiturnConversation.java",
+        "src/main/java/io/github/jtpadilla/example/interactions/simple/MultiturnConversation.java",
     ],
-    main_class = "com.google.gemini.interactions.example.simple.MultiturnConversation",
+    main_class = "io.github.jtpadilla.example.interactions.simple.MultiturnConversation",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/interactions/util",
@@ -55,9 +55,9 @@ java_binary(
 java_binary(
     name = "function-calling",
     srcs = [
-        "src/main/java/com/google/gemini/interactions/example/simple/FunctionCalling.java",
+        "src/main/java/io/github/jtpadilla/example/interactions/simple/FunctionCalling.java",
     ],
-    main_class = "com.google.gemini.interactions.example.simple.FunctionCalling",
+    main_class = "io.github.jtpadilla.example.interactions.simple.FunctionCalling",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/interactions/util",
@@ -68,9 +68,9 @@ java_binary(
 java_binary(
     name = "structured-output",
     srcs = [
-        "src/main/java/com/google/gemini/interactions/example/simple/StructuredOutput.java",
+        "src/main/java/io/github/jtpadilla/example/interactions/simple/StructuredOutput.java",
     ],
-    main_class = "com.google.gemini.interactions.example.simple.StructuredOutput",
+    main_class = "io.github.jtpadilla.example.interactions.simple.StructuredOutput",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/interactions/util",
@@ -81,9 +81,9 @@ java_binary(
 java_binary(
     name = "structured-output-schema-builder",
     srcs = [
-        "src/main/java/com/google/gemini/interactions/example/simple/StructuredOutputSchemaBuilder.java",
+        "src/main/java/io/github/jtpadilla/example/interactions/simple/StructuredOutputSchemaBuilder.java",
     ],
-    main_class = "com.google.gemini.interactions.example.simple.StructuredOutputSchemaBuilder",
+    main_class = "io.github.jtpadilla.example.interactions.simple.StructuredOutputSchemaBuilder",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/interactions/util",

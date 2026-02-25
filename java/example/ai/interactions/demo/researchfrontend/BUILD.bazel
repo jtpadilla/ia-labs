@@ -3,9 +3,9 @@ load("@rules_java//java:defs.bzl", "java_binary")
 java_binary(
     name = "research-frontend",
     srcs = [
-        "src/main/java/com/google/gemini/interactions/example/demo/researchfrontend/ResearchFrontend.java",
+        "src/main/java/io/github/jtpadilla/example/interactions/demo/researchfrontend/ResearchFrontend.java",
     ],
-    main_class = "com.google.gemini.interactions.example.demo.researchfrontend.ResearchFrontend",
+    main_class = "io.github.jtpadilla.example.interactions.demo.researchfrontend.ResearchFrontend",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/interactions/util",

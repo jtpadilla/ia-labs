@@ -3,9 +3,9 @@ load("@rules_java//java:defs.bzl", "java_binary")
 java_binary(
     name = "research-agent-streaming",
     srcs = [
-        "src/main/java/com/google/gemini/interactions/example/demo/researchagentstreaming/ResearchAgentStreamingDemo.java",
+        "src/main/java/io/github/jtpadilla/example/interactions/demo/researchagentstreaming/ResearchAgentStreamingDemo.java",
     ],
-    main_class = "com.google.gemini.interactions.example.demo.researchagentstreaming.ResearchAgentStreamingDemo",
+    main_class = "io.github.jtpadilla.example.interactions.demo.researchagentstreaming.ResearchAgentStreamingDemo",
     visibility = ["//visibility:public"],
     deps = [
         "//java/example/ai/interactions/util",
