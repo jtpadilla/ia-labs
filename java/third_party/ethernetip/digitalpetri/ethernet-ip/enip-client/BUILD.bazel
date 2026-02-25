@@ -1,0 +1,18 @@
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "enip-client",
+    srcs = glob(["src/main/java/**/*.java"]),
+    deps = [
+        "//java/third_party/ethernetip/digitalpetri/ethernet-ip/enip-core",
+        "//java/third_party/ethernetip/digitalpetri/netty-channel-fsm",
+        "//java/third_party/ethernetip/digitalpetri/strict-machine",
+        "@maven//:io_netty_netty_buffer",
+        "@maven//:io_netty_netty_codec",
+        "@maven//:io_netty_netty_common",
+        "@maven//:io_netty_netty_handler",
+        "@maven//:io_netty_netty_transport",
+        "@maven//:org_jspecify_jspecify",
+        "@maven//:org_slf4j_slf4j_api",
+    ],
+)

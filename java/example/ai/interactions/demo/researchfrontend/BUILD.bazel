@@ -1,0 +1,18 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "research-frontend",
+    srcs = [
+        "src/main/java/com/google/gemini/interactions/example/demo/researchfrontend/ResearchFrontend.java",
+    ],
+    main_class = "com.google.gemini.interactions.example.demo.researchfrontend.ResearchFrontend",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/example/ai/interactions/util",
+        "//java/third_party/iteractions",
+        "@maven//:io_javelit_javelit",
+        "@maven//:tools_jackson_core_jackson_core",
+        "@maven//:tools_jackson_core_jackson_databind",
+    ],
+)
+

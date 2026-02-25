@@ -1,0 +1,20 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@protobuf//bazel:proto_library.bzl", "proto_library")
+load("@protobuf//bazel:java_proto_library.bzl", "java_proto_library")
+load("@rules_java//java:defs.bzl", "java_library")
+
+proto_library(
+    name = "domain_proto",
+    srcs = ["domain.proto"],
+    deps = [
+    ],
+)
+
+java_proto_library(
+    name = "domain_java_proto",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":domain_proto",
+    ],
+)

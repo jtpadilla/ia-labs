@@ -1,0 +1,19 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "util",
+    srcs = glob(["src/main/java/**/*.java"]),
+    deps = [
+        "@maven//:com_google_code_gson_gson",
+    ],
+)
+
+java_test(
+    name = "AllTests",
+    srcs = glob(["src/test/java/**/*.java"]),
+    test_class = "io.github.jtpadilla.util.test.UtilAllTests",
+    deps = [
+        ":util",
+    ],
+)

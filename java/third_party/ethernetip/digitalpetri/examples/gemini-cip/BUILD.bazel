@@ -1,0 +1,31 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "complex-cip-example",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "com.speedycontrol.labs.ethernetip.example.cip.ComplexCipExample",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/third_party/ethernetip/digitalpetri/ethernet-ip/cip-client",
+        "//java/third_party/ethernetip/digitalpetri/ethernet-ip/cip-core",
+        "//java/third_party/ethernetip/digitalpetri/ethernet-ip/enip-client",
+        "//java/third_party/ethernetip/digitalpetri/ethernet-ip/enip-core",
+        "@maven//:io_netty_netty_buffer",
+        "@maven//:io_netty_netty_common",
+    ],
+)
+
+java_binary(
+    name = "implicit-scanner-example",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "com.speedycontrol.labs.ethernetip.example.cip.ImplicitScannerExample",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/third_party/ethernetip/digitalpetri/ethernet-ip/cip-client",
+        "//java/third_party/ethernetip/digitalpetri/ethernet-ip/cip-core",
+        "//java/third_party/ethernetip/digitalpetri/ethernet-ip/enip-client",
+        "//java/third_party/ethernetip/digitalpetri/ethernet-ip/enip-core",
+        "@maven//:io_netty_netty_buffer",
+        "@maven//:io_netty_netty_common",
+    ],
+)

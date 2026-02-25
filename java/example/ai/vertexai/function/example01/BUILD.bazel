@@ -1,0 +1,17 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "example01",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "com.speedycontrol.labs.example.vertextai.function.example01.Main",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/example/ai/vertexai/common",
+        "@maven//:com_fasterxml_jackson_core_jackson_databind",
+        "@maven//:com_google_api_grpc_proto_google_cloud_vertexai_v1",
+        "@maven//:com_google_cloud_google_cloud_vertexai",
+        "@maven//:com_google_protobuf_protobuf_java",
+        "@protobuf//java/core",
+        "//java/bootstrap/base/protobuf",
+    ],
+)

@@ -1,0 +1,16 @@
+load("@rules_java//java:defs.bzl", "java_library")
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "protobuf",
+    srcs = glob(["src/main/java/**/*.java"]),
+    exports = [
+        "@protobuf//:protobuf_java",
+        "@protobuf//:protobuf_java_util",
+    ],
+    deps = [
+        "//java/bootstrap/base/util:util",
+        "@protobuf//:protobuf_java",
+        "@protobuf//:protobuf_java_util",
+    ],
+)

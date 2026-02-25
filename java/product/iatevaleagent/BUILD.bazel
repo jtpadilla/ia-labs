@@ -1,0 +1,42 @@
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_push")
+load("@rules_pkg//pkg:tar.bzl", "pkg_tar")
+
+java_binary(
+    name = "iatevaleagent",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "labsagent",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/platform/server/agent",
+        "@maven//:com_google_guava_guava",
+        "@maven//:com_google_inject_guice",
+        "//java/third_party/closeable",
+    ],
+)
+
+# Empaqueta la construcción del jar de la aplicación
+pkg_tar(
+    name = "deploy_tar",
+    srcs = ["//java/product/iatevaleagent:iatevaleagent_deploy.jar"],
+)
+
+# Construye el container docker incluyendo el jar de la imagen anterior
+oci_image(
+    name = "iatevaleagent_gcloud_image",
+    base = "@java_25_base",
+    entrypoint = [
+        "java",
+        "-jar",
+        "iatevaleagent_deploy.jar",
+    ],
+    tars = [":deploy_tar"],
+    visibility = ["//visibility:public"],
+)
+
+#### IMPORTANTE: en el atributo repository cambiar project-id y repo-name por las variables que proceda.
+# Sube al repositorio de artefactos del proyecto gcloud indicado la imagen generada
+oci_push(
+    name = "iatevaleagent_gcloud_push",
+    image = ":iatevaleagent_gcloud_image",
+    repository = "europe-west4-docker.pkg.dev/project-id/repo-name/iatevaleagent",
+)

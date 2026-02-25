@@ -1,0 +1,12 @@
+devops/docker/sc-gemma/gemma-3-4b-it
+bazel-*
+.ijwb
+.clwb
+.idea
+.project
+docs/guia/target
+.~*
+/test/lorawan/ttn/downtest/src/resources/esp-idf/.vscode/
+/test/lorawan/ttn/downtest/src/resources/esp-idf/build/
+
+/MODULE.bazel.lock

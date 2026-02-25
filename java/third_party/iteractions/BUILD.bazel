@@ -1,0 +1,11 @@
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "iteractions",
+    srcs = glob(["src/main/java/**/*.java"]),
+    deps = [
+        "@maven//:tools_jackson_core_jackson_core",
+        "@maven//:tools_jackson_core_jackson_databind",
+        "@maven//:com_fasterxml_jackson_core_jackson_annotations"
+    ],
+)

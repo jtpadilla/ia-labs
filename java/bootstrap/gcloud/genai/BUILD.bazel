@@ -1,0 +1,20 @@
+load("@rules_java//java:defs.bzl", "java_library")
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "genai",
+    srcs = glob(["src/main/java/**/*.java"]),
+    exports = [
+        "@maven//:com_google_auth_google_auth_library_oauth2_http",
+        "@maven//:com_google_genai_google_genai",
+    ],
+    deps = [
+        "//java/bootstrap/base/gson",
+        "//java/bootstrap/gcloud/context",
+        "@maven//:com_google_auth_google_auth_library_oauth2_http",
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:com_google_genai_google_genai",
+        "@maven//:com_google_inject_guice",
+        "@maven//:org_jspecify_jspecify",
+    ],
+)

@@ -1,0 +1,12 @@
+HTTrack3.49-5 launched on Mon, 17 Nov 2025 11:14:57 at https://www.odva.org/technology-standards/document-library/ +*.pdf
+(httrack https://www.odva.org/technology-standards/document-library/ -O ./mi_copia_web +*.pdf )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+11:16:02	Error: 	"Not Found" (404) at link https://www.odva.org/wp-content/uploads/2022/10/PUB00036R10_ODVA-Brand-Standards-Identity-Guidelines.pdf (from https://www.odva.org/technology-standards/document-library/)
+
+HTTrack Website Copier/3.49-5 mirror complete in 1 minutes 5 seconds : 45 links scanned, 43 files written (43869483 bytes overall) [43758584 bytes received at 673208 bytes/sec], 176954 bytes transferred using HTTP compression in 3 files, ratio 14%, 7.5 requests per connection
+(1 errors, 0 warnings, 0 messages)

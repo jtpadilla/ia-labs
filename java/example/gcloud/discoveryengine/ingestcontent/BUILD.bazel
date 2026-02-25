@@ -1,0 +1,16 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "ingestcontent",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "io.github.jtpadilla.example.gcloud.discoveryengine.ingestcontent.IngestContent",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/bootstrap/base/protobuf",
+        "//proto/example/gcloud/discoveryengine:domain_java_proto",
+        "@maven//:com_google_api_grpc_proto_google_cloud_discoveryengine_v1",
+        "@maven//:com_google_cloud_google_cloud_discoveryengine",
+        "@maven//:com_google_protobuf_protobuf_java_util",
+        "@protobuf//java/core",
+    ],
+)

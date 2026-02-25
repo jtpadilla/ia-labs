@@ -1,0 +1,19 @@
+
+build --java_runtime_version=remotejdk_25
+build --java_language_version=25
+build --tool_java_runtime_version=25
+build --tool_java_language_version=25
+# build --java_runtime_version=remotejdk_25
+# build --java_language_version=25
+# build --tool_java_runtime_version=25
+# build --tool_java_language_version=25
+
+# Establece el estándar C++17 para la compilación normal (target)
+build --cxxopt=-std=c++17
+
+# Establece el estándar C++17 para la compilación de herramientas (host/exec)
+build --host_cxxopt=-std=c++17
+
+# Silenciar advertencias de declaraciones obsoletas en C++ (limpia el log de Protobuf)
+build --cxxopt='-Wno-deprecated-declarations'
+build --host_cxxopt='-Wno-deprecated-declarations'

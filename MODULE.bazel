@@ -1,0 +1,126 @@
+module(
+    name = "ia-labs",
+    version = "0.1.0",
+    compatibility_level = 1,
+)
+
+# Dependencias BAZEL
+bazel_dep(name = "rules_java", version = "9.3.0")
+bazel_dep(name = "rules_jvm_external", version = "6.9")
+bazel_dep(name = "grpc-java", version = "1.78.0")
+bazel_dep(name = "rules_pkg", version = "1.2.0")
+bazel_dep(name = "rules_oci", version = "2.2.7")
+bazel_dep(name = "protobuf", version = "33.4")
+
+# Dependencias MAVEL
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    artifacts = [
+        ## Guice
+        # Para que funciona por encima de java 21 hay que utilizar la version
+        # con el classifier 'classes' y no lleva incorporada las dependencias.
+        #"com.google.inject:guice:6.0.0",
+        #"com.google.inject:guice:6.0.0",
+        "com.google.inject:guice:jar:classes:6.0.0",
+        "com.google.inject.extensions:guice-assistedinject:6.0.0",
+        "com.google.inject.extensions:guice-grapher:6.0.0",
+        # ASM moderno (necesario para Java 25) en guice
+        "org.ow2.asm:asm:9.9.1",
+        "org.ow2.asm:asm-tree:9.9.1",
+        "org.ow2.asm:asm-util:9.9.1",
+        # Otras dependencias que Guice necesita y que normalmente vienen empaquetadas
+        "javax.inject:javax.inject:1",
+        "aopalliance:aopalliance:1.0",
+        # Vamos a dejar que entre a traves del bom: com.google.cloud:libraries-bom
+        #"com.google.guava:guava:33.0.0-jre",
+
+        ## Google BOM https://github.com/googleapis/java-cloud-bom
+        # Guava
+        "com.google.guava:guava",
+        # Http Client
+        "com.google.http-client:google-http-client",
+        "com.google.http-client:google-http-client-jackson2",
+        # GCloud bajo nivel (directamente desde los protos de googleapis)
+        "com.google.api.grpc:proto-google-cloud-pubsub-v1",
+        "com.google.api.grpc:grpc-google-cloud-pubsub-v1",
+        "com.google.api.grpc:proto-google-cloud-logging-v2",
+        "com.google.api.grpc:grpc-google-cloud-logging-v2",
+        "com.google.api.grpc:grpc-google-cloud-datastore-v1:2.33.1",  # Estudiar: https://github.com/googleapis/java-datastore/tree/main
+        "com.google.api.grpc:proto-google-cloud-datastore-v1",
+        # GCloud alto nivel
+        "com.google.cloud:google-cloud-datastore",
+        "com.google.cloud:google-cloud-pubsub",
+        "com.google.cloud:google-cloud-storage",
+        "com.google.cloud:google-cloud-discoveryengine",
+        "com.google.cloud:google-cloud-vertexai",
+
+        ## Advertencias de Null
+        "org.jspecify:jspecify:1.0.0",
+
+        ## Librerias JSON de jackson antiguas (en produccion)
+        "com.fasterxml.jackson.core:jackson-annotations",
+        "com.fasterxml.jackson.core:jackson-core",
+        "com.fasterxml.jackson.core:jackson-databind",
+        "com.fasterxml.jackson.datatype:jackson-datatype-jsr310",
+
+        ## Librerias JSON de jackson nuevas
+        "tools.jackson.core:jackson-core",
+        "tools.jackson.core:jackson-databind",
+
+        ## Procesamiento de json
+        "com.jayway.jsonpath:json-path:2.9.0",
+
+        ## Librerias para interactuar con Gemini
+        "com.google.genai:google-genai:1.40.0",
+
+        ## Agent Development Kit
+        "com.google.adk:google-adk:0.6.0",
+
+        ## Tests complejos
+        "org.awaitility:awaitility:4.1.1",
+        "org.mockito:mockito-core:jar:5.20.0",
+
+        ## Telegram
+        "org.telegram:telegrambots-client:9.4.0",
+        "org.telegram:telegrambots-longpolling:9.4.0",
+
+        ## Se utiliza en los ejemplos de vertex
+        "org.json:json:20210307",
+
+        ## UI Web con java para prototipar
+        "io.javelit:javelit:0.86.0",
+
+        ## Puerto seria para las librerias 'digitalpetri'
+        "com.fazecast:jSerialComm:2.11.4",
+
+    ],
+    boms = [
+        "com.google.cloud:libraries-bom:26.74.0",
+        "com.google.cloud:google-cloud-datastore-bom:2.33.2",
+        "com.fasterxml.jackson:jackson-bom:2.21.0",
+        "tools.jackson:jackson-bom:3.1.0",
+        "io.jsonwebtoken:jjwt-bom:0.13.0",
+        "io.helidon:helidon-bom:4.3.3",
+    ],
+    version_conflict_policy = "default",
+)
+maven.override(
+    coordinates = "com.google.inject:guice",
+    target = "//third_party:guice_custom_wrapper",
+)
+use_repo(maven, "maven")
+
+# =========================================
+# OCI dependencies
+# =========================================
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "java_25_base",
+    image = "index.docker.io/library/eclipse-temurin",
+    platforms = [
+        "linux/amd64",
+        #         "linux/arm64/v8",
+    ],
+    tag = "25-jdk",
+)
+use_repo(oci, "java_25_base", "java_25_base_linux_amd64")

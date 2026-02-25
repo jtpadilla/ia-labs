@@ -1,0 +1,12 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "storage",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "io.github.jtpadilla.example.gcloud.storage.StorageExample",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:com_google_cloud_google_cloud_storage",
+        "//java/bootstrap/gcloud/context",
+    ],
+)

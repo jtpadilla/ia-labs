@@ -1,0 +1,15 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "025-simple-function-calling",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "com.speedycontrol.labs.example.genai.study.simplefunctioncalling.SimpleFunctionCaller",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/example/ai/genai/common",
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:com_google_genai_google_genai",
+        "@maven//:com_google_guava_guava",
+        "@maven//:org_jspecify_jspecify",
+    ],
+)

@@ -1,0 +1,13 @@
+load("@rules_java//java:defs.bzl", "java_library")
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "context",
+    srcs = glob(["src/main/java/**/*.java"]),
+    deps = [
+        "//java/bootstrap/unit",
+        "@maven//:com_google_auth_google_auth_library_credentials",
+        "@maven//:com_google_auth_google_auth_library_oauth2_http",
+        "@maven//:org_jspecify_jspecify",
+    ],
+)

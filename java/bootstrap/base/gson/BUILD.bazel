@@ -1,0 +1,36 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "gson",
+    srcs = glob(["src/main/java/**/*.java"]),
+    exports = [
+        "@maven//:com_google_code_gson_gson",
+    ],
+    deps = [
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:org_jspecify_jspecify",
+    ],
+)
+
+java_test(
+    name = "LocalDateTimeAdapterTest",
+    srcs = ["src/test/java/io/github/jtpadilla/gson/test/JsonLocalDateTimeAdapterTest.java"],
+    test_class = "io.github.jtpadilla.gson.test.JsonLocalDateTimeAdapterTest",
+    deps = [
+        ":gson",
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:org_mockito_mockito_core",
+    ],
+)
+
+java_test(
+    name = "LocalDateTimeJsonTest",
+    srcs = ["src/test/java/io/github/jtpadilla/gson/test/JsonLocalDateTimeGsonTest.java"],
+    test_class = "io.github.jtpadilla.gson.test.JsonLocalDateTimeGsonTest",
+    deps = [
+        ":gson",
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:org_mockito_mockito_core",
+    ],
+)

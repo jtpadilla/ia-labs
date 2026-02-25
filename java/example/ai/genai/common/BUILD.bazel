@@ -1,0 +1,18 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_library(
+    name = "common",
+    srcs = glob(["src/main/java/**/*.java"]),
+    visibility = ["//visibility:public"],
+    exports = [
+        "//java/bootstrap/gcloud/genai",
+    ],
+    deps = [
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:com_google_genai_google_genai",
+        "@maven//:org_jspecify_jspecify",
+        "//java/bootstrap/gcloud/context",
+        "//java/bootstrap/gcloud/genai",
+    ],
+)
+

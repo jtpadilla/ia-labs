@@ -1,0 +1,13 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_library(
+    name = "util",
+    srcs = [
+        "src/main/java/com/google/gemini/interactions/example/util/Util.java",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/third_party/iteractions",
+    ],
+)
+

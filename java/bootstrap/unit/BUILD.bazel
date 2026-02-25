@@ -1,0 +1,22 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "unit",
+    srcs = glob(["src/main/java/**/*.java"]),
+    deps = [
+        "@maven//:org_jspecify_jspecify",
+        "@protobuf//:protobuf_java_util",
+        "@protobuf//java/core",
+    ],
+)
+
+java_test(
+    name = "test",
+    srcs = glob(["src/test/java/**/*.java"]),
+    resources = ["src/test/resources/parameters.txt"],
+    test_class = "io.github.jtpadilla.unit.test.UnitAllTests",
+    deps = [
+        ":unit",
+    ],
+)

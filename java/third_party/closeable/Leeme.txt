@@ -1,0 +1,14 @@
+
+Se ha migrado desde la version 4.0.rc1 a 5.0 que acaba de publicarse
+por la aparicion de Guice 5.0.1 (despues de 5 años)
+
+Como parece que es un producto de poco uso existe el riesgo de que
+desparezca y por eso incorporo el codigo en un paquete Bazel del monorepo.
+
+https://github.com/mathieucarbou/guice
+
+<dependency>
+  <groupId>com.mycila.guice.extensions</groupId>
+  <artifactId>mycila-guice-injection</artifactId>
+  <version>5.0</version>
+</dependency>

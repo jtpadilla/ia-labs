@@ -1,0 +1,21 @@
+java_binary(
+    name = "main",
+    srcs = [
+        "src/main/java/de/re/eeip/example/Main.java",
+    ],
+    main_class = "de.re.eeip.example.Main",
+    deps = [
+        "//java/third_party/ethernetip/rossmann-engineering/lib",
+    ],
+)
+
+java_binary(
+    name = "mainallenbradley",
+    srcs = [
+        "src/main/java/de/re/eeip/example/MainAllenBradley.java",
+    ],
+    main_class = "de.re.eeip.example.MainAllenBradley",
+    deps = [
+        "//java/third_party/ethernetip/rossmann-engineering/lib",
+    ],
+)

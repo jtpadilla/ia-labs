@@ -1,0 +1,13 @@
+--- a/jar_jar.bzl
++++ b/jar_jar.bzl
+@@ -24,8 +24,8 @@
+ def jar_jar_repositories(servers = ["https://repo1.maven.org/maven2"]):
+     _http_jar_with_servers(
+         name = "jvm__jarjar_abrams_assembly",
+-        path = "/com/eed3si9n/jarjarabrams/jarjar-abrams-assembly_2.12/1.14.0/jarjar-abrams-assembly_2.12-1.14.0.jar",
+-        sha256 = "75f86f7588136d6ca92d6fed8d58e6666e04c507b71de378527c053fd2a151c2",
++        path = "/com/eed3si9n/jarjarabrams/jarjar-abrams-assembly_2.12/1.16.0/jarjar-abrams-assembly_2.12-1.16.0.jar",
++        sha256 = "45881938eb5c2876376849b66e40305301969f8c6a3ad4e765cafc87512b75c1",
+         servers = servers,
+     )
+     _http_jar_with_servers(

@@ -1,0 +1,14 @@
+gcloud beta run deploy sc-gemma3 \
+  --image="europe-southwest1-docker.pkg.dev/speedycontrol-dev/vigia-repo/sc-gemma3:latest" \
+  --project="speedycontrol-dev" \
+  --region="europe-west1" \
+  --port="8000" \
+  --allow-unauthenticated \
+  --execution-environment=gen2 \
+  --gpu="1" \
+  --cpu="4" \
+  --memory="16Gi" \
+  --concurrency="1" \
+  --min-instances="0" \
+  --timeout="1800s" \
+  --no-cpu-throttling

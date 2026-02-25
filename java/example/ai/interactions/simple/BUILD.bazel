@@ -1,0 +1,92 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "simple-text",
+    srcs = [
+        "src/main/java/com/google/gemini/interactions/example/simple/SimpleTextInteraction.java",
+    ],
+    main_class = "com.google.gemini.interactions.example.simple.SimpleTextInteraction",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/example/ai/interactions/util",
+        "//java/third_party/iteractions",
+    ],
+)
+
+java_binary(
+    name = "streaming-response",
+    srcs = [
+        "src/main/java/com/google/gemini/interactions/example/simple/StreamingResponse.java",
+    ],
+    main_class = "com.google.gemini.interactions.example.simple.StreamingResponse",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/example/ai/interactions/util",
+        "//java/third_party/iteractions",
+    ],
+)
+
+java_binary(
+    name = "multiturn-conversation-persistente",
+    srcs = [
+        "src/main/java/com/google/gemini/interactions/example/simple/MultiturnConversationPersistente.java",
+    ],
+    main_class = "com.google.gemini.interactions.example.simple.MultiturnConversationPersistente",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/example/ai/interactions/util",
+        "//java/third_party/iteractions",
+    ],
+)
+
+java_binary(
+    name = "multiturn-conversation",
+    srcs = [
+        "src/main/java/com/google/gemini/interactions/example/simple/MultiturnConversation.java",
+    ],
+    main_class = "com.google.gemini.interactions.example.simple.MultiturnConversation",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/example/ai/interactions/util",
+        "//java/third_party/iteractions",
+    ],
+)
+
+java_binary(
+    name = "function-calling",
+    srcs = [
+        "src/main/java/com/google/gemini/interactions/example/simple/FunctionCalling.java",
+    ],
+    main_class = "com.google.gemini.interactions.example.simple.FunctionCalling",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/example/ai/interactions/util",
+        "//java/third_party/iteractions",
+    ],
+)
+
+java_binary(
+    name = "structured-output",
+    srcs = [
+        "src/main/java/com/google/gemini/interactions/example/simple/StructuredOutput.java",
+    ],
+    main_class = "com.google.gemini.interactions.example.simple.StructuredOutput",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/example/ai/interactions/util",
+        "//java/third_party/iteractions",
+    ],
+)
+
+java_binary(
+    name = "structured-output-schema-builder",
+    srcs = [
+        "src/main/java/com/google/gemini/interactions/example/simple/StructuredOutputSchemaBuilder.java",
+    ],
+    main_class = "com.google.gemini.interactions.example.simple.StructuredOutputSchemaBuilder",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/example/ai/interactions/util",
+        "//java/third_party/iteractions",
+    ],
+)

@@ -1,0 +1,14 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "example06",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "com.speedycontrol.labs.example.vertextai.generativeai.example06.UseChatSessionForMultiturnChat",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//java/example/ai/vertexai/common",
+        "@maven//:com_google_api_grpc_proto_google_cloud_vertexai_v1",
+        "@maven//:com_google_cloud_google_cloud_vertexai",
+        "@maven//:org_json_json",
+    ],
+)
