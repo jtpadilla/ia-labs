@@ -51,7 +51,6 @@ maven.install(
         "com.google.cloud:google-cloud-datastore",
         "com.google.cloud:google-cloud-pubsub",
         "com.google.cloud:google-cloud-storage",
-        "com.google.cloud:google-cloud-discoveryengine",
         "com.google.cloud:google-cloud-vertexai",
 
         ## Advertencias de Null
@@ -66,9 +65,6 @@ maven.install(
         ## Librerias JSON de jackson nuevas
         "tools.jackson.core:jackson-core",
         "tools.jackson.core:jackson-databind",
-
-        ## Procesamiento de json
-        "com.jayway.jsonpath:json-path:2.9.0",
 
         ## Librerias para interactuar con Gemini
         "com.google.genai:google-genai:1.40.0",
@@ -99,8 +95,6 @@ maven.install(
         "com.google.cloud:google-cloud-datastore-bom:2.33.2",
         "com.fasterxml.jackson:jackson-bom:2.21.0",
         "tools.jackson:jackson-bom:3.1.0",
-        "io.jsonwebtoken:jjwt-bom:0.13.0",
-        "io.helidon:helidon-bom:4.3.3",
     ],
     version_conflict_policy = "default",
 )
