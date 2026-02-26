@@ -16,11 +16,13 @@ public class Launcher {
             return;
         }
 
-        GeminiInteractionsClient client = GeminiInteractionsClient.builder()
+        final GeminiInteractionsClient client = GeminiInteractionsClient.builder()
                 .apiKey(apiKey)
                 .build();
 
-        Server.builder(() -> new ResearchServer(client), 8080).build().start();
+        Server.builder(() -> new ResearchServer(client), 8080)
+                .build()
+                .start();
 
     }
 

@@ -15,10 +15,10 @@ public class ResearchServer implements JtRunnable {
 
     public ResearchServer(GeminiInteractionsClient client) {
         this.client = client;
+        build();
     }
 
-    @Override
-    public void run() {
+    public void build() {
 
         Jt.title("🔎 Deep Research Agent").use();
 
@@ -178,6 +178,11 @@ public class ResearchServer implements JtRunnable {
         var imageBytes = Util.getInfographicData(infographicInteraction);
 
         Jt.image(imageBytes).use(infographicPlaceholder);
+
+    }
+
+    @Override
+    public void run() {
 
     }
 
