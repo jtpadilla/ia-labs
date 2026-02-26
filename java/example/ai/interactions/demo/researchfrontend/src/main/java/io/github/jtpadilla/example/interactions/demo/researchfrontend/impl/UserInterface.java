@@ -9,11 +9,11 @@ import io.javelit.core.JtRunnable;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResearchServer implements JtRunnable {
+public class UserInterface implements JtRunnable {
 
     final private GeminiInteractionsClient client;
 
-    public ResearchServer(GeminiInteractionsClient client) {
+    public UserInterface(GeminiInteractionsClient client) {
         this.client = client;
         build();
     }
