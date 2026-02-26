@@ -39,8 +39,7 @@ class FirstApp {
         // Load data with caching
         Table data = (Table) Jt.cache().computeIfAbsent("data", k -> {
             Jt.text("Loading data...").use();
-            Table df = loadData(10000);
-            return df;
+            return loadData(10000);
         });
         Jt.text("Loading data...done! (using Jt.cache())").use();
 
@@ -104,6 +103,7 @@ class FirstApp {
     }
 
     static Table loadData(int nrows) {
+
         final String DATE_COLUMN = "date/time";
         final String DATA_URL = "https://github.com/javelit/public_assets/raw/refs/heads/main/examples/uber-raw-data-sep14.csv.gz";
         try (InputStream in = URI.create(DATA_URL).toURL().openStream();
@@ -139,4 +139,5 @@ class FirstApp {
             throw new RuntimeException("Failed to load dataset", e);
         }
     }
+
 }
