@@ -10,13 +10,13 @@ import org.icepear.echarts.charts.gauge.GaugeSeries;
 class DrawGauge {
 
     static void main(String[] args) {
-        Server.builder(DrawGauge::new, 8080)
+        Server.builder(DrawGauge::javelit, 8080)
                 .build()
                 .start();
 
     }
 
-    public DrawGauge() {
+    static private void javelit() {
         Gauge gauge = new Gauge()
                 .setTooltip("item")
                 .addSeries(new GaugeSeries()

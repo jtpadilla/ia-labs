@@ -10,13 +10,13 @@ import org.icepear.echarts.charts.gauge.GaugeSeries;
 class WidgetsSlider {
 
     static void main(String[] args) {
-        Server.builder(WidgetsSlider::new, 8080)
+        Server.builder(WidgetsSlider::javelit, 8080)
                 .build()
                 .start();
 
     }
 
-    public WidgetsSlider() {
+    static private void javelit() {
         var x = Jt.slider("My slider").use();  // 👈 this is a widget
         Jt.text(x + " squared is " + x * x).use();
     }

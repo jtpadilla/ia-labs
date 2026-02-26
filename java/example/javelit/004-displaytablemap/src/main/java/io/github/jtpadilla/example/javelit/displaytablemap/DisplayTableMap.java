@@ -12,7 +12,7 @@ import java.util.List;
 class DisplayTableMap {
 
     static void main(String[] args) {
-        Server.builder(DisplayTableMap::new, 8080)
+        Server.builder(DisplayTableMap::javelit, 8080)
                 .build()
                 .start();
 
@@ -45,7 +45,7 @@ class DisplayTableMap {
 
     }
 
-    public DisplayTableMap() {
+    static private void javelit() {
         Jt.table(createTable()).use();
     }
 

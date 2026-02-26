@@ -6,13 +6,13 @@ import io.javelit.core.Server;
 class DisplayText {
 
     static void main(String[] args) {
-        Server.builder(DisplayText::new, 8080)
+        Server.builder(DisplayText::javelit, 8080)
                 .build()
                 .start();
 
     }
 
-    public DisplayText() {
+    static private void javelit() {
         Jt.title("My Javelit Example App").use();
 
         Jt.markdown("""

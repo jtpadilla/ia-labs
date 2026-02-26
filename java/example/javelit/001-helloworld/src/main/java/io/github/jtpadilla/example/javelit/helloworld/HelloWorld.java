@@ -6,11 +6,11 @@ import io.javelit.core.Jt;
 class HelloWorld {
 
     static void main(String[] args) {
-        final var server = Server.builder(HelloWorld::new, 8080).build();
+        final var server = Server.builder(HelloWorld::javelit, 8080).build();
         server.start();
     }
 
-    public HelloWorld() {
+    static private void javelit() {
         Jt.text("Hello World").use();
     }
 

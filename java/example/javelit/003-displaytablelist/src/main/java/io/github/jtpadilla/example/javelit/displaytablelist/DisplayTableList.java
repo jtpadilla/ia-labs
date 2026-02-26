@@ -8,13 +8,13 @@ import java.util.List;
 class DisplayTableList {
 
     static void main(String[] args) {
-        Server.builder(DisplayTableList::new, 8080)
+        Server.builder(DisplayTableList::javelit, 8080)
                 .build()
                 .start();
 
     }
 
-    public DisplayTableList() {
+    static private void javelit() {
 
         record Person(String name, int age, String city) {}
 

@@ -7,13 +7,13 @@ import org.icepear.echarts.Line;
 class DrawLineChart {
 
     static void main(String[] args) {
-        Server.builder(DrawLineChart::new, 8080)
+        Server.builder(DrawLineChart::javelit, 8080)
                 .build()
                 .start();
 
     }
 
-    public DrawLineChart() {
+    static private void javelit() {
         Line line = new Line()
                 .addXAxis(new String[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" })
                 .addYAxis()
