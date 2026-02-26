@@ -1,0 +1,11 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "001-display-table-list",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "io.github.jtpadilla.example.javelit.displaytablelist.DisplayTableList",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:io_javelit_javelit",
+    ],
+)
