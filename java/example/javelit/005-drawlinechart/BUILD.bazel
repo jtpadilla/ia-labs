@@ -1,7 +1,7 @@
 load("@rules_java//java:defs.bzl", "java_binary")
 
 java_binary(
-    name = "001-display-table-map",
+    name = "005-draw-line-chart",
     srcs = glob(["src/main/java/**/*.java"]),
     main_class = "io.github.jtpadilla.example.javelit.drawlinechart.DrawLineChart",
     visibility = ["//visibility:public"],

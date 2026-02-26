@@ -1,14 +1,14 @@
-package io.github.jtpadilla.example.javelit.widgetscheckboxoptions;
+package io.github.jtpadilla.example.javelit.widgetcheckboxoptions;
 
 import io.javelit.core.Jt;
 import io.javelit.core.Server;
 
 import java.util.List;
 
-class WidgetsCheckBoxOptions {
+class WidgetCheckBoxOptions {
 
     static void main(String[] args) {
-        Server.builder(WidgetsCheckBoxOptions::javelit, 8080)
+        Server.builder(io.github.jtpadilla.example.javelit.widgetcheckboxoptions.WidgetCheckBoxOptions::javelit, 8080)
                 .build()
                 .start();
     }
@@ -18,6 +18,8 @@ class WidgetsCheckBoxOptions {
                 "Which fruit do you like best?",
                 List.of("Apple", "Banana", "Kiwi")).use();
 
-        Jt.text("You selected: " + option).use();    }
+        Jt.text("You selected: " + option).use();
+
+    }
 
 }

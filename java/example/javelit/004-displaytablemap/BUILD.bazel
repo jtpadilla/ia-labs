@@ -1,7 +1,7 @@
 load("@rules_java//java:defs.bzl", "java_binary")
 
 java_binary(
-    name = "001-display-table-map",
+    name = "004-display-table-map",
     srcs = glob(["src/main/java/**/*.java"]),
     main_class = "io.github.jtpadilla.example.javelit.displaytablemap.DisplayTableMap",
     visibility = ["//visibility:public"],
