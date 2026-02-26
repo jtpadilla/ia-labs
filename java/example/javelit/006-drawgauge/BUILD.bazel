@@ -1,0 +1,12 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "001-display-table-map",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "io.github.jtpadilla.example.javelit.drawgauge.DrawGauge",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@maven//:io_javelit_javelit",
+        "@maven//:org_icepear_echarts_echarts_java",
+    ],
+)
