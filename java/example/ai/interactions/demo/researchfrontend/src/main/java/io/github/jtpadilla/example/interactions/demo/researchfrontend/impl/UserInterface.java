@@ -14,9 +14,11 @@ import java.util.stream.Collectors;
 public class UserInterface implements JtRunnable {
 
     final private GeminiInteractionsClient client;
+    final private Interactions interactions;
 
     public UserInterface(GeminiInteractionsClient client) {
         this.client = client;
+        this.interactions = new Interactions(client);
     }
 
     private Optional<String> readSubject() {
@@ -71,21 +73,7 @@ public class UserInterface implements JtRunnable {
         @SuppressWarnings("unchecked")
         List<String> topics = (List<String>) Jt.sessionState().computeIfAbsent("topics", k -> {
             Jt.info("Preparing topics...").icon(":hourglass:").use(topicsContainer);
-
-            InteractionParams.ModelInteractionParams planParams = InteractionParams.ModelInteractionParams.builder()
-                    .model("gemini-3-flash-preview")
-                    .input(String.format("""
-                                Find a list of topics to research on the following subject:
-                                %s
-                                """, subject))
-                    .responseFormat(GSchema.fromClass(String[].class))
-                    .tools(new Tool.GoogleSearch())
-                    .store(true)
-                    .build();
-
-            Interaction planInteraction = client.create(planParams);
-
-            return Util.getTopics(planInteraction);
+            return Util.getTopics(interactions.createPlan(subject));
         });
 
         var topicSelectionContainer = Jt.container().key("topics").use(topicsContainer);
