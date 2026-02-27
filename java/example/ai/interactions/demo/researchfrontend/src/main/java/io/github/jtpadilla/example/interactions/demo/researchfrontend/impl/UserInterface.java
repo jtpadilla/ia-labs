@@ -1,7 +1,5 @@
 package io.github.jtpadilla.example.interactions.demo.researchfrontend.impl;
 
-import io.github.glaforge.gemini.interactions.GeminiInteractionsClient;
-import io.github.glaforge.gemini.interactions.model.*;
 import io.javelit.core.Jt;
 import io.javelit.core.JtRunnable;
 
@@ -13,12 +11,10 @@ import java.util.function.Consumer;
 
 public class UserInterface implements JtRunnable {
 
-    final private GeminiInteractionsClient client;
     final private Interactions interactions;
 
-    public UserInterface(GeminiInteractionsClient client) {
-        this.client = client;
-        this.interactions = new Interactions(client);
+    public UserInterface(Interactions interactions) {
+        this.interactions = interactions;
     }
 
     @Override
@@ -130,7 +126,7 @@ public class UserInterface implements JtRunnable {
         Jt.info("Preparing summary...").icon(":hourglass:").use(summaryPlaceholder);
         Jt.info("Preparing infographic...").icon(":hourglass:").use(infographicPlaceholder);
 
-        // compute/fetch report section
+        // 1 de 3: Genera Report
 
         final BiConsumer<Long, String> contentConsumer = (elapsed, text) -> {
             String timeString = String.format("%dm%ds", elapsed / 60000, (elapsed % 60000) / 1000);
@@ -141,46 +137,20 @@ public class UserInterface implements JtRunnable {
             Jt.markdown(Util.transformCitations(text)).use(reportPlaceholder);
         };
 
-        final String report = interactions.createTopics(subject, selectedTopics, contentConsumer, deltaConsumer);
+        final String reportText = interactions.createReport(subject, selectedTopics, contentConsumer, deltaConsumer);
 
         var rawReportExpander = Jt.expander("Raw Markdown Report").use(reportContainer);
-        Jt.text(Util.transformCitations(report)).use(rawReportExpander);
+        Jt.text(Util.transformCitations(reportText)).use(rawReportExpander);
 
-        // compute/fetch summary
-        InteractionParams.ModelInteractionParams summaryParams = InteractionParams.ModelInteractionParams.builder()
-                .model("gemini-3-pro-preview")
-                .input(String.format("""
-                            Create a concise summary of the research below.
-                            Go straight with the summary, don't introduce the summary
-                            (don't write "Here's a summary..." or equivalent).
+        // 2 de 3: Genera el Summary
 
-                            %s
-                            """, report))
-                .store(true)
-                .build();
-
-        Interaction summaryInteraction = client.create(summaryParams);
-        String summaryText = Util.getText(summaryInteraction);
+        final String summaryText = interactions.createSummary(reportText);
         Jt.markdown(summaryText).use(summaryPlaceholder);
 
-        // compute/fetch infographics
-        InteractionParams.ModelInteractionParams infographicParams = InteractionParams.ModelInteractionParams.builder()
-                .model("gemini-3-pro-image-preview")
-                .input(String.format("""
-                            Create a hand-drawn and hand-written sketchnote style summary infographic,
-                            with a pure white background, use fluo highlighters for the key points,
-                            about the following information:
+        // 3 de 3: Genera infografía
 
-                            %s
-                            """, summaryText))
-                .responseModalities(Interaction.Modality.IMAGE)
-                .build();
-
-        Interaction infographicInteraction = client.create(infographicParams);
-        var imageBytes = Util.getInfographicData(infographicInteraction);
-
+        final byte[] imageBytes = interactions.createInfographic(summaryText);
         Jt.image(imageBytes).use(infographicPlaceholder);
-
 
     }
 

@@ -39,7 +39,7 @@ public class Interactions {
 
     }
 
-    public String createTopics(
+    public String createReport(
             String subject,
             List<String> selectedTopics,
             BiConsumer<Long, String> contentConsumer,
@@ -86,6 +86,46 @@ public class Interactions {
         });
 
         return reportBuilder.toString();
+
+    }
+
+    public String createSummary(String report) {
+
+        // compute/fetch summary
+        InteractionParams.ModelInteractionParams summaryParams = InteractionParams.ModelInteractionParams.builder()
+                .model(SUMMARY_MODEL)
+                .input(String.format("""
+                            Create a concise summary of the research below.
+                            Go straight with the summary, don't introduce the summary
+                            (don't write "Here's a summary..." or equivalent).
+
+                            %s
+                            """, report))
+                .store(true)
+                .build();
+
+        Interaction summaryInteraction = client.create(summaryParams);
+        return Util.getText(summaryInteraction);
+
+    }
+
+    public byte[] createInfographic(String summaryText) {
+
+        InteractionParams.ModelInteractionParams infographicParams = InteractionParams.ModelInteractionParams.builder()
+                .model("gemini-3-pro-image-preview")
+                .input(String.format("""
+                            Create a hand-drawn and hand-written sketchnote style summary infographic,
+                            with a pure white background, use fluo highlighters for the key points,
+                            about the following information:
+
+                            %s
+                            """, summaryText))
+                .responseModalities(Interaction.Modality.IMAGE)
+                .build();
+
+        final Interaction infographicInteraction = client.create(infographicParams);
+
+        return Util.getInfographicData(infographicInteraction);
 
     }
 

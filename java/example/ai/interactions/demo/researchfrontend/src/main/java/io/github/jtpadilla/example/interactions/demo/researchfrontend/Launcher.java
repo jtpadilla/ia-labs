@@ -2,6 +2,7 @@ package io.github.jtpadilla.example.interactions.demo.researchfrontend;
 
 import io.github.glaforge.gemini.interactions.GeminiInteractionsClient;
 import io.github.jtpadilla.example.interactions.demo.researchfrontend.impl.DisplayError;
+import io.github.jtpadilla.example.interactions.demo.researchfrontend.impl.Interactions;
 import io.github.jtpadilla.example.interactions.demo.researchfrontend.impl.UserInterface;
 import io.javelit.core.Server;
 
@@ -18,7 +19,8 @@ public class Launcher {
             final GeminiInteractionsClient client = GeminiInteractionsClient.builder()
                     .apiKey(apiKey)
                     .build();
-            final UserInterface userInterface = new UserInterface(client);
+            final Interactions interactions = new Interactions(client);
+            final UserInterface userInterface = new UserInterface(interactions);
             Server.builder(userInterface, 8080)
                     .build()
                     .start();
