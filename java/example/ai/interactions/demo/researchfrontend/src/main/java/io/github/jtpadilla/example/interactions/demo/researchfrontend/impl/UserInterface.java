@@ -2,7 +2,6 @@ package io.github.jtpadilla.example.interactions.demo.researchfrontend.impl;
 
 import io.github.glaforge.gemini.interactions.GeminiInteractionsClient;
 import io.github.glaforge.gemini.interactions.model.*;
-import io.github.glaforge.gemini.schema.GSchema;
 import io.javelit.core.Jt;
 import io.javelit.core.JtRunnable;
 
@@ -19,6 +18,26 @@ public class UserInterface implements JtRunnable {
     public UserInterface(GeminiInteractionsClient client) {
         this.client = client;
         this.interactions = new Interactions(client);
+    }
+
+    @Override
+    public void run() {
+
+        // Se obtiene el subject
+        final Optional<String> subject = readSubject();
+        if (subject.isEmpty()) {
+            return;
+        }
+
+        // Se obtiene la lista de topic que ha seleccionado el usuario
+        final List<String> selectedTopics = topicSelector(subject.get());
+        if (selectedTopics.isEmpty()) {
+            return;
+        }
+
+        // Ya tenemos la selección
+        research(subject.get(), selectedTopics);
+
     }
 
     private Optional<String> readSubject() {
@@ -93,24 +112,7 @@ public class UserInterface implements JtRunnable {
 
     }
 
-
-    @Override
-    public void run() {
-
-        // Se obtiene el subject
-        final Optional<String> subject = readSubject();
-        if (subject.isEmpty()) {
-            return;
-        }
-
-        // Se obtiene la lista de topic que ha seleccionado el usuario
-        final List<String> selectedTopics = topicSelector(subject.get());
-        if (selectedTopics.isEmpty()) {
-            return;
-        }
-
-
-
+    private void research(String subject, List<String> selectedTopics) {
 
         // reporting tabs
         Jt.header("Report").use();
@@ -122,12 +124,12 @@ public class UserInterface implements JtRunnable {
         var summaryPlaceholder = Jt.empty().key("summary").use(tabs.tab(1));
         var infographicPlaceholder = Jt.empty().key("infographic").use(tabs.tab(2));
 
-        /// put placeholders while results are being computed
+        // put placeholders while results are being computed
         Jt.info("Preparing full report...").icon(":hourglass:").use(reportPlaceholder);
         Jt.info("Preparing summary...").icon(":hourglass:").use(summaryPlaceholder);
         Jt.info("Preparing infographic...").icon(":hourglass:").use(infographicPlaceholder);
 
-        /// compute/fetch report section
+        // compute/fetch report section
         var topicsList = selectedTopics.stream().map(t -> "- " + t).collect(Collectors.joining("\n"));
         InteractionParams.AgentInteractionParams researchParams = InteractionParams.AgentInteractionParams.builder()
                 .agent("deep-research-pro-preview-12-2025")
@@ -206,6 +208,7 @@ public class UserInterface implements JtRunnable {
         var imageBytes = Util.getInfographicData(infographicInteraction);
 
         Jt.image(imageBytes).use(infographicPlaceholder);
+
 
     }
 
