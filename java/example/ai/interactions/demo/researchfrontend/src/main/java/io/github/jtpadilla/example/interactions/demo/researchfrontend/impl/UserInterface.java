@@ -6,7 +6,9 @@ import io.github.glaforge.gemini.schema.GSchema;
 import io.javelit.core.Jt;
 import io.javelit.core.JtRunnable;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UserInterface implements JtRunnable {
@@ -17,12 +19,7 @@ public class UserInterface implements JtRunnable {
         this.client = client;
     }
 
-    @Override
-    public void run() {
-
-        //
-        // Formulario 'subject'
-        //
+    private Optional<String> readSubject() {
 
         // Titulo
         Jt.title("🔎 Deep Research Agent").use();
@@ -46,20 +43,22 @@ public class UserInterface implements JtRunnable {
 
         Jt.formSubmitButton("Clear All")
                 .onClick(b -> {
-                        Jt.setComponentState("subject", "");
-                        Jt.sessionState().remove("topics");
-                    })
+                    Jt.setComponentState("subject", "");
+                    Jt.sessionState().remove("topics");
+                })
                 .use(columns.col(1));
 
         if (subject == null || subject.isBlank()) {
             // Esperamos a que informa un subject y que pulse el boton de submit
-            return;
+            return Optional.empty();
+
         }
 
-        //
-        // Formulario 'topics''
-        //
+        return Optional.of(subject);
 
+    }
+
+    private List<String> topicSelector(String subject) {
         // Titulo
         Jt.header("Topics").use();
 
@@ -99,8 +98,31 @@ public class UserInterface implements JtRunnable {
 
         if (selectedTopics.isEmpty()) {
             // wait for user to select topics and hit form submit button
+            return Collections.emptyList();
+        }
+
+        return selectedTopics;
+
+    }
+
+
+    @Override
+    public void run() {
+
+        // Se obtiene el subject
+        final Optional<String> subject = readSubject();
+        if (subject.isEmpty()) {
             return;
         }
+
+        // Se obtiene la lista de topic que ha seleccionado el usuario
+        final List<String> selectedTopics = topicSelector(subject.get());
+        if (selectedTopics.isEmpty()) {
+            return;
+        }
+
+
+
 
         // reporting tabs
         Jt.header("Report").use();

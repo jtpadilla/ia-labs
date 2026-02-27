@@ -18,7 +18,8 @@ public class Launcher {
             final GeminiInteractionsClient client = GeminiInteractionsClient.builder()
                     .apiKey(apiKey)
                     .build();
-            Server.builder(() -> new UserInterface(client), 8080)
+            final UserInterface userInterface = new UserInterface(client);
+            Server.builder(userInterface, 8080)
                     .build()
                     .start();
         }
