@@ -20,35 +20,53 @@ public class UserInterface implements JtRunnable {
 
     public void build() {
 
+        //
+        // Formulario 'subject'
+        //
+
+        // Titulo
         Jt.title("🔎 Deep Research Agent").use();
 
-        // subject form
-        var formSubject = Jt.form().key("form_subject").use();
-        String subject = Jt.textArea("Subject")
+        // Formulario
+        final var formSubject = Jt.form().key("form_subject").use();
+
+        final String subject = Jt.textArea("Subject")
                 .key("subject")
                 .placeholder("Enter the subject you want to research...")
                 .use(formSubject);
-        var columns = Jt.columns(2)
+
+        final var columns = Jt.columns(2)
                 .widths(List.of(0.9, 0.1))
                 .use(formSubject);
 
-        Jt.formSubmitButton("Clear All").onClick(b -> {
-            Jt.setComponentState("subject", "");
-            Jt.sessionState().remove("topics");
-        }).use(columns.col(1));
+        Jt.formSubmitButton("Explore Topics")
+                .type("primary")
+                .onClick(b -> Jt.sessionState().remove("topics"))
+                .use(columns.col(0));
 
-        Jt.formSubmitButton("Explore Topics").type("primary").onClick(b -> {
-            Jt.sessionState().remove("topics");
-        }).use(columns.col(0));
+        Jt.formSubmitButton("Clear All")
+                .onClick(b -> {
+                        Jt.setComponentState("subject", "");
+                        Jt.sessionState().remove("topics");
+                    })
+                .use(columns.col(1));
 
         if (subject == null || subject.isBlank()) {
-            // wait for user to set subject and hit form submit button
+            // Esperamos a que informa un subject y que pulse el boton de submit
             return;
         }
 
-        // topics selection form
+        //
+        // Formulario 'topics''
+        //
+
+        // Titulo
         Jt.header("Topics").use();
+
+        // Formulario
         var formTopics = Jt.form().key("form_topics").use();
+
+        // Contenedor para la lista de topics
         var topicsContainer = Jt.empty().key("topics_container").use(formTopics);
 
         @SuppressWarnings("unchecked")
