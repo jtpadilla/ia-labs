@@ -112,7 +112,7 @@ public class Interactions {
     public byte[] createInfographic(String summaryText) {
 
         InteractionParams.ModelInteractionParams infographicParams = InteractionParams.ModelInteractionParams.builder()
-                .model("gemini-3-pro-image-preview")
+                .model(INFOGRAPHIC_MODEL)
                 .input(String.format("""
                             Create a hand-drawn and hand-written sketchnote style summary infographic,
                             with a pure white background, use fluo highlighters for the key points,
