@@ -4,6 +4,10 @@ java_library(
     name = "a2a",
     srcs = glob(["src/main/java/**/*.java"]),
     deps = [
+        "//proto/lf/a2a/v1:a2a_java_grpc",
         "//proto/lf/a2a/v1:a2a_java_proto",
+        "@grpc-java//core",
+        "@grpc-java//netty",
+        "@grpc-java//stub",
     ],
 )
