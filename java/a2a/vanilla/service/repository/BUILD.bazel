@@ -1,0 +1,9 @@
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "repository",
+    srcs = glob(["src/main/java/**/*.java"]),
+    deps = [
+        "//java/a2a/base/service/dispatcher",
+    ],
+)
