@@ -10,51 +10,14 @@ bazel_dep(name = "grpc-java", version = "1.78.0")
 bazel_dep(name = "rules_pkg", version = "1.2.0")
 bazel_dep(name = "rules_oci", version = "2.2.7")
 bazel_dep(name = "protobuf", version = "33.4")
-bazel_dep(name = "rules_proto", version = "7.1.0")
-bazel_dep(name = "bazel_jar_jar", version = "0.1.14")
-bazel_dep(name = "rules_foreign_cc", version = "0.14.0")
-bazel_dep(name = "aspect_bazel_lib", version = "2.22.5")
-bazel_dep(name = "rules_android", version = "0.7.1")
-bazel_dep(name = "grpc-proto", version = "0.0.0-20240627-ec30f58.bcr.1")
 
-single_version_override(
-    module_name = "bazel_jar_jar",
-    version = "0.1.14",
-)
-single_version_override(
-    module_name = "rules_foreign_cc",
-    version = "0.14.0",
-)
-single_version_override(
-    module_name = "aspect_bazel_lib",
-    version = "2.22.5",
-)
-single_version_override(
-    module_name = "rules_android",
-    version = "0.7.1",
-)
 
 # Dependencias MAVEL
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     artifacts = [
         ## Guice
-        # Para que funciona por encima de java 21 hay que utilizar la version
-        # con el classifier 'classes' y no lleva incorporada las dependencias.
-        #"com.google.inject:guice:6.0.0",
-        #"com.google.inject:guice:6.0.0",
-        "com.google.inject:guice:jar:classes:6.0.0",
-        "com.google.inject.extensions:guice-assistedinject:6.0.0",
-        "com.google.inject.extensions:guice-grapher:6.0.0",
-        # ASM moderno (necesario para Java 25) en guice
-        "org.ow2.asm:asm:9.9.1",
-        "org.ow2.asm:asm-tree:9.9.1",
-        "org.ow2.asm:asm-util:9.9.1",
-        # Otras dependencias que Guice necesita y que normalmente vienen empaquetadas
-        "javax.inject:javax.inject:1",
-        "aopalliance:aopalliance:1.0",
-        # Vamos a dejar que entre a traves del bom: com.google.cloud:libraries-bom
-        #"com.google.guava:guava:33.0.0-jre",
+        "com.google.inject:guice:6.0.0",
 
         ## Google BOM https://github.com/googleapis/java-cloud-bom
         # Guava
@@ -125,10 +88,6 @@ maven.install(
         "tools.jackson:jackson-bom:3.1.0",
     ],
     version_conflict_policy = "default",
-)
-maven.override(
-    coordinates = "com.google.inject:guice",
-    target = "//third_party:guice_custom_wrapper",
 )
 use_repo(maven, "maven")
 
