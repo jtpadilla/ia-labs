@@ -6,6 +6,7 @@ import java.util.Random;
 
 @Singleton
 public class MemoryCheck implements HealthCheck {
+
     private final Random random = new Random();
 
     @Inject
@@ -25,4 +26,5 @@ public class MemoryCheck implements HealthCheck {
     public String getStatus() {
         return "Used: " + (random.nextInt(16384)) + "MB";
     }
+
 }

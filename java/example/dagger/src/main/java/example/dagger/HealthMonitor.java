@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Singleton
 public class HealthMonitor {
+
     private final Set<HealthCheck> allChecks;
     private final Map<String, HealthCheck> checkMap;
     private final Set<HealthCheck> fastChecks;
@@ -49,4 +50,5 @@ public class HealthMonitor {
 
         System.out.println("--- Diagnostics Finished: " + (allHealthy ? "SYSTEM HEALTHY" : "SYSTEM DEGRADED") + " ---");
     }
+
 }

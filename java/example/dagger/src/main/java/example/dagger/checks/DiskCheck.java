@@ -6,6 +6,7 @@ import java.util.Random;
 
 @Singleton
 public class DiskCheck implements HealthCheck {
+
     private final Random random = new Random();
 
     @Inject
@@ -25,4 +26,5 @@ public class DiskCheck implements HealthCheck {
     public String getStatus() {
         return "Free: " + (random.nextInt(1024)) + "GB";
     }
+
 }

@@ -6,6 +6,7 @@ import java.util.Random;
 
 @Singleton
 public class CpuCheck implements HealthCheck {
+
     private final Random random = new Random();
 
     @Inject
@@ -25,4 +26,5 @@ public class CpuCheck implements HealthCheck {
     public String getStatus() {
         return "Load: " + (random.nextInt(100)) + "%";
     }
+
 }

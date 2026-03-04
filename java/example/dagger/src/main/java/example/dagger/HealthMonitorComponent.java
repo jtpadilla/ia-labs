@@ -35,5 +35,6 @@ public interface HealthMonitorComponent {
          */
         HealthMonitorComponent create(@BindsInstance @Named("environment") String environment);
     }
+
 }
 
