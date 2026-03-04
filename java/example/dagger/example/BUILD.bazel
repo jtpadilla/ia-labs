@@ -2,32 +2,12 @@ load("@rules_java//java:defs.bzl", "java_binary", "java_library", "java_plugin")
 
 package(default_visibility = ["//visibility:public"])
 
-# 1. Definimos el plugin como antes
-java_plugin(
-    name = "dagger_compiler_plugin",
-    processor_class = "dagger.internal.codegen.ComponentProcessor",
-    deps = [
-        "@maven//:com_google_dagger_dagger_compiler",
-    ],
-)
-
-# 2. Target "Paraguas": Exporta el plugin y la dependencia de runtime.
-# Cualquier target que dependa de :dagger ejecutará automáticamente el procesador.
-java_library(
-    name = "dagger",
-    exported_plugins = [":dagger_compiler_plugin"],
-    exports = [
-        "@maven//:com_google_dagger_dagger",
-        "@maven//:jakarta_inject_jakarta_inject_api",
-    ],
-)
-
 # 3. Ahora la librería es mucho más limpia: sin 'plugins' explícitos
 java_library(
     name = "dagger_example_lib",
     srcs = glob(["src/main/java/**/*.java"]),
     deps = [
-        ":dagger",
+        "//java/third_party:dagger",
     ],
 )
 
