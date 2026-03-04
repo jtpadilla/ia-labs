@@ -33,6 +33,6 @@ java_library(
 
 java_binary(
     name = "dagger_example",
-    main_class = "example.dagger.HealthMonitorApp",
+    main_class = "io.github.jtpadilla.example.dagger.health.HealthMonitorApp",
     runtime_deps = [":dagger_example_lib"],
 )

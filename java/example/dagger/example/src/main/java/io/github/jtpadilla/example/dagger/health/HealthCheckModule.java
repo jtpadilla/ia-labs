@@ -1,4 +1,4 @@
-package example.dagger;
+package io.github.jtpadilla.example.dagger.health;
 
 import dagger.Binds;
 import dagger.Module;
@@ -6,13 +6,12 @@ import dagger.Provides;
 import dagger.multibindings.IntoMap;
 import dagger.multibindings.IntoSet;
 import dagger.multibindings.StringKey;
-import example.dagger.checks.CpuCheck;
-import example.dagger.checks.DiskCheck;
-import example.dagger.checks.HealthCheck;
-import example.dagger.checks.MemoryCheck;
-import example.dagger.qualifiers.FastCheck;
+import io.github.jtpadilla.example.dagger.health.checks.CpuCheck;
+import io.github.jtpadilla.example.dagger.health.checks.DiskCheck;
+import io.github.jtpadilla.example.dagger.health.checks.HealthCheck;
+import io.github.jtpadilla.example.dagger.health.checks.MemoryCheck;
+import io.github.jtpadilla.example.dagger.health.qualifiers.FastCheck;
 
-import java.util.Collections;
 import java.util.Set;
 
 /**

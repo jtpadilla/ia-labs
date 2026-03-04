@@ -1,7 +1,7 @@
-package example.dagger;
+package io.github.jtpadilla.example.dagger.health;
 
-import example.dagger.checks.HealthCheck;
-import example.dagger.qualifiers.FastCheck;
+import io.github.jtpadilla.example.dagger.health.checks.HealthCheck;
+import io.github.jtpadilla.example.dagger.health.qualifiers.FastCheck;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.inject.Singleton;

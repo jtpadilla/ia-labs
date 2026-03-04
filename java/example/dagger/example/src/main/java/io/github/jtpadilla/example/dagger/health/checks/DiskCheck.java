@@ -1,30 +1,30 @@
-package example.dagger.checks;
+package io.github.jtpadilla.example.dagger.health.checks;
 
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import java.util.Random;
 
 @Singleton
-public class MemoryCheck implements HealthCheck {
+public class DiskCheck implements HealthCheck {
 
     private final Random random = new Random();
 
     @Inject
-    public MemoryCheck() {}
+    public DiskCheck() {}
 
     @Override
     public String getName() {
-        return "Memory";
+        return "Disk";
     }
 
     @Override
     public boolean isHealthy() {
-        return random.nextDouble() < 0.98;
+        return random.nextDouble() < 0.99;
     }
 
     @Override
     public String getStatus() {
-        return "Used: " + (random.nextInt(16384)) + "MB";
+        return "Free: " + (random.nextInt(1024)) + "GB";
     }
 
 }

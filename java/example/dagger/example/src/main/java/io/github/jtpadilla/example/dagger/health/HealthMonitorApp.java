@@ -1,4 +1,4 @@
-package example.dagger;
+package io.github.jtpadilla.example.dagger.health;
 
 public class HealthMonitorApp {
 

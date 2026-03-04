@@ -1,4 +1,4 @@
-package example.dagger.checks;
+package io.github.jtpadilla.example.dagger.health.checks;
 
 public interface HealthCheck {
     String getName();

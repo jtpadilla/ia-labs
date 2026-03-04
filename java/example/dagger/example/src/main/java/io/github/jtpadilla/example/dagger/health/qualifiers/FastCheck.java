@@ -1,4 +1,4 @@
-package example.dagger.qualifiers;
+package io.github.jtpadilla.example.dagger.health.qualifiers;
 
 import jakarta.inject.Qualifier;
 import java.lang.annotation.Retention;
