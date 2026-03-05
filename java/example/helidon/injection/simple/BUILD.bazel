@@ -1,24 +1,23 @@
-load("@rules_java//java:defs.bzl", "java_binary")
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 load("@rules_graalvm//graalvm:defs.bzl", "native_image")
 
-java_binary(
-    name = "simple",
+java_library(
+    name = "simple_lib",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "io.github.jtpadilla.example.helidon.injection.simple.Main",
     deps = [
         "//java/lib:helidon",
     ],
 )
 
-# native_image(
-#     name = "simple_native",
-#     executable_name = "simple-native",
-#     # Opciones críticas para Helidon/Netty:
-#     extra_args = [
-#         "-H:+ReportExceptionStackTraces",
-#         "--no-fallback",
-#         "--install-exit-handlers",
-#     ],
-#     main_class = "io.github.jtpadilla.example.helidon.injection.simple.Main",
-#     deps = [":app_bin"],
-# )
+java_binary(
+    name = "simple",
+    main_class = "io.github.jtpadilla.example.helidon.injection.simple.Main",
+    runtime_deps = [":simple_lib"],
+)
+
+native_image(
+    name = "simple_native",
+    executable_name = "simple-native",
+    main_class = "io.github.jtpadilla.example.helidon.injection.simple.Main",
+    deps = [":simple_lib"],
+)

@@ -13,3 +13,6 @@ build --host_cxxopt=-std=c++17
 # Silenciar advertencias de declaraciones obsoletas en C++ (limpia el log de Protobuf)
 build --cxxopt='-Wno-deprecated-declarations'
 build --host_cxxopt='-Wno-deprecated-declarations'
+
+# Compatibilidad con rules_graalvm 0.11.1 en Bazel 8
+build --noincompatible_disallow_ctx_resolve_tools
