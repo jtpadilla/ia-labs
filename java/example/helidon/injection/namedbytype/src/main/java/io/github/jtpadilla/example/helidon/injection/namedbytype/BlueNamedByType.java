@@ -3,12 +3,12 @@ package io.github.jtpadilla.example.helidon.injection.namedbytype;
 import io.helidon.service.registry.Service;
 
 @Service.Singleton
-@Service.NamedByType(Green.class)
-public class Green implements Color {
+@Service.NamedByType(BlueNamedByType.class)
+public class BlueNamedByType implements Color {
 
     @Override
     public String hexCode() {
-        return "008000";
+        return "0000FF";
     }
 
     @Override
