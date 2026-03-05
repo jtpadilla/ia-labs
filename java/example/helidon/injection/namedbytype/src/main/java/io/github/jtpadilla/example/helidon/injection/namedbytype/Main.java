@@ -3,6 +3,7 @@ package io.github.jtpadilla.example.helidon.injection.namedbytype;
 import io.helidon.service.registry.Service;
 import io.helidon.service.registry.Services;
 
+@Service.Singleton
 public class Main {
 
     public static void main(String[] args) {

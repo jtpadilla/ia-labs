@@ -2,8 +2,8 @@ package io.github.jtpadilla.example.helidon.injection.namedbytype;
 
 import io.helidon.service.registry.Service;
 
-@Service.Named("green")
 @Service.Singleton
+@Service.NamedByType(Green.class)
 public class Green implements Color {
 
     @Override
