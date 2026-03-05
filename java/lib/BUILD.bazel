@@ -1,10 +1,9 @@
 load("@rules_java//java:defs.bzl", "java_binary", "java_library", "java_plugin")
 
-package(default_visibility = ["//visibility:public"])
-
 java_plugin(
     name = "helidon_codegen_plugin",
     processor_class = "io.helidon.codegen.apt.AptProcessor",
+    visibility = ["//visibility:private"],
     deps = [
         "@maven//:io_helidon_codegen_helidon_codegen_apt",
         "@maven//:io_helidon_service_helidon_service_codegen",
@@ -12,13 +11,14 @@ java_plugin(
 )
 
 java_library(
-    name = "lib",
+    name = "helidon",
     exported_plugins = [
         ":helidon_codegen_plugin",
     ],
     plugins = [
         ":helidon_codegen_plugin",
     ],
+    visibility = ["//visibility:public"],
     exports = [
         "@maven//:io_helidon_common_helidon_common",
         "@maven//:io_helidon_common_helidon_common_types",

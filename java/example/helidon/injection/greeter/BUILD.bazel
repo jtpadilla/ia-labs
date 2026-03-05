@@ -3,6 +3,6 @@ java_binary(
     srcs = glob(["src/main/java/**/*.java"]),
     main_class = "io.github.jtpadilla.example.helidon.injection.greeter.Main",
     deps = [
-        "//java/example/helidon/injection/lib",
+        "//java/lib:helidon",
     ],
 )
