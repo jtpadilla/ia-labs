@@ -1,0 +1,27 @@
+java_plugin(
+    name = "helidon_codegen_plugin",
+    processor_class = "io.helidon.codegen.apt.AptProcessor",
+    deps = [
+        "@maven//:io_helidon_codegen_helidon_codegen_apt",
+        "@maven//:io_helidon_service_helidon_service_codegen",
+    ],
+)
+
+java_library(
+    name = "lib",
+    srcs = glob(["src/main/java/**/*.java"]),
+    plugins = [":helidon_codegen_plugin"],
+    deps = [
+        "@maven//:io_helidon_common_helidon_common",
+        "@maven//:io_helidon_common_helidon_common_types",
+        "@maven//:io_helidon_service_helidon_service_registry",
+        "@maven//:jakarta_annotation_jakarta_annotation_api",
+        "@maven//:jakarta_inject_jakarta_inject_api",
+    ],
+)
+
+java_binary(
+    name = "injection",
+    main_class = "io.github.jtpadilla.example.helidon.injection.greeter.Main",
+    runtime_deps = [":lib"],
+)

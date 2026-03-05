@@ -84,12 +84,20 @@ maven.install(
         "com.google.dagger:dagger:2.55",
         "com.google.dagger:dagger-compiler:2.55",
 
+        ## Helidon 4 (Service Registry)
+        "io.helidon.service:helidon-service-registry:4.3.4",
+        "io.helidon.service:helidon-service-codegen:4.3.4",
+        "io.helidon.codegen:helidon-codegen-apt:4.3.4",
+        "io.helidon.common:helidon-common:4.3.4",
+        "io.helidon.common:helidon-common-types:4.3.4",
+
     ],
     boms = [
         "com.google.cloud:libraries-bom:26.74.0",
         "com.google.cloud:google-cloud-datastore-bom:2.33.2",
         "com.fasterxml.jackson:jackson-bom:2.21.0",
         "tools.jackson:jackson-bom:3.1.0",
+        "io.helidon:helidon-bom:4.3.4",
     ],
     version_conflict_policy = "default",
 )
