@@ -3,7 +3,7 @@ package io.github.jtpadilla.example.helidon.injection.factory.qualifiedfactory;
 import io.helidon.service.registry.Service;
 
 @Service.Singleton
-class SystemProperties {
+public class SystemProperties {
 
     private final String httpHost;
     private final String httpPort;

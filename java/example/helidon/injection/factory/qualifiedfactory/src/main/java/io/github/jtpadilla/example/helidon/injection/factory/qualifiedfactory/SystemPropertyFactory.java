@@ -11,9 +11,10 @@ import java.util.Optional;
 class SystemPropertyFactory implements Service.QualifiedFactory<String, SystemProperty> {
 
     @Override
-    public Optional<Service.QualifiedInstance<String>> first(Qualifier qualifier,
-                                                             Lookup lookup,
-                                                             GenericType<String> genericType) {
+    public Optional<Service.QualifiedInstance<String>> first(
+    Qualifier qualifier,
+            Lookup lookup,
+            GenericType<String> genericType) {
         return qualifier.stringValue()
                 .map(System::getProperty)
                 .map(propertyValue -> Service.QualifiedInstance.create(propertyValue, qualifier));
