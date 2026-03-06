@@ -1,0 +1,11 @@
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
+
+java_binary(
+    name = "simple",
+    srcs = glob(["src/main/java/io/github/**/*.java"]),
+    main_class = "io.github.jtpadilla.example.helidon.injection.factory.simple.Main",
+    deps = [
+        "//java/lib:helidon",
+        "@maven//:org_jspecify_jspecify",
+    ],
+)
