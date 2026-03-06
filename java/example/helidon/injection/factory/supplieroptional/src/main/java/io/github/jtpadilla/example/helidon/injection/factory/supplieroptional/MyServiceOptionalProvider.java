@@ -1,20 +1,18 @@
 package io.github.jtpadilla.example.helidon.injection.factory.supplieroptional;
 
+import io.helidon.service.registry.Service;
+
 import java.util.Optional;
 import java.util.function.Supplier;
 
+@Service.Singleton
 public class MyServiceOptionalProvider implements Supplier<Optional<MyService>> {
-
-    static private boolean enabled = true;
 
     @Override
     public Optional<MyService> get() {
-        System.out.println("Enabled="+ enabled);
-        try {
-            return enabled ? Optional.of(new MyService()) : Optional.empty();
-        } finally {
-            enabled = !enabled;
-        }
+        System.out.println("MyServiceOptionalProvider.get()");
+        //return Optional.of(new MyService());
+        return Optional.empty();
     }
 
 }
