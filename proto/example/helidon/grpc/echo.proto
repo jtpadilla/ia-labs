@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package io.helidon.example.grpc;
+
+option java_multiple_files = true;
+option java_package = "io.helidon.example.grpc";
+option java_outer_classname = "EchoProto";
+
+service EchoService {
+  rpc Echo (EchoRequest) returns (EchoResponse);
+}
+
+message EchoRequest {
+  string message = 1;
+}
+
+message EchoResponse {
+  string message = 1;
+}

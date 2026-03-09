@@ -84,8 +84,17 @@ maven.install(
 
         ## Helidon
         "io.helidon.webserver:helidon-webserver",
+        "io.helidon.webserver:helidon-webserver-grpc",
+        "io.helidon.webclient:helidon-webclient",
+        "io.helidon.webclient:helidon-webclient-grpc",
         "io.helidon.logging:helidon-logging-jul",
         "io.helidon.logging:helidon-logging-common",
+
+        ## gRPC
+        "io.grpc:grpc-api",
+        "io.grpc:grpc-stub",
+        "io.grpc:grpc-protobuf",
+        "io.grpc:grpc-netty-shaded",
 
         ## Dagger 2
         "com.google.dagger:dagger:2.55",
