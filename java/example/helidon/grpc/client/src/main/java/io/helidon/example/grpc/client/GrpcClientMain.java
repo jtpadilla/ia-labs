@@ -11,6 +11,7 @@ public class GrpcClientMain {
     public static void main(String[] args) {
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8080)
                 .usePlaintext()
+                .intercept(new ApiKeyClientInterceptor("my-secret-api-key"))
                 .build();
 
         try {

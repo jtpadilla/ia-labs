@@ -12,6 +12,7 @@ public class GrpcServerMain {
         WebServer server = WebServer.builder()
                 .port(8080)
                 .addRouting(GrpcRouting.builder()
+                        .intercept(new ApiKeyInterceptor())
                         .service(new EchoService()))
                 .build()
                 .start();

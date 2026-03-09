@@ -14,6 +14,7 @@ java_binary(
         "@maven//:io_helidon_logging_helidon_logging_jul",
         "@maven//:io_grpc_grpc_api",
         "@maven//:io_grpc_grpc_stub",
+        "@maven//:org_jspecify_jspecify",
         "@maven//:com_google_protobuf_protobuf_java",
     ],
 )
