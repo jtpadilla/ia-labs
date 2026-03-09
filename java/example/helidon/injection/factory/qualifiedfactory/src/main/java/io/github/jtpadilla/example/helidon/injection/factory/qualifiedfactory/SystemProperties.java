@@ -2,6 +2,8 @@ package io.github.jtpadilla.example.helidon.injection.factory.qualifiedfactory;
 
 import io.helidon.service.registry.Service;
 
+// Esta es una clase que para crear una instancia requiere que se le inyecten
+// dos strings con los valores que corresponden a las propiedades del sistema.
 @Service.Singleton
 public class SystemProperties {
 

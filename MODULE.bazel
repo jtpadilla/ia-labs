@@ -76,6 +76,17 @@ maven.install(
         "io.javelit:javelit:0.86.0",
         "tech.tablesaw:tablesaw-core:0.44.4",
 
+        ## Xodus
+        "org.jetbrains.xodus:xodus-openAPI:2.0.1",
+        "org.jetbrains.xodus:xodus-environment:2.0.1",
+        "org.jetbrains.xodus:xodus-entity-store:2.0.1",
+        "org.jetbrains.xodus:xodus-vfs:2.0.1",
+
+        ## Helidon
+        "io.helidon.webserver:helidon-webserver",
+        "io.helidon.logging:helidon-logging-jul",
+        "io.helidon.logging:helidon-logging-common",
+
         ## Dagger 2
         "com.google.dagger:dagger:2.55",
         "com.google.dagger:dagger-compiler:2.55",

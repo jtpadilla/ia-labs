@@ -1,0 +1,15 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "entity",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "io.github.jtpadilla.study.xodus.entity.EntityMain",
+    deps = [
+        "@maven//:io_helidon_logging_helidon_logging_common",
+        "@maven//:io_helidon_logging_helidon_logging_jul",
+        "@maven//:io_helidon_webserver_helidon_webserver",
+        "@maven//:org_jetbrains_xodus_xodus_openAPI",
+        "@maven//:org_jetbrains_xodus_xodus_entity_store",
+        "@maven//:org_jetbrains_xodus_xodus_environment",
+    ],
+)
