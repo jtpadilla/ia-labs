@@ -1,0 +1,19 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+java_binary(
+    name = "server",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "io.helidon.example.grpc.server.GrpcServerMain",
+    deps = [
+        "//java/lib:helidon",
+        "//proto/example/helidon/grpc:echo_java_grpc",
+        "//proto/example/helidon/grpc:echo_java_proto",
+        "@maven//:io_helidon_webserver_helidon_webserver",
+        "@maven//:io_helidon_webserver_helidon_webserver_grpc",
+        "@maven//:io_helidon_logging_helidon_logging_common",
+        "@maven//:io_helidon_logging_helidon_logging_jul",
+        "@maven//:io_grpc_grpc_api",
+        "@maven//:io_grpc_grpc_stub",
+        "@maven//:com_google_protobuf_protobuf_java",
+    ],
+)

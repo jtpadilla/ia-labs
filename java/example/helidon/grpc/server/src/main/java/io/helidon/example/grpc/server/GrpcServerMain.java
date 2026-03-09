@@ -1,4 +1,4 @@
-package io.helidon.example.grpc;
+package io.helidon.example.grpc.server;
 
 import io.helidon.logging.common.LogConfig;
 import io.helidon.webserver.WebServer;

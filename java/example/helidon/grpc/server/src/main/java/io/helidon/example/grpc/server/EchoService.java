@@ -1,6 +1,9 @@
-package io.helidon.example.grpc;
+package io.helidon.example.grpc.server;
 
 import io.grpc.stub.StreamObserver;
+import io.helidon.example.grpc.EchoRequest;
+import io.helidon.example.grpc.EchoResponse;
+import io.helidon.example.grpc.EchoServiceGrpc;
 
 public class EchoService extends EchoServiceGrpc.EchoServiceImplBase {
 
