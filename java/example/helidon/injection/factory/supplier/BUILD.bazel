@@ -6,7 +6,7 @@ java_binary(
     main_class = "io.github.jtpadilla.example.helidon.injection.factory.supplier.Main",
     deps = [
         "@maven//:org_jspecify_jspecify",
-        "//java/lib:helidon",
+        "//java/third_party/helidon:helidon",
     ],
 )
 

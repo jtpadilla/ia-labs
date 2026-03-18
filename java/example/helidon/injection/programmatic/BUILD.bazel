@@ -5,7 +5,7 @@ java_binary(
     srcs = glob(["src/main/java/**/*.java"]),
     main_class = "io.github.jtpadilla.example.helidon.injection.programmatic.Main",
     deps = [
-        "//java/lib:helidon",
+        "//java/third_party/helidon:helidon",
         "//java/bootstrap/unit",
         "@maven//:org_jspecify_jspecify",
     ],
