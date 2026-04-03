@@ -16,13 +16,13 @@ public class Main {
                 .register("/.well-known", new WellKnownHandler(agentCard));
 
         final GrpcRouting.Builder grpcRouting = GrpcRouting.builder()
-                .service(new A2AServiceImpl(agentCard));
+                .service(AgentCard.getDescriptor().getFile(), new A2AServiceImpl(agentCard));
 
         final WebServer server = WebServer.builder()
                 .port(8080)
                 .addRouting(httpRouting)
                 .addRouting(grpcRouting)
-                .addFeature(GrpcReflectionFeature.create())
+                .addFeature(GrpcReflectionFeature.create(cfg -> cfg.enabled(true)))
                 .build()
                 .start();
 
