@@ -23,7 +23,7 @@ public class WellKnownHandler implements HttpService {
 
     @Override
     public void routing(HttpRules rules) {
-        rules.get("/.well-known/agent.json", this::handle);
+        rules.get("/agent.json", this::handle);
     }
 
     private void handle(ServerRequest req, ServerResponse res) {

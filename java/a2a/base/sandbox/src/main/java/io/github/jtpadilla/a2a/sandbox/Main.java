@@ -12,7 +12,7 @@ public class Main {
         WebServer server = WebServer.builder()
                 .port(8080)
                 .addRouting(HttpRouting.builder()
-                        .register(new WellKnownHandler(agentCard)))
+                        .register("/.well-known", new WellKnownHandler(agentCard)))
                 .build()
                 .start();
 
