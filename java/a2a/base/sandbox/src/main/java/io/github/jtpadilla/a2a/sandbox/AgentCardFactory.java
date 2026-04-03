@@ -23,7 +23,7 @@ public final class AgentCardFactory {
                 .setDescription("Pemite evaluar la tecnologia A2A")
                 .setVersion("0.0.1")
                 .addSupportedInterfaces(AgentInterface.newBuilder()
-                        .setUrl("lf.a2a.v1.A2AService/GetTask")
+                        .setUrl("http://localhost:8080/lf.a2a.v1.A2AService/GetTask")
                         .setProtocolBinding("GRPC")
                         .setProtocolVersion("1.0")
                         .build())
