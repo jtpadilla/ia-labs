@@ -1,5 +1,5 @@
 module(
-    name = "ia-labs",
+    name = "ai-helidon-labs",
     version = "0.1.0",
 )
 
@@ -68,6 +68,7 @@ maven.install(
         "org.json:json:20210307",
 
         ## a2a
+        "com.google.protobuf:protobuf-java-util:4.28.3",
         "com.google.code.gson:gson:2.13.2",
         "org.slf4j:slf4j-api:2.0.7",
         "org.slf4j:slf4j-jdk14:2.0.7",
