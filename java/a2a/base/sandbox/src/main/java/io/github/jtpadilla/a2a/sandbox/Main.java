@@ -8,14 +8,19 @@ import io.helidon.webserver.http.HttpRouting;
 public class Main {
 
     public static void main(String[] args) {
+
         AgentCard agentCard = AgentCardFactory.create();
 
-        WebServer server = WebServer.builder()
+        final HttpRouting.Builder httpRouting = HttpRouting.builder()
+                .register("/.well-known", new WellKnownHandler(agentCard));
+
+        final GrpcRouting.Builder grpcRouting = GrpcRouting.builder()
+                .service(new A2AServiceImpl(agentCard));
+
+        final WebServer server = WebServer.builder()
                 .port(8080)
-                .addRouting(HttpRouting.builder()
-                        .register("/.well-known", new WellKnownHandler(agentCard)))
-                .addRouting(GrpcRouting.builder()
-                        .service(new A2AServiceImpl(agentCard)))
+                .addRouting(httpRouting)
+                .addRouting(grpcRouting)
                 .build()
                 .start();
 

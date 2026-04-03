@@ -11,13 +11,13 @@ public final class AgentCardFactory {
 
     public static AgentCard create() {
         return AgentCard.newBuilder()
-                .setName("Sandbox Agent")
-                .setDescription("A2A sandbox agent")
+                .setName("IAtevale Agent")
+                .setDescription("Pemite evaluar la tecnologia A2A")
                 .setVersion("0.0.1")
                 .addSupportedInterfaces(AgentInterface.newBuilder()
-                        .setUrl("localhost:8080")
+                        .setUrl("lf.a2a.v1.A2AService/GetTask")
                         .setProtocolBinding("GRPC")
-                        .setProtocolVersion("0.3")
+                        .setProtocolVersion("1.0")
                         .build())
                 .setCapabilities(AgentCapabilities.newBuilder().setStreaming(true).build())
                 .addDefaultInputModes("text/plain")
