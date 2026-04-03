@@ -85,7 +85,6 @@ maven.install(
         ## Helidon
         "io.helidon.webserver:helidon-webserver",
         "io.helidon.webserver:helidon-webserver-grpc",
-        "io.helidon.webserver:helidon-webserver-grpc-reflection",
         "io.helidon.webclient:helidon-webclient",
         "io.helidon.webclient:helidon-webclient-grpc",
         "io.helidon.logging:helidon-logging-jul",
