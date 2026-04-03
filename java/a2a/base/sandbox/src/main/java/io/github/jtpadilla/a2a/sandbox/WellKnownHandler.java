@@ -14,7 +14,7 @@ public class WellKnownHandler implements HttpService {
     public WellKnownHandler(AgentCard agentCard) {
         try {
             this.agentCardJson = JsonFormat.printer()
-                    .includingDefaultValueFields()
+                    .alwaysPrintFieldsWithNoPresence()
                     .print(agentCard);
         } catch (Exception e) {
             throw new IllegalStateException("Failed to serialize AgentCard at startup", e);

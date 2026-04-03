@@ -15,4 +15,4 @@ build --cxxopt='-Wno-deprecated-declarations'
 build --host_cxxopt='-Wno-deprecated-declarations'
 
 # Cache compartida para bazel (ide y claude code)
-build --disk_cache=~/.cache/ia-labs-cache
+build --disk_cache=~/.cache/ai-helidon-labs-cache
