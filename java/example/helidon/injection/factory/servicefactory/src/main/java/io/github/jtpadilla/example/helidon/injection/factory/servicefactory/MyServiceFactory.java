@@ -4,8 +4,6 @@ import io.helidon.service.registry.Qualifier;
 import io.helidon.service.registry.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Supplier;
 
 @Service.Singleton
 public class MyServiceFactory implements Service.ServicesFactory<MyService> {

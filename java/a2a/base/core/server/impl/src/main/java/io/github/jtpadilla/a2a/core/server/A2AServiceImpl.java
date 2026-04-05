@@ -1,17 +1,6 @@
 package io.github.jtpadilla.a2a.core.server;
 
-import com.google.lf.a2a.v1.A2AServiceGrpc;
-import com.google.lf.a2a.v1.AgentCard;
-import com.google.lf.a2a.v1.GetExtendedAgentCardRequest;
-import com.google.lf.a2a.v1.Message;
-import com.google.lf.a2a.v1.Part;
-import com.google.lf.a2a.v1.Role;
-import com.google.lf.a2a.v1.SendMessageRequest;
-import com.google.lf.a2a.v1.SendMessageResponse;
-import com.google.lf.a2a.v1.StreamResponse;
-import com.google.lf.a2a.v1.TaskStatus;
-import com.google.lf.a2a.v1.TaskState;
-import com.google.lf.a2a.v1.TaskStatusUpdateEvent;
+import com.google.lf.a2a.v1.*;
 import io.grpc.stub.StreamObserver;
 
 import java.util.UUID;

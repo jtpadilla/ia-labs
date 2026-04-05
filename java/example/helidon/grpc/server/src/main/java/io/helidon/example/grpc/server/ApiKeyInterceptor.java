@@ -1,10 +1,6 @@
 package io.helidon.example.grpc.server;
 
-import io.grpc.Metadata;
-import io.grpc.ServerCall;
-import io.grpc.ServerCallHandler;
-import io.grpc.ServerInterceptor;
-import io.grpc.Status;
+import io.grpc.*;
 import org.jspecify.annotations.NonNull;
 
 public class ApiKeyInterceptor implements ServerInterceptor {

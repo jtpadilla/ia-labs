@@ -1,7 +1,7 @@
 package io.github.jtpadilla.a2a.core.server;
 
-import com.google.lf.a2a.v1.AgentCard;
 import com.google.lf.a2a.v1.AgentCapabilities;
+import com.google.lf.a2a.v1.AgentCard;
 import com.google.lf.a2a.v1.AgentInterface;
 import com.google.lf.a2a.v1.AgentSkill;
 

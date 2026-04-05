@@ -5,11 +5,7 @@ import io.github.jtpadilla.example.helidon.injection.programmatic.service.hsm.im
 import io.github.jtpadilla.example.helidon.injection.programmatic.service.payment.PaymentProcessor;
 import io.github.jtpadilla.example.helidon.injection.programmatic.service.payment.impl.CloudPaymentProcessor;
 import io.github.jtpadilla.example.helidon.injection.programmatic.service.payment.impl.EmergencyPaymentProcessor;
-import io.helidon.service.registry.ServiceRegistryConfig;
-import io.helidon.service.registry.ServiceRegistryManager;
-import io.helidon.service.registry.ServiceRegistry;
-import io.helidon.service.registry.ExistingInstanceDescriptor;
-import io.helidon.service.registry.Services;
+import io.helidon.service.registry.*;
 
 import java.util.Set;
 

@@ -2,9 +2,9 @@ package io.github.jtpadilla.study.xodus.env;
 
 import io.helidon.logging.common.LogConfig;
 import io.helidon.webserver.WebServer;
+import jetbrains.exodus.bindings.StringBinding;
 import jetbrains.exodus.env.Environments;
 import jetbrains.exodus.env.StoreConfig;
-import jetbrains.exodus.bindings.StringBinding;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
