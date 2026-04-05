@@ -1,10 +1,10 @@
 package io.github.jtpadilla.a2a.core.server;
 
 import com.google.lf.a2a.v1.*;
+import io.github.jtpadilla.a2a.server.service.agentcard.AgentCardService;
+import io.github.jtpadilla.a2a.server.service.skill.SkillService;
 import io.grpc.stub.StreamObserver;
 import io.helidon.service.registry.Service;
-import io.github.jtpadilla.a2a.server.service.skill.SkillService;
-import io.github.jtpadilla.a2a.server.service.agentcard.AgentCardService;
 
 import java.util.UUID;
 import java.util.logging.Logger;
