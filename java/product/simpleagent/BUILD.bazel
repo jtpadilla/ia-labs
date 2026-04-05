@@ -1,0 +1,18 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+java_binary(
+    name = "simpleagent",
+    srcs = glob(["src/main/java/**/*.java"]),
+    main_class = "io.github.jtpadilla.a2a.sandbox.Main",
+    deps = [
+        "//proto/lf/a2a/v1:a2a_java_grpc",
+        "//proto/lf/a2a/v1:a2a_java_proto",
+        "@maven//:io_grpc_grpc_api",
+        "@maven//:io_grpc_grpc_stub",
+        "@maven//:io_helidon_http_helidon_http",
+        "@maven//:io_helidon_webserver_helidon_webserver",
+        "@maven//:io_helidon_webserver_helidon_webserver_grpc",
+    ],
+)

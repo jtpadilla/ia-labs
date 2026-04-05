@@ -1,0 +1,14 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "skill",
+    srcs = glob(["src/main/java/**/*.java"]),
+    deps = [
+        "//java/third_party/helidon:service",
+        "//proto/lf/a2a/v1:a2a_java_proto",
+        "@grpc-java//api",
+        "@grpc-java//stub",
+    ],
+)
