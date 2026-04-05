@@ -7,6 +7,11 @@ java_binary(
     srcs = glob(["src/main/java/**/*.java"]),
     main_class = "io.github.jtpadilla.a2a.sandbox.Main",
     deps = [
+        "//java/a2a/server/base/grpc",
+        "//java/a2a/server/base/http",
+        "//java/a2a/server/base/service/agentcard",
+        "//java/a2a/server/base/service/skill",
+        "//java/third_party/helidon:service",
         "//proto/lf/a2a/v1:a2a_java_grpc",
         "//proto/lf/a2a/v1:a2a_java_proto",
         "@maven//:io_grpc_grpc_api",

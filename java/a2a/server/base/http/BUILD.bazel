@@ -6,7 +6,7 @@ java_library(
     name = "http",
     srcs = glob(["src/main/java/**/*.java"]),
     deps = [
-        "//java/a2a/server/base/service/skill",
+        "//java/a2a/server/base/service/agentcard",
         "//java/third_party/helidon:service",
         "//proto/lf/a2a/v1:a2a_java_grpc",
         "//proto/lf/a2a/v1:a2a_java_proto",
@@ -16,5 +16,6 @@ java_library(
         "@maven//:io_helidon_webserver_helidon_webserver",
         "@maven//:io_helidon_webserver_helidon_webserver_grpc",
         "@protobuf//:protobuf_java_util",
+        "@protobuf//java/core",
     ],
 )
