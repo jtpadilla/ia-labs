@@ -32,4 +32,5 @@ public class WellKnownHandler implements HttpService {
                 "application/json");
         res.send(agentCardJson);
     }
+
 }

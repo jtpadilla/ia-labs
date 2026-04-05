@@ -1,7 +1,9 @@
 package io.github.jtpadilla.a2a.skill.echo;
 
 import com.google.lf.a2a.v1.AgentSkill;
-import io.github.jtpadilla.a2a.core.server.SkillProvider;
+import io.github.jtpadilla.a2a.core.server.service.persistence.A2APersistentContext;
+import io.github.jtpadilla.a2a.core.server.service.persistence.A2ARequestContext;
+import io.github.jtpadilla.a2a.core.server.service.persistence.SkillProvider;
 
 public class EchoSkill implements SkillProvider {
 
@@ -13,6 +15,11 @@ public class EchoSkill implements SkillProvider {
                 .setDescription("Echoes input")
                 .addTags("echo")
                 .build();
+    }
+
+    @Override
+    public A2APersistentContext executeRequest(A2ARequestContext context) {
+        return null;
     }
 
 }
