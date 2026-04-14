@@ -1,10 +1,12 @@
-package io.github.jtpadilla.example.langchain4j.chatmemory1;
+package io.github.jtpadilla.example.langchain4j.structured1;
 
-import io.helidon.config.Config;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.UserMessage;
+import io.helidon.config.Config;
 
-public class GeminiChatDemo {
+public class StructuredDemo {
 
     final static private String MODEL = "gemini-3.1-flash-lite-preview";
 
@@ -19,14 +21,14 @@ public class GeminiChatDemo {
                 .logRequestsAndResponses(true) // Útil para debug en Bazel
                 .build();
 
-        // Primera interacción
-        String answer = model.chat("List 3 movies by Quentin Tarantino.");
-        System.out.println("Gemini: " + answer);
+        interface SentimentAnalyzer {
+            @UserMessage("Does {{it}} has a positive sentiment?")
+            boolean isPositive(String text);
+        }
 
-        // Segunda interacción (Sin memoria explícita, Gemini no sabrá quién es "he")
-        // Para que funcione igual que tu demo, especificamos el sujeto:
-        String followUp = model.chat("How old is he?");
-        System.out.println("Gemini: " + followUp);
+        SentimentAnalyzer sentimentAnalyzer = AiServices.create(SentimentAnalyzer.class, model);
+        boolean positive = sentimentAnalyzer.isPositive("It's wonderful!");
+        System.out.println(positive); // Hello, how can I help you?
 
     }
 

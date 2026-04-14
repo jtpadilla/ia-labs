@@ -1,9 +1,9 @@
 load("@rules_java//java:defs.bzl", "java_binary", "java_import", "java_library", "java_test")
 
 java_binary(
-    name = "004-chatmemory4",
+    name = "011-structured1",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "io.github.jtpadilla.example.langchain4j.chatmemory4.ChatMemory",
+    main_class = "io.github.jtpadilla.example.langchain4j.structured1.StructuredDemo",
     resources = glob(["src/main/resources/**"]),
     visibility = ["//visibility:public"],
     deps = [

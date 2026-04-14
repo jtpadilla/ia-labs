@@ -3,7 +3,7 @@ load("@rules_java//java:defs.bzl", "java_binary", "java_import", "java_library",
 java_binary(
     name = "002-chatmemory2",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "io.github.jtpadilla.example.langchain4j.chatmemory2.GeminiChatDemo",
+    main_class = "io.github.jtpadilla.example.langchain4j.chatmemory2.ChatMemory",
     resources = glob(["src/main/resources/**"]),
     visibility = ["//visibility:public"],
     deps = [

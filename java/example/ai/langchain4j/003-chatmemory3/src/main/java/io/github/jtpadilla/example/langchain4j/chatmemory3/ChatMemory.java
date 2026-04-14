@@ -1,17 +1,14 @@
-package io.github.jtpadilla.example.langchain4j.chatmemory4;
+package io.github.jtpadilla.example.langchain4j.chatmemory3;
 
 import dev.langchain4j.chain.ConversationalChain;
-import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
-import dev.langchain4j.model.input.Prompt;
-import dev.langchain4j.model.input.PromptTemplate;
 import io.helidon.config.Config;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 
-import java.util.Map;
+import java.time.LocalDate;
 
-public class GeminiChatDemo {
+public class ChatMemory {
 
     final static private String MODEL = "gemini-3.1-flash-lite-preview";
     //final static private String MODEL = "gemma-4-31b-it";
@@ -21,7 +18,7 @@ public class GeminiChatDemo {
 
     public static void main(String[] args) {
 
-        final ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(20);
+        final dev.langchain4j.memory.ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(20);
 
         final ChatModel model = GoogleAiGeminiChatModel.builder()
                 .apiKey(API_KEY)
@@ -39,11 +36,7 @@ public class GeminiChatDemo {
         System.out.println(answer); // Pulp Fiction, Kill Bill, etc.
 
         System.out.println("------------------------");
-        Prompt prompt = PromptTemplate
-                .from("How old is {{name}} as of {{current_date}}?")
-                .apply(Map.of("name","Quentin Tarantino"));
-
-        answer = chain.execute(prompt.text());
+        answer = chain.execute("How old is he as of "+ LocalDate.now() + "?");
         System.out.println(answer); // Quentin Tarantino was born on March 27, 1963, so he is currently 58 years old.
 
     }
