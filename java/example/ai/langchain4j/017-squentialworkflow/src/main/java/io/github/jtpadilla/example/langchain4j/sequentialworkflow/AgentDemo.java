@@ -18,7 +18,7 @@ public class AgentDemo {
     final static private String API_KEY = Config.global().get("gemini-api-key").asString().orElseThrow(
             () -> new IllegalStateException("Configuration key 'gemini-api-key' is required"));
 
-    interface CreativeWriter {
+    public interface CreativeWriter {
         @UserMessage("""
             You are a creative writer.
             Generate a draft of a story no more than
@@ -30,7 +30,7 @@ public class AgentDemo {
         String generateStory(@V("topic") String topic);
     }
 
-    interface AudienceEditor {
+    public interface AudienceEditor {
         @UserMessage("""
             You are a professional editor.
             Analyze and rewrite the following story to better align
@@ -42,7 +42,7 @@ public class AgentDemo {
         String editStory(@V("story") String story, @V("audience") String audience);
     }
 
-    interface StyleEditor {
+    public interface StyleEditor {
         @UserMessage("""
             You are a professional editor.
             Analyze and rewrite the following story to better fit and be more coherent with the {{style}} style.
@@ -91,7 +91,7 @@ public class AgentDemo {
                 "audience", "young adults"
         );
 
-        String story = (String) novelCreator.invoke(input);
+        Object object = novelCreator.invoke(input);
 
 
 
