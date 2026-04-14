@@ -1,13 +1,11 @@
 package io.github.jtpadilla.example.langchain4j.aiservices5;
 
+import dev.langchain4j.model.chat.ChatModel;
+import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 import io.helidon.config.Config;
-import dev.langchain4j.model.chat.ChatModel;
-import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
-
-import java.time.LocalDate;
 
 public class AiServicesDemo {
 

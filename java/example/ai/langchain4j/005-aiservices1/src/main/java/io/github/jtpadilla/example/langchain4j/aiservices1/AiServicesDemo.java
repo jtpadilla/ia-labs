@@ -1,9 +1,9 @@
 package io.github.jtpadilla.example.langchain4j.aiservices1;
 
-import dev.langchain4j.service.AiServices;
-import io.helidon.config.Config;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
+import dev.langchain4j.service.AiServices;
+import io.helidon.config.Config;
 
 public class AiServicesDemo {
 

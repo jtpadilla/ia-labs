@@ -2,9 +2,9 @@ package io.github.jtpadilla.example.langchain4j.chatmemory2;
 
 import dev.langchain4j.chain.ConversationalChain;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
-import io.helidon.config.Config;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
+import io.helidon.config.Config;
 
 public class ChatMemory {
 
