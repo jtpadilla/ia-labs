@@ -1,6 +1,7 @@
-package io.github.jtpadilla.example.langchain4j.aiservices1;
+package io.github.jtpadilla.example.langchain4j.aiservices2;
 
 import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.SystemMessage;
 import io.helidon.config.Config;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
@@ -21,12 +22,13 @@ public class AiServicesDemo {
                 .build();
 
         interface Assistant {
-           String chat(String userMessage);
+            @SystemMessage("You are a good friend of mine. Answer using slang and using Spanish")
+            String chat(String userMessage);
         }
 
         Assistant assistant = AiServices.create(Assistant.class, model);
 
-        String answer = assistant.chat("Hello");
+        String answer = assistant.chat("Hola");
         System.out.println(answer); // Hello, how can I help you?
 
     }

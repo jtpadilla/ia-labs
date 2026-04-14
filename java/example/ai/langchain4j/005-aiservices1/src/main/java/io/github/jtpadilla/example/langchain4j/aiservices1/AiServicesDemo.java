@@ -26,7 +26,7 @@ public class AiServicesDemo {
 
         Assistant assistant = AiServices.create(Assistant.class, model);
 
-        String answer = assistant.chat("Hello");
+        String answer = assistant.chat("Hola");
         System.out.println(answer); // Hello, how can I help you?
 
     }
