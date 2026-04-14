@@ -1,10 +1,11 @@
-package io.github.jtpadilla.example.langchain4j.aiservices2;
+package io.github.jtpadilla.example.langchain4j.aiservices3;
 
 import dev.langchain4j.service.AiServices;
-import dev.langchain4j.service.SystemMessage;
 import io.helidon.config.Config;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
+
+import java.time.LocalDate;
 
 public class AiServicesDemo {
 
@@ -22,13 +23,16 @@ public class AiServicesDemo {
                 .build();
 
         interface Friend {
-            @SystemMessage("You are a good friend of mine. Answer using slang and using Spanish")
             String chat(String userMessage);
         }
 
-        Friend friend = AiServices.create(Friend.class, model);
+        Friend friend = AiServices.builder(Friend.class)
+                .chatModel(model)
+                .systemMessageProvider(chatMemoryId -> "You are a good friend of mine.")
+                .systemMessageTransformer(systemMessage -> systemMessage + " Today's date is " + LocalDate.now() + ".")
+                .build();
 
-        String answer = friend.chat("Hola");
+        String answer = friend.chat("Hola, que hora es?");
         System.out.println(answer); // Hello, how can I help you?
 
     }
