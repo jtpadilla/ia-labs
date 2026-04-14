@@ -25,7 +25,7 @@ public class GeminiChatDemo {
 
         // Segunda interacción (Sin memoria explícita, Gemini no sabrá quién es "he")
         // Para que funcione igual que tu demo, especificamos el sujeto:
-        String followUp = model.chat("How old is Quentin Tarantino?");
+        String followUp = model.chat("How old is he?");
         System.out.println("Gemini: " + followUp);
 
     }
