@@ -1,11 +1,15 @@
 package io.github.jtpadilla.example.langchain4j.sequentialworkflow;
 
 import dev.langchain4j.agentic.Agent;
+import dev.langchain4j.agentic.AgenticServices;
+import dev.langchain4j.agentic.UntypedAgent;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 import io.helidon.config.Config;
+
+import java.util.Map;
 
 public class AgentDemo {
 
@@ -56,6 +60,38 @@ public class AgentDemo {
             @Agent("Edits a story to better fit a given style")
             String editStory(@V("story") String story, @V("style") String style);
         }
+
+        CreativeWriter creativeWriter = AgenticServices
+                .agentBuilder(CreativeWriter.class)
+                .chatModel(model)
+                .outputKey("story")
+                .build();
+
+        AudienceEditor audienceEditor = AgenticServices
+                .agentBuilder(AudienceEditor.class)
+                .chatModel(model)
+                .outputKey("story")
+                .build();
+
+        StyleEditor styleEditor = AgenticServices
+                .agentBuilder(StyleEditor.class)
+                .chatModel(model)
+                .outputKey("story")
+                .build();
+
+        UntypedAgent novelCreator = AgenticServices
+                .sequenceBuilder()
+                .subAgents(creativeWriter, audienceEditor, styleEditor)
+                .outputKey("story")
+                .build();
+
+        Map<String, Object> input = Map.of(
+                "topic", "dragons and wizards",
+                "style", "fantasy",
+                "audience", "young adults"
+        );
+
+        String story = (String) novelCreator.invoke(input);
 
 
 
