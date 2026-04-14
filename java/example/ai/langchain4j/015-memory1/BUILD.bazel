@@ -3,7 +3,7 @@ load("@rules_java//java:defs.bzl", "java_binary", "java_import", "java_library",
 java_binary(
     name = "014-streaming1",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "io.github.jtpadilla.example.langchain4j.streaming1.StreamingDemo",
+    main_class = "io.github.jtpadilla.example.langchain4j.memory1.MemoryDemo",
     resources = glob(["src/main/resources/**"]),
     visibility = ["//visibility:public"],
     deps = [

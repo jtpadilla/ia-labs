@@ -6,10 +6,7 @@ import dev.langchain4j.model.chat.StreamingChatModel;
 import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiStreamingChatModel;
-import dev.langchain4j.service.AiServices;
-import dev.langchain4j.service.MemoryId;
-import dev.langchain4j.service.TokenStream;
-import dev.langchain4j.service.UserMessage;
+import dev.langchain4j.service.*;
 import io.helidon.config.Config;
 
 import java.util.concurrent.CompletableFuture;
@@ -30,7 +27,8 @@ public class MemoryDemo {
                 .build();
 
         interface Assistant {
-            String chat(@MemoryId int memoryId, @UserMessage String message);
+            @SystemMessage("Answer always in Spanish")
+            String chat(@UserMessage String message);
         }
 
         Assistant assistant = AiServices.builder(Assistant.class)
@@ -38,10 +36,10 @@ public class MemoryDemo {
                 .chatMemory(MessageWindowChatMemory.withMaxMessages(10))
                 .build();
 
-        String answerToKlaus = assistant.chat(1, "Hello, my name is Klaus");
+        String answerToKlaus = assistant.chat("Hello, my name is Klaus");
         System.out.println(answerToKlaus); // Hello, how can I help you?
 
-        String answerToFrancine = assistant.chat(2, "Hello, my name is Francine");
+        String answerToFrancine = assistant.chat("Hola, mi nombre era Francine o era otro?");
         System.out.println(answerToFrancine); // Hello, how can I help you?
 
     }
