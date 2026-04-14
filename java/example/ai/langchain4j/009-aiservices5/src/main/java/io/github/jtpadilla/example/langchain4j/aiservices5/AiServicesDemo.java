@@ -1,0 +1,40 @@
+package io.github.jtpadilla.example.langchain4j.aiservices5;
+
+import dev.langchain4j.service.AiServices;
+import dev.langchain4j.service.UserMessage;
+import dev.langchain4j.service.V;
+import io.helidon.config.Config;
+import dev.langchain4j.model.chat.ChatModel;
+import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
+
+import java.time.LocalDate;
+
+public class AiServicesDemo {
+
+    final static private String MODEL = "gemini-3.1-flash-lite-preview";
+
+    final static private String API_KEY = Config.global().get("gemini-api-key").asString().orElseThrow(
+            () -> new IllegalStateException("Configuration key 'gemini-api-key' is required"));
+
+    public static void main(String[] args) {
+
+        ChatModel model = GoogleAiGeminiChatModel.builder()
+                .apiKey(API_KEY)
+                .modelName(MODEL)
+                .logRequestsAndResponses(true) // Útil para debug en Bazel
+                .build();
+
+        interface Friend {
+            @UserMessage("You are a good friend of mine {{message}}")
+            String chat(@V("message") String userMessage);        }
+
+        Friend friend = AiServices.builder(Friend.class)
+                .chatModel(model)
+                .build();
+
+        String answer = friend.chat("Hola");
+        System.out.println(answer); // Hello, how can I help you?
+
+    }
+
+}
