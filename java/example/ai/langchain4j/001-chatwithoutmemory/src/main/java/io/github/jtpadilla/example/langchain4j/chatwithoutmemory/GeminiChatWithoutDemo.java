@@ -1,10 +1,10 @@
-package io.github.jtpadilla.example.langchain4j.chatmemory;
+package io.github.jtpadilla.example.langchain4j.chatwithoutmemory;
 
 import io.helidon.config.Config;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 
-public class GeminiChatDemo {
+public class GeminiChatWithoutDemo {
 
     final static private String MODEL = "gemini-3.1-flash-lite-preview";
 
