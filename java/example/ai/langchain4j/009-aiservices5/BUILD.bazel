@@ -7,7 +7,6 @@ java_binary(
     resources = glob(["src/main/resources/**"]),
     visibility = ["//visibility:public"],
     deps = [
-        "//java/example/ai/genai/common",
         "@maven//:io_helidon_config_helidon_config",
         "@maven//:io_helidon_config_helidon_config_yaml",
         "@maven//:com_google_genai_google_genai",
