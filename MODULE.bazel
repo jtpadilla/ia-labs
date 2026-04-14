@@ -117,8 +117,15 @@ maven.install(
         # builder
         "io.helidon.builder:helidon-builder-api",
         "io.helidon.builder:helidon-builder-codegen",
+
+        ## langchain4j
+        "dev.langchain4j:langchain4j",
+        "dev.langchain4j:langchain4j-core",
+        "dev.langchain4j:langchain4j-google-ai-gemini",
+
     ],
     boms = [
+        "dev.langchain4j:langchain4j-bom:1.12.2",
         "com.google.cloud:libraries-bom:26.74.0",
         "com.google.cloud:google-cloud-datastore-bom:2.33.2",
         "com.fasterxml.jackson:jackson-bom:2.21.0",
