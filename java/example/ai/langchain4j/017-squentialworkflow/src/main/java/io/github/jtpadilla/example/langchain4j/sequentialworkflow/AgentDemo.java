@@ -23,7 +23,6 @@ public class AgentDemo {
                 .build();
 
         interface CreativeWriter {
-
             @UserMessage("""
             You are a creative writer.
             Generate a draft of a story no more than
@@ -34,6 +33,30 @@ public class AgentDemo {
             @Agent("Generates a story based on the given topic")
             String generateStory(@V("topic") String topic);
         }
+
+        interface AudienceEditor {
+            @UserMessage("""
+            You are a professional editor.
+            Analyze and rewrite the following story to better align
+            with the target audience of {{audience}}.
+            Return only the story and nothing else.
+            The story is "{{story}}".
+            """)
+            @Agent("Edits a story to better fit a given audience")
+            String editStory(@V("story") String story, @V("audience") String audience);
+        }
+
+        interface StyleEditor {
+            @UserMessage("""
+            You are a professional editor.
+            Analyze and rewrite the following story to better fit and be more coherent with the {{style}} style.
+            Return only the story and nothing else.
+            The story is "{{story}}".
+            """)
+            @Agent("Edits a story to better fit a given style")
+            String editStory(@V("story") String story, @V("style") String style);
+        }
+
 
 
     }
