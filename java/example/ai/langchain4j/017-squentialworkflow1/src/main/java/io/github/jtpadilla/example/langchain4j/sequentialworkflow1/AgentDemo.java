@@ -21,36 +21,36 @@ public class AgentDemo {
 
     public interface CreativeWriter {
         @UserMessage("""
-            You are a creative writer.
-            Generate a draft of a story no more than
-            3 sentences long around the given topic.
-            Return only the story and nothing else.
-            The topic is {{topic}}.
+            Eres un escritor creativo.
+            Genera un borrador de una historia de no más de
+            3 frases sobre el tema indicado.
+            Devuelve solo la historia y nada más.
+            El tema es {{topic}}.
             """)
-        @Agent("Generates a story based on the given topic")
+        @Agent("Genera una historia basada en el tema indicado")
         String generateStory(@V("topic") String topic);
     }
 
     public interface AudienceEditor {
         @UserMessage("""
-            You are a professional editor.
-            Analyze and rewrite the following story to better align
-            with the target audience of {{audience}}.
-            Return only the story and nothing else.
-            The story is "{{story}}".
+            Eres un editor profesional.
+            Analiza y reescribe la siguiente historia para adaptarla mejor
+            al público objetivo de {{audience}}.
+            Devuelve solo la historia y nada más.
+            La historia es "{{story}}".
             """)
-        @Agent("Edits a story to better fit a given audience")
+        @Agent("Edita una historia para adaptarla mejor al público indicado")
         String editStory(@V("story") String story, @V("audience") String audience);
     }
 
     public interface StyleEditor {
         @UserMessage("""
-            You are a professional editor.
-            Analyze and rewrite the following story to better fit and be more coherent with the {{style}} style.
-            Return only the story and nothing else.
-            The story is "{{story}}".
+            Eres un editor profesional.
+            Analiza y reescribe la siguiente historia para que encaje mejor y sea más coherente con el estilo {{style}}.
+            Devuelve solo la historia y nada más.
+            La historia es "{{story}}".
             """)
-        @Agent("Edits a story to better fit a given style")
+        @Agent("Edita una historia para adaptarla mejor al estilo indicado")
         String editStory(@V("story") String story, @V("style") String style);
     }
 
@@ -87,9 +87,9 @@ public class AgentDemo {
                 .build();
 
         Map<String, Object> input = Map.of(
-                "topic", "dragons and wizards",
-                "style", "fantasy",
-                "audience", "young adults"
+                "topic", "dragones y magos",
+                "style", "fantasía",
+                "audience", "adultos jóvenes"
         );
 
         String story = (String) novelCreator.invoke(input);
