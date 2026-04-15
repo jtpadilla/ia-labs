@@ -1,4 +1,4 @@
-package io.github.jtpadilla.example.langchain4j.sequentialworkflow;
+package io.github.jtpadilla.example.langchain4j.sequentialworkflow1;
 
 import dev.langchain4j.agentic.Agent;
 import dev.langchain4j.agentic.AgenticServices;
