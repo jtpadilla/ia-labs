@@ -75,7 +75,7 @@ public class AgentDemo {
         StyleScorer styleScorer = AgenticServices
                 .agentBuilder(StyleScorer.class)
                 .chatModel(chatModel)
-                .outputKey("story")
+                .outputKey("score")
                 .build();
 
         StyleEditor styleEditor = AgenticServices
