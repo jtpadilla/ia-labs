@@ -54,6 +54,11 @@ public class AgentDemo {
         String editStory(@V("story") String story, @V("style") String style);
     }
 
+    public interface NovelCreator {
+        @Agent
+        String createNovel(@V("topic") String topic, @V("audience") String audience, @V("style") String style);
+    }
+
     public static void main(String[] args) {
 
         ChatModel chatModel = GoogleAiGeminiChatModel.builder()
@@ -80,19 +85,13 @@ public class AgentDemo {
                 .outputKey("story")
                 .build();
 
-        UntypedAgent novelCreator = AgenticServices
-                .sequenceBuilder()
+        NovelCreator novelCreator = AgenticServices
+                .sequenceBuilder(NovelCreator.class)
                 .subAgents(creativeWriter, audienceEditor, styleEditor)
                 .outputKey("story")
                 .build();
 
-        Map<String, Object> input = Map.of(
-                "topic", "dragones y magos",
-                "style", "fantasía",
-                "audience", "adultos jóvenes"
-        );
-
-        String story = (String) novelCreator.invoke(input);
+        String story = novelCreator.createNovel("dragons and wizards", "young adults", "fantasy");
         System.out.println(Format.markdown(story));
 
     }
