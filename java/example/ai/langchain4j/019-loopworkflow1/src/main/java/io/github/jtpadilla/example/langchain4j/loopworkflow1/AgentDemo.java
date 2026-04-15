@@ -97,7 +97,8 @@ public class AgentDemo {
                 .outputKey("story")
                 .build();
 
-        String story = styledWriter.writeStoryWithStyle("dragons and wizards", "comedy");        System.out.println(Format.markdown(story));
+        String story = styledWriter.writeStoryWithStyle("dragons and wizards", "comedy");
+        System.out.println(Format.markdown(story));
 
     }
 

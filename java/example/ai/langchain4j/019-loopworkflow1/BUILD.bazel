@@ -3,7 +3,7 @@ load("@rules_java//java:defs.bzl", "java_binary", "java_import", "java_library",
 java_binary(
     name = "019-loopworkflow1",
     srcs = glob(["src/main/java/**/*.java"]),
-    main_class = "io.github.jtpadilla.example.langchain4j.sequentialworkflow2.AgentDemo",
+    main_class = "io.github.jtpadilla.example.langchain4j.loopworkflow1.AgentDemo",
     resources = glob(["src/main/resources/**"]),
     visibility = ["//visibility:public"],
     deps = [
