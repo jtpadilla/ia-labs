@@ -7,7 +7,7 @@ import io.helidon.config.Config;
 
 public class AgentDemo {
 
-    private static final String MODEL = "gemini-2.0-flash-lite";
+    final static private String MODEL = "gemini-3.1-flash-lite-preview";
 
     private static final String API_KEY = Config.global()
             .get("gemini-api-key")
