@@ -93,7 +93,7 @@ public class AgentDemo {
         );
 
         String story = (String) novelCreator.invoke(input);
-        Format.markdown(story);
+        System.out.println(Format.markdown(story));
 
     }
 
