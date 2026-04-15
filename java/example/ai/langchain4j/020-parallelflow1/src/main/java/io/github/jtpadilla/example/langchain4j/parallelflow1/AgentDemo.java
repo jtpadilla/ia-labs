@@ -2,6 +2,7 @@ package io.github.jtpadilla.example.langchain4j.parallelflow1;
 
 import dev.langchain4j.agentic.Agent;
 import dev.langchain4j.agentic.AgenticServices;
+import dev.langchain4j.agentic.scope.AgenticScope;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import dev.langchain4j.service.UserMessage;
@@ -11,6 +12,7 @@ import io.helidon.config.Config;
 
 import java.util.List;
 import java.util.concurrent.Executors;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -73,19 +75,21 @@ public class AgentDemo {
                 .outputKey("movies")
                 .build();
 
+        Function<AgenticScope, Object> outputAdapterFunction = agenticScope -> {
+            List<String> movies = agenticScope.readState("movies", List.of());
+            List<String> meals = agenticScope.readState("meals", List.of());
+            int size = Math.min(movies.size(), meals.size());
+            return IntStream.range(0, size)
+                    .mapToObj(i -> new EveningPlan(movies.get(i), meals.get(i)))
+                    .toList();
+        };
+
         EveningPlannerAgent eveningPlannerAgent = AgenticServices
                 .parallelBuilder(EveningPlannerAgent.class)
                 .subAgents(foodExpert, movieExpert)
                 .executor(Executors.newFixedThreadPool(2))
                 .outputKey("plans")
-                .output(agenticScope -> {
-                    List<String> movies = agenticScope.readState("movies", List.of());
-                    List<String> meals = agenticScope.readState("meals", List.of());
-                    int size = Math.min(movies.size(), meals.size());
-                    return IntStream.range(0, size)
-                            .mapToObj(i -> new EveningPlan(movies.get(i), meals.get(i)))
-                            .toList();
-                })
+                .output(outputAdapterFunction)
                 .build();
 
         List<EveningPlan> plans = eveningPlannerAgent.plan("romantic");
