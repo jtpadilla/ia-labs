@@ -7,6 +7,7 @@ import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
+import io.github.jtpadilla.example.format.Format;
 import io.helidon.config.Config;
 
 import java.util.Map;
@@ -17,6 +18,18 @@ public class AgentDemo {
 
     final static private String API_KEY = Config.global().get("gemini-api-key").asString().orElseThrow(
             () -> new IllegalStateException("Configuration key 'gemini-api-key' is required"));
+
+    public interface CreativeWriter {
+        @UserMessage("""
+            You are a creative writer.
+            Generate a draft of a story no more than
+            3 sentences long around the given topic.
+            Return only the story and nothing else.
+            The topic is {{topic}}.
+            """)
+        @Agent("Generates a story based on the given topic")
+        String generateStory(@V("topic") String topic);
+    }
 
     public interface AudienceEditor {
         @UserMessage("""
@@ -49,18 +62,9 @@ public class AgentDemo {
                 .logRequestsAndResponses(true)
                 .build();
 
-        UntypedAgent creativeWriter = AgenticServices.agentBuilder()
+        CreativeWriter creativeWriter = AgenticServices
+                .agentBuilder(CreativeWriter.class)
                 .chatModel(chatModel)
-                .description("Generate a story based on the given topic")
-                .userMessage("""
-                You are a creative writer.
-                Generate a draft of a story no more than
-                3 sentences long around the given topic.
-                Return only the story and nothing else.
-                The topic is {{topic}}.
-                """)
-                .inputKey(String.class, "topic")
-                .returnType(String.class) // String is the default return type for untyped agents
                 .outputKey("story")
                 .build();
 
@@ -89,6 +93,7 @@ public class AgentDemo {
         );
 
         String story = (String) novelCreator.invoke(input);
+        Format.markdown(story);
 
     }
 
