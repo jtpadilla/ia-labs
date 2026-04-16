@@ -3,8 +3,8 @@ package io.github.jtpadilla.example.langchain4j.conditionalworkflow2;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import io.github.jtpadilla.example.format.Format;
-import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.impl.ExpertRouterAgent;
-import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.impl.ExpertRouterAgentImpl;
+import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.impl.ExpertRouter;
+import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.impl.ExpertRouterImpl;
 import io.helidon.config.Config;
 
 public class AgentDemo {
@@ -24,7 +24,7 @@ public class AgentDemo {
                 .logRequestsAndResponses(true)
                 .build();
 
-        ExpertRouterAgent agent = ExpertRouterAgentImpl.build(chatModel);
+        ExpertRouter agent = ExpertRouterImpl.build(chatModel);
 
         // Caso técnico → ingeniería mecánica (automoción)
         ask(agent, "Me he roto el coche, ¿qué debo hacer?");
@@ -46,7 +46,7 @@ public class AgentDemo {
 
     }
 
-    private static void ask(ExpertRouterAgent agent, String request) {
+    private static void ask(ExpertRouter agent, String request) {
         print("");
         print("Pregunta: " + request);
         print(Format.sep());

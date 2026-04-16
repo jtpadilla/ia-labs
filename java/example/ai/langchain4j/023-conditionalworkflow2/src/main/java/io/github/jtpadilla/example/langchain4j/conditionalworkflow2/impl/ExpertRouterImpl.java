@@ -7,7 +7,7 @@ import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.impl.child.l
 import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.impl.child.legalexpert.LegalExpertImpl;
 import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.impl.child.medicalexpert.MedicalExpert;
 import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.impl.child.medicalexpert.MedicalExpertImpl;
-import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.impl.child.technicalexpert.TechnicalWorkflowImpl;
+import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.impl.child.technicalexpert.EngineeringRouterImpl;
 
 /**
  * Construye el pipeline de agentes con dos niveles de decisión:
@@ -27,16 +27,16 @@ import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.impl.child.t
  *                     └─ MECHANICAL → level2.mechanicalengineer.MechanicalEngineer
  * </pre>
  */
-public class ExpertRouterAgentImpl {
+public class ExpertRouterImpl {
 
-    private ExpertRouterAgentImpl() {}
+    private ExpertRouterImpl() {}
 
-    public static ExpertRouterAgent build(ChatModel chatModel) {
+    public static ExpertRouter build(ChatModel chatModel) {
 
         // Tres crean los tres agentes expertos en las materias soportadas
         MedicalExpert medicalExpert = MedicalExpertImpl.build(chatModel);
         LegalExpert legalExpert = LegalExpertImpl.build(chatModel);
-        UntypedAgent technicalSubWorkflow = TechnicalWorkflowImpl.build(chatModel);
+        UntypedAgent technicalSubWorkflow = EngineeringRouterImpl.build(chatModel);
 
         // Se crea el agente que determina la materia de la solicitud
         ExpertSelector expertSelector = ExpertSelectorImpl.build(chatModel);
@@ -52,7 +52,7 @@ public class ExpertRouterAgentImpl {
         //   - El primero deposita en la variable "category" sus conclusiones.
         //   - El segundo en funcion de esta variable redirige al agente corespondiente.
         return AgenticServices
-                .sequenceBuilder(ExpertRouterAgent.class)
+                .sequenceBuilder(ExpertRouter.class)
                 .subAgents(expertSelector, mainDispatcher)
                 .outputKey("response")
                 .build();

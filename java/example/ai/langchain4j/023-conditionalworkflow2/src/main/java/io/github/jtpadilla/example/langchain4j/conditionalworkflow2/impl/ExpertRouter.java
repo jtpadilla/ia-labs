@@ -11,7 +11,7 @@ import dev.langchain4j.service.V;
  * {@link ExpertSelectorImpl} → dispatcher condicional → experto especializado.
  * El resultado final se almacena bajo la clave {@code "response"}.
  */
-public interface ExpertRouterAgent {
+public interface ExpertRouter {
 
     @UserMessage("{{request}}")
     @Agent("Enruta la solicitud al experto adecuado y devuelve su respuesta")
