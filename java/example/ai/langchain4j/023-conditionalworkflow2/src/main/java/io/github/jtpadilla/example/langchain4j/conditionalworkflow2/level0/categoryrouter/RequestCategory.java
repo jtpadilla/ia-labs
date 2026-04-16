@@ -1,5 +1,0 @@
-package io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level0.categoryrouter;
-
-public enum RequestCategory {
-    LEGAL, MEDICAL, TECHNICAL, UNKNOWN
-}
