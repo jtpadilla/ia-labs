@@ -1,4 +1,4 @@
-package io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level2;
+package io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level2.engineeringrouter;
 
 import dev.langchain4j.agentic.Agent;
 import dev.langchain4j.service.UserMessage;
