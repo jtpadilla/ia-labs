@@ -121,6 +121,7 @@ public class AgentDemo {
         System.out.println(Format.markdown(story));
 
         HtmlReportGenerator.generateReport(monitor, Path.of(System.getProperty("user.home"), "026-listenerworkfklow1.html"));
+        System.out.println(monitor.successfulExecutions().getFirst());
 
     }
 
