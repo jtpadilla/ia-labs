@@ -1,4 +1,4 @@
-package io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level1.categoryrouter;
+package io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level0.categoryrouter;
 
 import dev.langchain4j.agentic.AgenticServices;
 import dev.langchain4j.model.chat.ChatModel;

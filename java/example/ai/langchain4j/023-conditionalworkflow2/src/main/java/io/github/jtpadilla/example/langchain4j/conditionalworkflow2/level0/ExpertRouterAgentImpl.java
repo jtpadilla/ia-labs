@@ -1,11 +1,11 @@
-package io.github.jtpadilla.example.langchain4j.conditionalworkflow2;
+package io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level0;
 
 import dev.langchain4j.agentic.AgenticServices;
 import dev.langchain4j.agentic.UntypedAgent;
 import dev.langchain4j.model.chat.ChatModel;
-import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level1.categoryrouter.CategoryRouter;
-import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level1.categoryrouter.CategoryRouterImpl;
-import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level1.categoryrouter.RequestCategory;
+import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level0.categoryrouter.CategoryRouter;
+import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level0.categoryrouter.CategoryRouterImpl;
+import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level0.categoryrouter.RequestCategory;
 import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level1.legalexpert.LegalExpert;
 import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level1.legalexpert.LegalExpertImpl;
 import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level1.medicalexpert.MedicalExpert;
@@ -17,7 +17,7 @@ import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level2.Techn
  *
  * <pre>
  * ExpertRouterAgent (secuencia)
- *   ├─ level1.categoryrouter.CategoryRouter  → escribe "category" (LEGAL | MEDICAL | TECHNICAL | UNKNOWN)
+ *   ├─ level0.categoryrouter.CategoryRouter  → escribe "category" (LEGAL | MEDICAL | TECHNICAL | UNKNOWN)
  *   └─ Nivel 1 (condicional)
  *         ├─ MEDICAL   → level1.medicalexpert.MedicalExpert   (vía MedicalExpertImpl)
  *         ├─ LEGAL     → level1.legalexpert.LegalExpert       (vía LegalExpertImpl)
@@ -30,9 +30,9 @@ import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level2.Techn
  *                     └─ MECHANICAL → level2.mechanicalengineer.MechanicalEngineer
  * </pre>
  */
-public class WorkflowFactory {
+public class ExpertRouterAgentImpl {
 
-    private WorkflowFactory() {}
+    private ExpertRouterAgentImpl() {}
 
     public static ExpertRouterAgent build(ChatModel chatModel) {
 
