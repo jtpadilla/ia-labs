@@ -3,8 +3,8 @@ package io.github.jtpadilla.example.langchain4j.conditionalworkflow2;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import io.github.jtpadilla.example.format.Format;
-import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level0.ExpertRouterAgent;
-import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level0.ExpertRouterAgentImpl;
+import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level0.expertrouteragent.ExpertRouterAgent;
+import io.github.jtpadilla.example.langchain4j.conditionalworkflow2.level0.expertrouteragent.ExpertRouterAgentImpl;
 import io.helidon.config.Config;
 
 public class AgentDemo {
