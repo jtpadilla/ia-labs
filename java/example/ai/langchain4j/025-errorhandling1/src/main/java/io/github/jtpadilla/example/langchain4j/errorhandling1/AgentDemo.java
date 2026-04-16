@@ -131,9 +131,7 @@ public class AgentDemo {
 
                     // Se verifica si es el caso de prueba
                     if (exception instanceof MissingArgumentException missingArgumentException) {
-
-                        String argumentName = missingArgumentException.argumentName();
-                        if ("topic".equals("topic")) {
+                        if (missingArgumentException.argumentName().equals("topic")) {
                             errorContext.agenticScope().writeState("topic", "ciencia ficcion galactica");
                             return ErrorRecoveryResult.retry();
                         }
