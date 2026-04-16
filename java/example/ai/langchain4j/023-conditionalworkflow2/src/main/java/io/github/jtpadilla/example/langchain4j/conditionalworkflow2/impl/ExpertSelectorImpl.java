@@ -4,16 +4,16 @@ import dev.langchain4j.agentic.AgenticServices;
 import dev.langchain4j.model.chat.ChatModel;
 
 /**
- * Factoría para construir el agente {@link CategoryRouter}.
+ * Factoría para construir el agente {@link ExpertSelector}.
  *
  * <p>Registra la salida del agente bajo la clave {@code "category"} del scope,
  * de modo que el dispatcher condicional de nivel 1 pueda leerla.
  */
-public class CategoryRouterImpl {
+public class ExpertSelectorImpl {
 
-    static public CategoryRouter build(ChatModel chatModel) {
+    static public ExpertSelector build(ChatModel chatModel) {
         return AgenticServices
-                .agentBuilder(CategoryRouter.class)
+                .agentBuilder(ExpertSelector.class)
                 .chatModel(chatModel)
                 .outputKey("category")
                 .build();

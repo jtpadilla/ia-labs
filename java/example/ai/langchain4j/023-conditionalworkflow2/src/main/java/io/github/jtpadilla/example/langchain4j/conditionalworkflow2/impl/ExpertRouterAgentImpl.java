@@ -39,13 +39,13 @@ public class ExpertRouterAgentImpl {
         UntypedAgent technicalSubWorkflow = TechnicalWorkflowImpl.build(chatModel);
 
         // Se crea el agente que determina la materia de la solicitud
-        CategoryRouter categoryRouter = CategoryRouterImpl.build(chatModel);
+        ExpertSelector expertSelector = ExpertSelectorImpl.build(chatModel);
 
         // Se crea el agente dispatcher condicional que en funcion de lo que este informado en el AgenticScope redirige la peticion
         UntypedAgent mainDispatcher = AgenticServices.conditionalBuilder()
-                .subAgents(scope -> scope.readState("category", CategoryRouterRequest.UNKNOWN) == CategoryRouterRequest.MEDICAL, medicalExpert)
-                .subAgents(scope -> scope.readState("category", CategoryRouterRequest.UNKNOWN) == CategoryRouterRequest.LEGAL, legalExpert)
-                .subAgents(scope -> scope.readState("category", CategoryRouterRequest.UNKNOWN) == CategoryRouterRequest.TECHNICAL, technicalSubWorkflow)
+                .subAgents(scope -> scope.readState("category", ExpertSelectorResult.UNKNOWN) == ExpertSelectorResult.MEDICAL, medicalExpert)
+                .subAgents(scope -> scope.readState("category", ExpertSelectorResult.UNKNOWN) == ExpertSelectorResult.LEGAL, legalExpert)
+                .subAgents(scope -> scope.readState("category", ExpertSelectorResult.UNKNOWN) == ExpertSelectorResult.TECHNICAL, technicalSubWorkflow)
                 .build();
 
         // Se secuencian los dis agentes:
@@ -53,7 +53,7 @@ public class ExpertRouterAgentImpl {
         //   - El segundo en funcion de esta variable redirige al agente corespondiente.
         return AgenticServices
                 .sequenceBuilder(ExpertRouterAgent.class)
-                .subAgents(categoryRouter, mainDispatcher)
+                .subAgents(expertSelector, mainDispatcher)
                 .outputKey("response")
                 .build();
     }

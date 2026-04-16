@@ -8,7 +8,7 @@ import dev.langchain4j.service.V;
  * Agente raíz del flujo de enrutamiento experto.
  *
  * <p>Recibe la pregunta del usuario y la propaga a través de la secuencia:
- * {@link CategoryRouterImpl} → dispatcher condicional → experto especializado.
+ * {@link ExpertSelectorImpl} → dispatcher condicional → experto especializado.
  * El resultado final se almacena bajo la clave {@code "response"}.
  */
 public interface ExpertRouterAgent {

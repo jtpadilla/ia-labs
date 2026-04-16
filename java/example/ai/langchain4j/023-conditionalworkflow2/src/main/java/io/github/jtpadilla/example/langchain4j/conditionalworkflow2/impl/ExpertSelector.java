@@ -8,10 +8,10 @@ import dev.langchain4j.service.V;
  * Agente clasificador de primer nivel.
  *
  * <p>Analiza el texto libre del usuario y lo clasifica en una de las categorías
- * definidas en {@link CategoryRouterRequest}. El resultado se escribe en el estado
+ * definidas en {@link ExpertSelectorResult}. El resultado se escribe en el estado
  * del scope bajo la clave {@code "category"}.
  */
-public interface CategoryRouter {
+public interface ExpertSelector {
 
     @UserMessage("""
     Analiza la siguiente solicitud del usuario y categorízala como 'legal', 'medical' o 'technical'.
@@ -20,6 +20,6 @@ public interface CategoryRouter {
     La solicitud del usuario es: '{{request}}'.
     """)
     @Agent("Categoriza una solicitud de usuario en legal, medical, technical o unknown")
-    CategoryRouterRequest classify(@V("request") String request);
+    ExpertSelectorResult classify(@V("request") String request);
 
 }
