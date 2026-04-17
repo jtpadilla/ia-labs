@@ -17,12 +17,24 @@ public class BankTool {
         accounts.put(user, initialBalance);
     }
 
-    public double getBalance(String user) {
+    @Tool("Get the current balance of the given user account")
+    public Double getBalance(@P("user name") String user) {
         Double balance = accounts.get(user);
         if (balance == null) {
             throw new RuntimeException("No balance found for user " + user);
         }
         return balance;
+    }
+
+    @Tool("List all accounts with their current balances as a formatted string")
+    public String listAccounts() {
+        if (accounts.isEmpty()) {
+            return "No accounts found.";
+        }
+        StringBuilder sb = new StringBuilder();
+        accounts.forEach((user, balance) ->
+                sb.append(user).append(": ").append(balance).append("\n"));
+        return sb.toString();
     }
 
     @Tool("Credit the given user with the given amount and return the new balance")

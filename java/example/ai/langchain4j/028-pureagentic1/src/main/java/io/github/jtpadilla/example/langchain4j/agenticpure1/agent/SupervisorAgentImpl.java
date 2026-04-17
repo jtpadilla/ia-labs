@@ -4,6 +4,8 @@ import dev.langchain4j.agentic.AgenticServices;
 import dev.langchain4j.agentic.supervisor.SupervisorAgent;
 import dev.langchain4j.agentic.supervisor.SupervisorResponseStrategy;
 import dev.langchain4j.model.chat.ChatModel;
+import io.github.jtpadilla.example.langchain4j.agenticpure1.agent.balanceagent.BalanceAgent;
+import io.github.jtpadilla.example.langchain4j.agenticpure1.agent.balanceagent.BalanceAgentImpl;
 import io.github.jtpadilla.example.langchain4j.agenticpure1.agent.creditagent.CreditAgent;
 import io.github.jtpadilla.example.langchain4j.agenticpure1.agent.creditagent.CreditAgentImpl;
 import io.github.jtpadilla.example.langchain4j.agenticpure1.agent.exchangeagent.ExchangeAgent;
@@ -17,6 +19,7 @@ public class SupervisorAgentImpl {
 
     static public SupervisorAgent build(ChatModel chatModel, BankTool bankTool) {
 
+        BalanceAgent balanceAgent = BalanceAgentImpl.build(chatModel, bankTool);
         WithdrawAgent withdrawAgent = WithdrawAgentImpl.build(chatModel, bankTool);
         CreditAgent creditAgent = CreditAgentImpl.build(chatModel, bankTool);
         ExchangeAgent exchangeAgent = ExchangeAgentImpl.build(chatModel, new ExchangeTool());
@@ -25,7 +28,8 @@ public class SupervisorAgentImpl {
                 .supervisorBuilder()
                 .chatModel(chatModel)
                 //.chatModel(PLANNER_MODEL) // En el ejemplo original habla de este modelo pero no se en que se diferencia.
-                .subAgents(withdrawAgent, creditAgent, exchangeAgent)
+                .supervisorContext("Always respond to the user in Spanish.")
+                .subAgents(balanceAgent, withdrawAgent, creditAgent, exchangeAgent)
                 .responseStrategy(SupervisorResponseStrategy.SUMMARY)
                 .build();
     }
