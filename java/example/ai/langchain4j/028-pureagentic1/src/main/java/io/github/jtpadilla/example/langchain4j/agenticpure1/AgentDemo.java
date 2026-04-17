@@ -12,6 +12,7 @@ public class AgentDemo {
 
     final static private String MODEL = "gemini-3.1-flash-lite-preview"; // 18 segundos
 //    final static private String MODEL = "gemma-4-31b-it"; // 1 minuto y 32 segundos.
+//    final static private String MODEL = "gemma-4-26b-a4b-it"; // 1 minuto y 35 segundos.
 
     final static private String API_KEY = Config.global().get("gemini-api-key").asString().orElseThrow(
             () -> new IllegalStateException("Configuration key 'gemini-api-key' is required"));
@@ -19,6 +20,12 @@ public class AgentDemo {
     public static void main(String[] args) {
 
         ChatModel chatModel = GoogleAiGeminiChatModel.builder()
+                .apiKey(API_KEY)
+                .modelName(MODEL)
+                .logRequestsAndResponses(true)
+                .build();
+
+        ChatModel chatModelThinking = GoogleAiGeminiChatModel.builder()
                 .apiKey(API_KEY)
                 .modelName(MODEL)
                 .logRequestsAndResponses(true)
@@ -30,7 +37,7 @@ public class AgentDemo {
         bankTool.createAccount("Mario", 1000.0);
         bankTool.createAccount("Georgios", 1000.0);
 
-        SupervisorAgent supervisorAgent = SupervisorAgentImpl.build(chatModel, bankTool);
+        SupervisorAgent supervisorAgent = SupervisorAgentImpl.build(chatModelThinking, chatModel, bankTool);
 
         ask(supervisorAgent, "Muéstrame una tabla con el estado de las cuentas.");
         ask(supervisorAgent, "Trasfiere 100$ desde la cuenta de 'Mario' a la cuenta de 'Georgios'");
