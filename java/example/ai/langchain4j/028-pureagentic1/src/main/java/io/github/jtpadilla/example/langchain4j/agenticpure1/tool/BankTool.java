@@ -39,7 +39,7 @@ public class BankTool {
         return sb.toString();
     }
 
-    @Tool("Abona al usuario indicado la cantidad especificada y devuelve el nuevo saldo")
+    @Tool(CTX + "Abona al usuario indicado la cantidad especificada y devuelve el nuevo saldo")
     Double credit(@P("nombre de usuario") String user, @P("amount") Double amount) {
         Double balance = accounts.get(user);
         if (balance == null) {
@@ -50,7 +50,7 @@ public class BankTool {
         return newBalance;
     }
 
-    @Tool("Retira la cantidad indicada de la cuenta del usuario y devuelve el nuevo saldo")
+    @Tool(CTX + "Retira la cantidad indicada de la cuenta del usuario y devuelve el nuevo saldo")
     Double withdraw(@P("nombre de usuario") String user, @P("amount") Double amount) {
         Double balance = accounts.get(user);
         if (balance == null) {
