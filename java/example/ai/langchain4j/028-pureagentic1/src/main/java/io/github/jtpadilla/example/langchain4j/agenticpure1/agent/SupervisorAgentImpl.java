@@ -34,6 +34,8 @@ public class SupervisorAgentImpl {
                         el agente de cambio para convertir dicho importe a EUR y usa el resultado para
                         la operación bancaria correspondiente.
                         Responde siempre al usuario en español.
+                        Formatea siempre tus respuestas en Markdown rico: usa tablas, negritas, cursivas,
+                        listas y encabezados cuando aporten claridad. Nunca respondas con texto plano.
                         """)
                 .subAgents(balanceAgent, withdrawAgent, creditAgent, exchangeAgent)
                 .responseStrategy(SupervisorResponseStrategy.SUMMARY)
