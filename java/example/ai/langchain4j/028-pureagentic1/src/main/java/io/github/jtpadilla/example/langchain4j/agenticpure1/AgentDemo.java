@@ -16,27 +16,19 @@ public class AgentDemo {
 
     public static void main(String[] args) {
 
-        GoogleModels googleModels = GoogleModels.gemma31b();
-
-        ChatModel chatModelThinking = GoogleAiGeminiChatModel.builder()
+        ChatModel chatModel = GoogleAiGeminiChatModel.builder()
                 .apiKey(API_KEY)
-                .modelName(googleModels.supervisor())
+                .modelName(GoogleModels.geminiFlashLite())
                 .logRequestsAndResponses(true)
                 .sendThinking(true)
                 .returnThinking(true)
-                .build();
-
-        ChatModel chatModel = GoogleAiGeminiChatModel.builder()
-                .apiKey(API_KEY)
-                .modelName(googleModels.agent())
-                .logRequestsAndResponses(true)
                 .build();
 
         BankTool bankTool = new BankTool();
         bankTool.createAccount("Mario", 1000.0);
         bankTool.createAccount("Georgios", 1000.0);
 
-        SupervisorAgent supervisorAgent = SupervisorAgentImpl.build(chatModelThinking, chatModel, bankTool);
+        SupervisorAgent supervisorAgent = SupervisorAgentImpl.build(chatModel, bankTool);
 
         ask(supervisorAgent, "Muéstrame una tabla con el estado de las cuentas.");
         ask(supervisorAgent, "Trasfiere 100$ desde la cuenta de 'Mario' a la cuenta de 'Georgios'");

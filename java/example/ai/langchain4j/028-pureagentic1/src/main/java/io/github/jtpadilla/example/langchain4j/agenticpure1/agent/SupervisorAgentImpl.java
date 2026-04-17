@@ -17,7 +17,7 @@ import io.github.jtpadilla.example.langchain4j.agenticpure1.tool.ExchangeTool;
 
 public class SupervisorAgentImpl {
 
-    static public SupervisorAgent build(ChatModel chatModelThinking, ChatModel chatModel, BankTool bankTool) {
+    static public SupervisorAgent build(ChatModel chatModel, BankTool bankTool) {
 
         BalanceAgent balanceAgent = BalanceAgentImpl.build(chatModel, bankTool);
         WithdrawAgent withdrawAgent = WithdrawAgentImpl.build(chatModel, bankTool);
@@ -26,7 +26,7 @@ public class SupervisorAgentImpl {
 
         return AgenticServices
                 .supervisorBuilder()
-                .chatModel(chatModelThinking)
+                .chatModel(chatModel)
                 //.chatModel(PLANNER_MODEL) // En el ejemplo original habla de este modelo pero no se en que se diferencia.
                 .supervisorContext("""
                         Todas las operaciones bancarias se realizan exclusivamente en euros (EUR).
