@@ -2,7 +2,7 @@ package io.github.jtpadilla.example.langchain4j.chatmemory1;
 
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
-import io.github.jtpadilla.example.format.Format;
+import io.github.jtpadilla.example.util.Format;
 import io.helidon.config.Config;
 
 public class ChatMemory {

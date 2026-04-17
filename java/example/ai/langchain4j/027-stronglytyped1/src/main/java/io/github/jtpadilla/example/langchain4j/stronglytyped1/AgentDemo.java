@@ -10,7 +10,7 @@ import dev.langchain4j.agentic.observability.HtmlReportGenerator;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import dev.langchain4j.service.UserMessage;
-import io.github.jtpadilla.example.format.Format;
+import io.github.jtpadilla.example.util.Format;
 import io.helidon.config.Config;
 
 import java.nio.file.Path;
