@@ -16,13 +16,7 @@ public class AgentDemo {
 
     public static void main(String[] args) {
 
-        GoogleModels googleModels = GoogleModels.geminiSupervisorGemma26bAgents();
-
-        ChatModel chatModel = GoogleAiGeminiChatModel.builder()
-                .apiKey(API_KEY)
-                .modelName(googleModels.agent())
-                .logRequestsAndResponses(true)
-                .build();
+        GoogleModels googleModels = GoogleModels.gemma31b();
 
         ChatModel chatModelThinking = GoogleAiGeminiChatModel.builder()
                 .apiKey(API_KEY)
@@ -30,6 +24,12 @@ public class AgentDemo {
                 .logRequestsAndResponses(true)
                 .sendThinking(true)
                 .returnThinking(true)
+                .build();
+
+        ChatModel chatModel = GoogleAiGeminiChatModel.builder()
+                .apiKey(API_KEY)
+                .modelName(googleModels.agent())
+                .logRequestsAndResponses(true)
                 .build();
 
         BankTool bankTool = new BankTool();
