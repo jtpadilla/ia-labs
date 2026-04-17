@@ -3,10 +3,10 @@ package io.github.jtpadilla.example.langchain4j.agenticpure1;
 import dev.langchain4j.agentic.supervisor.SupervisorAgent;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
-import io.github.jtpadilla.example.util.Format;
-import io.github.jtpadilla.example.util.GoogleModels;
 import io.github.jtpadilla.example.langchain4j.agenticpure1.agent.SupervisorAgentImpl;
 import io.github.jtpadilla.example.langchain4j.agenticpure1.tool.BankTool;
+import io.github.jtpadilla.example.util.Format;
+import io.github.jtpadilla.example.util.GoogleModels;
 import io.helidon.config.Config;
 
 public class AgentDemo {
