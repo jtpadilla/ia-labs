@@ -22,6 +22,10 @@ public class AgentDemo {
     final static private String API_KEY = Config.global().get("gemini-api-key").asString().orElseThrow(
             () -> new IllegalStateException("Configuration key 'gemini-api-key' is required"));
 
+    public enum RequestCategory {
+        LEGAL, MEDICAL, TECHNICAL, UNKNOWN
+    }
+
     public static class UserRequest implements TypedKey<String> { }
 
     public static class ExpertResponse implements TypedKey<String> { }
@@ -31,10 +35,6 @@ public class AgentDemo {
         public RequestCategory defaultValue() {
             return RequestCategory.UNKNOWN;
         }
-    }
-
-    public enum RequestCategory {
-        LEGAL, MEDICAL, TECHNICAL, UNKNOWN
     }
 
     public interface CategoryRouter {
