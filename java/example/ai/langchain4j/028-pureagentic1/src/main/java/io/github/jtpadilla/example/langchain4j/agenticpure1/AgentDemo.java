@@ -21,6 +21,8 @@ public class AgentDemo {
                 .apiKey(API_KEY)
                 .modelName(MODEL)
                 .logRequestsAndResponses(true)
+                .sendThinking(true)
+                .returnThinking(true)
                 .build();
 
         BankTool bankTool = new BankTool();
