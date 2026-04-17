@@ -26,11 +26,11 @@ public class AgentDemo {
         LEGAL, MEDICAL, TECHNICAL, UNKNOWN
     }
 
-    public static class UserRequest implements TypedKey<String> { }
+    public static class UserRequestType implements TypedKey<String> { }
 
-    public static class ExpertResponse implements TypedKey<String> { }
+    public static class ExpertResponseType implements TypedKey<String> { }
 
-    public static class Category implements TypedKey<RequestCategory> {
+    public static class CategoryType implements TypedKey<RequestCategory> {
         @Override
         public RequestCategory defaultValue() {
             return RequestCategory.UNKNOWN;
@@ -45,7 +45,7 @@ public class AgentDemo {
         La solicitud del usuario es: '{{request}}'.
         """)
         @Agent("Categoriza una solicitud de usuario")
-        RequestCategory classify(@K(UserRequest.class) String request);
+        RequestCategory classify(@K(UserRequestType.class) String request);
     }
 
     public interface MedicalExpert {
@@ -55,7 +55,7 @@ public class AgentDemo {
         La solicitud del usuario es {{request}}.
         """)
         @Agent("Un experto médico")
-        String medical(@K(UserRequest.class) String request);
+        String medical(@K(UserRequestType.class) String request);
     }
 
     public interface LegalExpert {
@@ -65,7 +65,7 @@ public class AgentDemo {
         La solicitud del usuario es {{request}}.
         """)
         @Agent("Un experto jurídico")
-        String legal(@K(UserRequest.class) String request);
+        String legal(@K(UserRequestType.class) String request);
     }
 
     public interface TechnicalExpert {
@@ -75,13 +75,13 @@ public class AgentDemo {
         La solicitud del usuario es {{request}}.
         """)
         @Agent("Un experto técnico")
-        String technical(@K(UserRequest.class) String request);
+        String technical(@K(UserRequestType.class) String request);
     }
 
     public interface ExpertRouterAgent {
         @UserMessage("{{request}}")
         @Agent("Enruta la solicitud al experto adecuado y devuelve su respuesta")
-        String ask(@K(UserRequest.class) String request);
+        String ask(@K(UserRequestType.class) String request);
     }
 
     public static void main(String[] args) {
@@ -97,37 +97,37 @@ public class AgentDemo {
         CategoryRouter routerAgent = AgenticServices
                 .agentBuilder(CategoryRouter.class)
                 .chatModel(chatModel)
-                .outputKey(Category.class)
+                .outputKey(CategoryType.class)
                 .build();
 
         MedicalExpert medicalExpert = AgenticServices
                 .agentBuilder(MedicalExpert.class)
                 .chatModel(chatModel)
-                .outputKey(ExpertResponse.class)
+                .outputKey(ExpertResponseType.class)
                 .build();
 
         LegalExpert legalExpert = AgenticServices
                 .agentBuilder(LegalExpert.class)
                 .chatModel(chatModel)
-                .outputKey(ExpertResponse.class)
+                .outputKey(ExpertResponseType.class)
                 .build();
 
         TechnicalExpert technicalExpert = AgenticServices
                 .agentBuilder(TechnicalExpert.class)
                 .chatModel(chatModel)
-                .outputKey(ExpertResponse.class)
+                .outputKey(ExpertResponseType.class)
                 .build();
 
         UntypedAgent expertsAgent = AgenticServices.conditionalBuilder()
-                .subAgents(agenticScope -> agenticScope.readState(Category.class) == RequestCategory.MEDICAL, medicalExpert)
-                .subAgents(agenticScope -> agenticScope.readState(Category.class) == RequestCategory.LEGAL, legalExpert)
-                .subAgents(agenticScope -> agenticScope.readState(Category.class) == RequestCategory.TECHNICAL, technicalExpert)
+                .subAgents(agenticScope -> agenticScope.readState(CategoryType.class) == RequestCategory.MEDICAL, medicalExpert)
+                .subAgents(agenticScope -> agenticScope.readState(CategoryType.class) == RequestCategory.LEGAL, legalExpert)
+                .subAgents(agenticScope -> agenticScope.readState(CategoryType.class) == RequestCategory.TECHNICAL, technicalExpert)
                 .build();
 
         ExpertRouterAgent expertRouterAgent = AgenticServices
                 .sequenceBuilder(ExpertRouterAgent.class)
                 .subAgents(routerAgent, expertsAgent)
-                .outputKey(ExpertResponse.class)
+                .outputKey(ExpertResponseType.class)
                 .listener(monitor)
                 .build();
 
