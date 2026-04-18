@@ -36,4 +36,5 @@ public class GoalOrientedPlanner implements Planner {
     public Action nextAction(PlanningContext planningContext) {
         return agentCursor >= path.size() ? done() : call(path.get(agentCursor++));
     }
+
 }
