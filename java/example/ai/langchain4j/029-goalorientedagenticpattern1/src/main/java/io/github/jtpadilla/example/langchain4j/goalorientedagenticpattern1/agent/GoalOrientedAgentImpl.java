@@ -17,6 +17,8 @@ import io.github.jtpadilla.example.langchain4j.goalorientedagenticpattern1.plann
 
 public class GoalOrientedAgentImpl {
 
+    // El planner resuelve automáticamente el orden: prompt→person, prompt→sign,
+    // person+sign→horoscope, person+horoscope→story, person+horoscope+story→writeup
     static public UntypedAgent build(ChatModel chatModel) {
 
         HoroscopeGenerator horoscopeGenerator = HoroscopeGeneratorImpl.build(chatModel);
@@ -25,6 +27,7 @@ public class GoalOrientedAgentImpl {
         Writer writer = WriterImpl.build(chatModel);
         StoryFinder storyFinder = StoryFinderImpl.build(chatModel);
 
+        // outputKey "writeup" es el goal que GoalOrientedPlanner intentará alcanzar
         return AgenticServices.plannerBuilder()
                 .subAgents(horoscopeGenerator, personExtractor, signExtractor, writer, storyFinder)
                 .outputKey("writeup")

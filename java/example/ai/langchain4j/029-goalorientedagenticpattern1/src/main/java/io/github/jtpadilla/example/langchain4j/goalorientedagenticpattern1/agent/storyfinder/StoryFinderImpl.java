@@ -16,6 +16,7 @@ public class StoryFinderImpl {
         return AgenticServices
                 .agentBuilder(StoryFinder.class)
                 .chatModel(chatModel)
+                // WebSearchTool con resultado hardcodeado: evita dependencia de una API de búsqueda real en el demo
                 .tools(WebSearchTool.from(request -> WebSearchResults.from(
                         WebSearchInformationResult.from(1L),
                         List.of(WebSearchOrganicResult.from(

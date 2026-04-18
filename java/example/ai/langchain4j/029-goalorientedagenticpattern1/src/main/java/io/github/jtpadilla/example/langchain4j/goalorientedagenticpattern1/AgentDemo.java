@@ -21,12 +21,14 @@ public class AgentDemo {
                 .apiKey(API_KEY)
                 .modelName(GoogleModels.geminiFlashLite())
                 .logRequestsAndResponses(true)
+                // thinking activado para que el modelo razone antes de responder
                 .sendThinking(true)
                 .returnThinking(true)
                 .build();
 
         UntypedAgent horoscopeAgent = GoalOrientedAgentImpl.build(chatModel);
 
+        // La clave "prompt" es el único input inicial; el planner deduce el resto de la cadena
         Map<String, Object> input = Map.of("prompt", "Me llamo Mario y mi signo zodiacal es piscis");
         String writeup = (String) horoscopeAgent.invoke(input);
         System.out.println(Format.markdown(writeup));
