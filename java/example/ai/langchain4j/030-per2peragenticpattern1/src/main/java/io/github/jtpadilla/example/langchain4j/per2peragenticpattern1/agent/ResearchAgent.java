@@ -5,7 +5,7 @@ import dev.langchain4j.service.V;
 
 public interface ResearchAgent {
 
-    @Agent("Conduct iterative research on a given topic: gather literature, form a hypothesis, critique it, validate it and score it until the score is satisfactory.")
+    @Agent("Realiza investigación iterativa sobre un tema: recopila literatura, formula una hipótesis, critícala, valídala y puntúala hasta que la puntuación sea satisfactoria.")
     String research(@V("topic") String topic);
 
 }

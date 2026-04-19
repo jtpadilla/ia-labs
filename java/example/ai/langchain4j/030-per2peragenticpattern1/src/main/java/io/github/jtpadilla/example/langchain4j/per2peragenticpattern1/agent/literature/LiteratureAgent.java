@@ -7,14 +7,14 @@ import dev.langchain4j.service.V;
 
 public interface LiteratureAgent {
 
-    @SystemMessage("Search for scientific literature on the given topic and return a summary of the findings.")
+    @SystemMessage("Busca literatura científica sobre el tema indicado y devuelve un resumen de los hallazgos.")
     @UserMessage("""
-            You are a scientific literature search agent.
-            Your task is to find relevant scientific papers on the topic provided by the user and summarize them.
-            Use the provided tool to search for scientific papers and return a summary of your findings.
-            The topic is: {{topic}}
+            Eres un agente de búsqueda de literatura científica.
+            Tu tarea es encontrar artículos científicos relevantes sobre el tema proporcionado por el usuario y resumirlos.
+            Utiliza la herramienta disponible para buscar artículos científicos y devuelve un resumen de tus hallazgos.
+            El tema es: {{topic}}
             """)
-    @Agent("Search for scientific literature on a given topic")
+    @Agent("Busca literatura científica sobre un tema dado")
     String searchLiterature(@V("topic") String topic);
 
 }

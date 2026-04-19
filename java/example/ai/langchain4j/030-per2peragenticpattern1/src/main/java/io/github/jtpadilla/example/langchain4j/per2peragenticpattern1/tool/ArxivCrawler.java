@@ -25,10 +25,10 @@ public class ArxivCrawler {
 
     private final HttpClient http = HttpClient.newHttpClient();
 
-    @Tool("Search for scientific papers on arxiv.org. Returns titles, authors, abstracts and URLs of matching papers.")
+    @Tool("Busca artículos científicos en arxiv.org. Devuelve títulos, autores, resúmenes y URLs de los artículos encontrados.")
     public String searchPapers(
-            @P("keywords or topic to search for on arxiv.org") String query,
-            @P("maximum number of papers to return, between 1 and 10") int maxResults) {
+            @P("palabras clave o tema a buscar en arxiv.org") String query,
+            @P("número máximo de artículos a devolver, entre 1 y 10") int maxResults) {
 
         int limit = Math.clamp(maxResults, 1, 10);
         String url = ARXIV_API
@@ -48,8 +48,8 @@ public class ArxivCrawler {
         }
     }
 
-    @Tool("Fetch the abstract and metadata of a specific arXiv paper by its ID (e.g. '2301.07041') or full URL.")
-    public String getPaper(@P("arXiv paper ID or full arXiv URL") String arxivId) {
+    @Tool("Obtiene el resumen y los metadatos de un artículo de arXiv a partir de su ID (p.ej. '2301.07041') o URL completa.")
+    public String getPaper(@P("ID del artículo en arXiv o URL completa") String arxivId) {
         String id = arxivId.replaceAll(".*/abs/", "").replaceAll("v\\d+$", "").strip();
         String url = ARXIV_API + "?id_list=" + URLEncoder.encode(id, StandardCharsets.UTF_8);
 

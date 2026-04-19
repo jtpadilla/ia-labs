@@ -7,16 +7,16 @@ import dev.langchain4j.service.V;
 
 public interface CriticAgent {
 
-    @SystemMessage("Critically evaluate the given hypothesis related to the specified topic. Provide constructive feedback and suggest improvements if necessary.")
+    @SystemMessage("Evalúa críticamente la hipótesis dada relacionada con el tema especificado. Proporciona retroalimentación constructiva y sugiere mejoras si es necesario.")
     @UserMessage("""
-            You are a critical evaluation agent.
-            Your task is to critically evaluate the hypothesis provided by the user in relation to the specified topic.
-            Provide constructive feedback and suggest improvements if necessary.
-            If you need to, you can also perform additional research to validate or confute the hypothesis using the provided tool.
-            The topic is: {{topic}}
-            The hypothesis is: {{hypothesis}}
+            Eres un agente de evaluación crítica.
+            Tu tarea es evaluar críticamente la hipótesis proporcionada por el usuario en relación con el tema especificado.
+            Proporciona retroalimentación constructiva y sugiere mejoras si es necesario.
+            Si lo necesitas, también puedes realizar investigación adicional para validar o refutar la hipótesis utilizando la herramienta disponible.
+            El tema es: {{topic}}
+            La hipótesis es: {{hypothesis}}
             """)
-    @Agent("Critically evaluate a hypothesis related to a given topic")
+    @Agent("Evalúa críticamente una hipótesis relacionada con un tema dado")
     String criticHypothesis(@V("topic") String topic, @V("hypothesis") String hypothesis);
 
 }

@@ -7,14 +7,14 @@ import dev.langchain4j.service.V;
 
 public interface HypothesisAgent {
 
-    @SystemMessage("Based on the research findings, formulate a clear and concise hypothesis related to the given topic.")
+    @SystemMessage("Basándote en los hallazgos de la investigación, formula una hipótesis clara y concisa relacionada con el tema dado.")
     @UserMessage("""
-            You are a hypothesis formulation agent.
-            Your task is to formulate a clear and concise hypothesis based on the research findings provided by the user.
-            The topic is: {{topic}}
-            The research findings are: {{researchFindings}}
+            Eres un agente de formulación de hipótesis.
+            Tu tarea es formular una hipótesis clara y concisa basada en los hallazgos de la investigación proporcionados por el usuario.
+            El tema es: {{topic}}
+            Los hallazgos de la investigación son: {{researchFindings}}
             """)
-    @Agent("Formulate a hypothesis around a given topic based on research findings")
+    @Agent("Formula una hipótesis sobre un tema dado a partir de los hallazgos de la investigación")
     String makeHypothesis(@V("topic") String topic, @V("researchFindings") String researchFindings);
 
 }

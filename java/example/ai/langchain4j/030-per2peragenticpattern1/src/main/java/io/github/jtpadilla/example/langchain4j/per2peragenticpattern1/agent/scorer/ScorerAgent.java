@@ -7,16 +7,16 @@ import dev.langchain4j.service.V;
 
 public interface ScorerAgent {
 
-    @SystemMessage("Score the provided hypothesis on the given topic based on the critique provided.")
+    @SystemMessage("Puntúa la hipótesis proporcionada sobre el tema dado, basándote en la crítica recibida.")
     @UserMessage("""
-            You are a scoring agent.
-            Your task is to score the hypothesis provided by the user in relation to the specified topic based on the critique provided.
-            Score the provided hypothesis on a scale from 0.0 to 1.0, where 0.0 means the hypothesis is completely invalid and 1.0 means the hypothesis is fully valid.
-            The topic is: {{topic}}
-            The hypothesis is: {{hypothesis}}
-            The critique is: {{critique}}
+            Eres un agente de puntuación.
+            Tu tarea es puntuar la hipótesis proporcionada por el usuario en relación con el tema especificado, basándote en la crítica recibida.
+            Puntúa la hipótesis en una escala de 0.0 a 1.0, donde 0.0 significa que la hipótesis es completamente inválida y 1.0 que es totalmente válida.
+            El tema es: {{topic}}
+            La hipótesis es: {{hypothesis}}
+            La crítica es: {{critique}}
             """)
-    @Agent("Score a hypothesis based on a given topic and critique")
+    @Agent("Puntúa una hipótesis a partir de un tema dado y su crítica")
     double scoreHypothesis(@V("topic") String topic, @V("hypothesis") String hypothesis, @V("critique") String critique);
 
 }

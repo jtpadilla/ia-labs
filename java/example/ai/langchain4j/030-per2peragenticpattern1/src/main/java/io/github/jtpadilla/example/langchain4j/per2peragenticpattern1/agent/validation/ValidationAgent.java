@@ -7,16 +7,16 @@ import dev.langchain4j.service.V;
 
 public interface ValidationAgent {
 
-    @SystemMessage("Validate the provided hypothesis on the given topic based on the critique provided.")
+    @SystemMessage("Valida la hipótesis proporcionada sobre el tema dado, basándote en la crítica recibida.")
     @UserMessage("""
-            You are a validation agent.
-            Your task is to validate the hypothesis provided by the user in relation to the specified topic based on the critique provided.
-            Validate the provided hypothesis, either confirming it or reformulating a different hypothesis based on the critique.
-            The topic is: {{topic}}
-            The hypothesis is: {{hypothesis}}
-            The critique is: {{critique}}
+            Eres un agente de validación.
+            Tu tarea es validar la hipótesis proporcionada por el usuario en relación con el tema especificado, basándote en la crítica recibida.
+            Valida la hipótesis confirmándola o reformulándola según la crítica.
+            El tema es: {{topic}}
+            La hipótesis es: {{hypothesis}}
+            La crítica es: {{critique}}
             """)
-    @Agent("Validate a hypothesis based on a given topic and critique")
+    @Agent("Valida una hipótesis a partir de un tema dado y su crítica")
     String validateHypothesis(@V("topic") String topic, @V("hypothesis") String hypothesis, @V("critique") String critique);
 
 }
