@@ -43,7 +43,7 @@ public class ToolDemo {
         ChatResponse response = chatModel.chat(request);
 
         AiMessage aiMessage = response.aiMessage();
-
+        System.out.println(aiMessage.text());
 
     }
 
