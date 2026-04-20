@@ -21,58 +21,68 @@ public class ToolDemo {
     private static final String API_KEY = Config.global().get("gemini-api-key").asString().orElseThrow(
             () -> new IllegalStateException("La clave de configuración 'gemini-api-key' es obligatoria"));
 
+    static final ChatModel chatModel = GoogleAiGeminiChatModel.builder()
+            .apiKey(API_KEY)
+            .modelName(GoogleModels.geminiFlashLite())
+            .sendThinking(true)
+            .build();
+
+    static final ToolSpecification toolSpecification = ToolSpecification.builder()
+            .name("getWeather")
+            .description("Returns the weather forecast for a given city")
+            .parameters(JsonObjectSchema.builder()
+                    .addStringProperty("city", "The city for which the weather forecast should be returned")
+                    .addEnumProperty("temperatureUnit", List.of("CELSIUS", "FAHRENHEIT"))
+                    .required("city") // the required properties should be specified explicitly
+                    .build())
+            .build();
+
+    static final UserMessage firstMessage = UserMessage.from("What will the weather be like in London tomorrow?");
+
     public static void main(String[] args) {
+        ChatResponse firstChatResponse = sendFirstRequest();
+        List<ToolExecutionResultMessage> toolExecutionResultMessages = executeTools(firstChatResponse);
+        ChatResponse secondChatResponse = sendSecondRequest(firstChatResponse.aiMessage(), toolExecutionResultMessages);
+        System.out.println(secondChatResponse.aiMessage().text());
+    }
 
-        ChatModel chatModel = GoogleAiGeminiChatModel.builder()
-                .apiKey(API_KEY)
-                .modelName(GoogleModels.geminiFlashLite())
-                .build();
+    static private ChatResponse sendFirstRequest() {
 
-        ToolSpecification toolSpecification = ToolSpecification.builder()
-                .name("getWeather")
-                .description("Returns the weather forecast for a given city")
-                .parameters(JsonObjectSchema.builder()
-                        .addStringProperty("city", "The city for which the weather forecast should be returned")
-                        .addEnumProperty("temperatureUnit", List.of("CELSIUS", "FAHRENHEIT"))
-                        .required("city") // the required properties should be specified explicitly
-                        .build())
-                .build();
-
-        ChatRequest request = ChatRequest.builder()
-                .messages(UserMessage.from("What will the weather be like in London tomorrow?"))
+        final ChatRequest request = ChatRequest.builder()
+                .messages(firstMessage)
                 .toolSpecifications(List.of(toolSpecification))
                 .build();
 
-        // Round 1: model responds with tool execution requests
-        ChatResponse response = chatModel.chat(request);
-        AiMessage aiMessage = response.aiMessage();
+        return chatModel.chat(request);
+    }
 
-        System.out.println("Has tool requests: " + aiMessage.hasToolExecutionRequests());
-
-        // Round 2: execute each requested tool and send results back
-        List<ToolExecutionResultMessage> toolResults = aiMessage.toolExecutionRequests().stream()
+    static private List<ToolExecutionResultMessage> executeTools(ChatResponse chatResponse) {
+        final AiMessage aiMessage = chatResponse.aiMessage();
+        System.out.println("Hay petición de herramienta?: " + aiMessage.hasToolExecutionRequests());
+        return aiMessage.toolExecutionRequests().stream()
                 .map(toolExecutionRequest -> {
-                    System.out.println("Tool called: " + toolExecutionRequest.name());
-                    System.out.println("Arguments  : " + toolExecutionRequest.arguments());
+                    System.out.println("Herramienta invocada: " + toolExecutionRequest.name());
+                    System.out.println("Argumentos          : " + toolExecutionRequest.arguments());
                     String result = WeatherTool.execute(toolExecutionRequest.arguments());
+                    System.out.println("Resultado           : " + result);
                     return ToolExecutionResultMessage.from(toolExecutionRequest, result);
                 })
                 .toList();
+    }
 
-        UserMessage userMessage = UserMessage.from("What will the weather be like in London tomorrow?");
+    static private ChatResponse sendSecondRequest(AiMessage firstResponseAi, List<ToolExecutionResultMessage> toolResults) {
 
-        List<ChatMessage> messages2 = new ArrayList<>();
-        messages2.add(userMessage);
-        messages2.add(aiMessage);
-        messages2.addAll(toolResults);
+        List<ChatMessage> messages = new ArrayList<>();
+        messages.add(firstMessage);
+        messages.add(firstResponseAi);
+        messages.addAll(toolResults);
 
-        ChatRequest request2 = ChatRequest.builder()
-                .messages(messages2)
+        ChatRequest request = ChatRequest.builder()
+                .messages(messages)
                 .toolSpecifications(List.of(toolSpecification))
                 .build();
 
-        ChatResponse response2 = chatModel.chat(request2);
-        System.out.println(response2.aiMessage().text());
+        return chatModel.chat(request);
 
     }
 
