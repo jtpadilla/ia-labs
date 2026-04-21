@@ -24,6 +24,7 @@ public class ToolDemo {
     static final ChatModel chatModel = GoogleAiGeminiChatModel.builder()
             .apiKey(API_KEY)
             .modelName(GoogleModels.geminiFlashLite())
+            .allowGoogleSearch(true)
             .build();
 
     static final ToolDemo service = new ToolDemo();
