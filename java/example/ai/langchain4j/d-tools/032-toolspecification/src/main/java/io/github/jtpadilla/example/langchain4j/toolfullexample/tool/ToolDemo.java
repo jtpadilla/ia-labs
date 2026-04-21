@@ -1,4 +1,4 @@
-package io.github.jtpadilla.example.langchain4j.toolfullexample;
+package io.github.jtpadilla.example.langchain4j.toolfullexample.tool;
 
 import dev.langchain4j.agent.tool.ToolExecutionRequest;
 import dev.langchain4j.agent.tool.ToolSpecification;
@@ -11,6 +11,7 @@ import dev.langchain4j.model.chat.request.ChatRequest;
 import dev.langchain4j.model.chat.request.json.JsonObjectSchema;
 import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
+import io.github.jtpadilla.example.langchain4j.toolfullexample.WeatherTool;
 import io.github.jtpadilla.example.util.GoogleModels;
 import io.helidon.config.Config;
 
