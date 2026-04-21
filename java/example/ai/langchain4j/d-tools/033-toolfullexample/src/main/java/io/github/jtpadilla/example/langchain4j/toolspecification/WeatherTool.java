@@ -3,8 +3,6 @@ package io.github.jtpadilla.example.langchain4j.toolspecification;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import java.util.Map;
-
 public class WeatherTool {
 
     private static final Gson GSON = new Gson();
