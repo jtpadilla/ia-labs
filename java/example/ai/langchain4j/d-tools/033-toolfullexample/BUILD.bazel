@@ -26,12 +26,25 @@ java_binary(
 
 java_test(
     name = "SchemaTests",
-    srcs = glob(["src/test/java/**/*.java"]),
+    srcs = glob(["src/test/java/io/github/jtpadilla/example/langchain4j/toolspecification/schema/**/*.java"]),
     test_class = "io.github.jtpadilla.example.langchain4j.toolspecification.schema.SchemaAllTests",
     deps = [
         ":schema-lib",
         "//java/example/ai/langchain4j/util",
         "@maven//:com_google_code_gson_gson",
         "@maven//:dev_langchain4j_langchain4j_core",
+    ],
+)
+
+java_test(
+    name = "ToolTests",
+    srcs = glob(["src/test/java/io/github/jtpadilla/example/langchain4j/toolspecification/tool/**/*.java"]),
+    test_class = "io.github.jtpadilla.example.langchain4j.toolspecification.tool.ToolAllTests",
+    deps = [
+        ":schema-lib",
+        "//java/example/ai/langchain4j/util",
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:dev_langchain4j_langchain4j_core",
+        "@maven//:dev_langchain4j_langchain4j",
     ],
 )
