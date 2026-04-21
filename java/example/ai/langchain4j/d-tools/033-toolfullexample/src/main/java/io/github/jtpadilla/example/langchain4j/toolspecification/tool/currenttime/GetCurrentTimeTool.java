@@ -1,6 +1,8 @@
 package io.github.jtpadilla.example.langchain4j.toolspecification.tool.currenttime;
 
 import dev.langchain4j.agent.tool.ToolSpecification;
+import io.github.jtpadilla.example.langchain4j.toolspecification.schema.EmptySchema;
+import io.github.jtpadilla.example.langchain4j.toolspecification.schema.Response;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +13,7 @@ public class GetCurrentTimeTool {
     static public final ToolSpecification SPEC = ToolSpecification.builder()
             .name(NAME)
             .description("Obtiene la fecha y hora actual sin información de zona horaria")
-            .parameters(Parameter.SPEC)
+            .parameters(EmptySchema.SPEC)
             .build();
 
     public static String execute(String argumentsJson) {
