@@ -1,4 +1,4 @@
-package io.github.jtpadilla.example.langchain4j.toolspecification;
+package io.github.jtpadilla.example.langchain4j.toolfullexample;
 
 import dev.langchain4j.agent.tool.ToolExecutionRequest;
 import dev.langchain4j.agent.tool.ToolSpecification;

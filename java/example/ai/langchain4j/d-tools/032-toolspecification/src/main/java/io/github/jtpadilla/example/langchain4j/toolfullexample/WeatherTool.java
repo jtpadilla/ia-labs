@@ -1,4 +1,4 @@
-package io.github.jtpadilla.example.langchain4j.toolspecification;
+package io.github.jtpadilla.example.langchain4j.toolfullexample;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
