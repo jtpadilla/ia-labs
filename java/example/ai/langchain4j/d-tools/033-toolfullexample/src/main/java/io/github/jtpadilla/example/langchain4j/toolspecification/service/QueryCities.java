@@ -5,7 +5,7 @@ import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
 import io.github.jtpadilla.example.langchain4j.toolspecification.schema.CityListSchema;
 
-public class QueryCitiesAgent {
+public class QueryCities {
 
     interface GeographyService {
         @SystemMessage("""
@@ -23,7 +23,9 @@ public class QueryCitiesAgent {
     }
 
     public static CityListSchema call(ChatModel chatModel, String provincia) {
-        GeographyService service = AiServices.create(GeographyService.class, chatModel);
+        GeographyService service = AiServices.builder(GeographyService.class)
+                .chatModel(chatModel)
+                .build();
         String response = service.query(
                 String.format("Obtén la lista de los 10 pueblos con más población de la provincia de `%s`", provincia));
         return CityListSchema.fromJsonFlex(response);

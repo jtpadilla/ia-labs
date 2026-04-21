@@ -1,4 +1,4 @@
-package io.github.jtpadilla.example.langchain4j.toolspecification.impl;
+package io.github.jtpadilla.example.langchain4j.toolspecification.domain;
 
 import java.time.LocalDateTime;
 

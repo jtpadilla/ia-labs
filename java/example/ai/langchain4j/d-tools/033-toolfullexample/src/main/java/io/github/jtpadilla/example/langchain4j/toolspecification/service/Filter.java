@@ -9,9 +9,10 @@ import io.github.jtpadilla.example.langchain4j.toolspecification.tool.FilterLoca
 import io.github.jtpadilla.example.util.SchemaException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-public class FilterAgent {
+public class Filter {
 
     interface FilterService {
         @SystemMessage("""
@@ -36,12 +37,12 @@ public class FilterAgent {
 
     public static CityDataListSchema call(ChatModel chatModel, List<CityDataListSchema> rawData, List<String> ciudades) {
 
-        GetCurrentTimeTool currentTimeTool = new GetCurrentTimeTool();
-        FilterLocationsTool filterLocationsTool = new FilterLocationsTool(ciudades);
+        // Se inicializa la instancia de la tool con la lista de ciudades)
+        final FilterLocationsTool filterLocationsTool = new FilterLocationsTool(ciudades);
 
         FilterService service = AiServices.builder(FilterService.class)
                 .chatModel(chatModel)
-                .tools(currentTimeTool, filterLocationsTool)
+                .tools(Map.of(GetCurrentTimeTool.NAME, GetCurrentTimeTool.executor(), FilterLocationsTool.NAME, filterLocationsTool.executor()))
                 .build();
 
         String allData = rawData.stream()

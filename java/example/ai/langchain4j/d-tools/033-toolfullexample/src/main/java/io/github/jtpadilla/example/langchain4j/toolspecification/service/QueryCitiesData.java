@@ -6,7 +6,7 @@ import dev.langchain4j.service.SystemMessage;
 import io.github.jtpadilla.example.langchain4j.toolspecification.schema.CityDataListSchema;
 import io.github.jtpadilla.example.util.SchemaException;
 
-public class QueryCitiesDataAgent {
+public class QueryCitiesData {
 
     interface WeatherService {
         @SystemMessage("""
