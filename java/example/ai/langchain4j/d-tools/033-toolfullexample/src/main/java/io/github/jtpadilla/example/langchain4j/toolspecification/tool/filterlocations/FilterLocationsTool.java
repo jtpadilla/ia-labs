@@ -1,6 +1,7 @@
 package io.github.jtpadilla.example.langchain4j.toolspecification.tool.filterlocations;
 
 import dev.langchain4j.agent.tool.ToolSpecification;
+import dev.langchain4j.service.tool.ToolExecutor;
 import io.github.jtpadilla.example.langchain4j.toolspecification.schema.CityListSchema;
 import io.github.jtpadilla.example.util.SchemaException;
 
@@ -22,8 +23,14 @@ public class FilterLocationsTool {
         this.validCities = validCities;
     }
 
-    public String execute(String argumentsJson) throws SchemaException {
-        return execute(CityListSchema.fromJson(argumentsJson)).toJson();
+    public ToolExecutor executor() {
+        return (request, memoryId) -> {
+            try {
+                return execute(CityListSchema.fromJson(request.arguments())).toJson();
+            } catch (SchemaException e) {
+                return "Error: " + e.getMessage();
+            }
+        };
     }
 
     public CityListSchema execute(CityListSchema parameter) {
