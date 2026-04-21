@@ -18,7 +18,7 @@ public class GetCurrentTimeTool {
 
     static public final ToolSpecification SPEC = ToolSpecification.builder()
             .name(NAME)
-            .description("Obtiene la fecha y hora actual sin información de zona horaria")
+            .description("Obtiene la fecha y hora actual sin información de zona horaria. " + LocalDateTimeSchema.RETURN_DESCRIPTION)
             .parameters(EmptySchema.SPEC)
             .build();
 

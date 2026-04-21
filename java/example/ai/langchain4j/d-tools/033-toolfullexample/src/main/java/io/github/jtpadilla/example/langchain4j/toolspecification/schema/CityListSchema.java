@@ -28,6 +28,14 @@ public class CityListSchema implements SchemaEnabled {
             .required(LIST_PROPERTY)
             .build();
 
+    static public final String RETURN_DESCRIPTION = """
+            Returns a JSON object with the following structure:
+            {
+              "list": ["CityName1", "CityName2", "..."]
+            }
+            The list contains only the cities that matched the valid locations.
+            """;
+
     private static final Gson gson = SchemaGson.DEFAULT_GSON;
 
     public static CityListSchema fromJson(String jsonString) throws SchemaException {

@@ -31,11 +31,16 @@ public class ToolDemo {
 
     static final ToolSpecification toolSpecification = ToolSpecification.builder()
             .name("getWeather")
-            .description("Returns the weather forecast for a given city")
+            .description("""
+                    Returns the weather forecast for a given city.
+                    Returns a plain text string with the following structure:
+                    "Tomorrow in {city}: {description}, {temperature}"
+                    Example: "Tomorrow in London: cloudy with light rain, 15°C."
+                    """)
             .parameters(JsonObjectSchema.builder()
                     .addStringProperty("city", "The city for which the weather forecast should be returned")
                     .addEnumProperty("temperatureUnit", List.of("CELSIUS", "FAHRENHEIT"))
-                    .required("city") // the required properties should be specified explicitly
+                    .required("city")
                     .build())
             .build();
 

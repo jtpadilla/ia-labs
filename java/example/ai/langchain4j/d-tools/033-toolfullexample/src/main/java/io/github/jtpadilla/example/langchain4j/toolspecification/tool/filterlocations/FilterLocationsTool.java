@@ -13,7 +13,7 @@ public class FilterLocationsTool {
 
     static public final ToolSpecification SPEC = ToolSpecification.builder()
             .name(NAME)
-            .description("Proporciona la lista de ciudades en la que estamos interesados")
+            .description("Proporciona la lista de ciudades en la que estamos interesados. " + CityListSchema.RETURN_DESCRIPTION)
             .parameters(CityListSchema.SPEC)
             .build();
 

@@ -21,6 +21,13 @@ public class LocalDateTimeSchema implements SchemaEnabled {
             .required(LOCALDATETIME_PROPERTY)
             .build();
 
+    static public final String RETURN_DESCRIPTION = """
+            Returns a JSON object with the following structure:
+            {
+              "localdatetime": "ISO-8601 datetime string without timezone, e.g. 2024-01-15T14:30:00"
+            }
+            """;
+
     private static final Gson gson = SchemaGson.DEFAULT_GSON;
 
     public static LocalDateTimeSchema fromJson(String jsonString) throws SchemaException {
