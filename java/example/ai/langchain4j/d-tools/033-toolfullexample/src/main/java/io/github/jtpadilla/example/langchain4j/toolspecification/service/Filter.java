@@ -3,11 +3,13 @@ package io.github.jtpadilla.example.langchain4j.toolspecification.service;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
+import dev.langchain4j.service.tool.ToolExecutor;
 import io.github.jtpadilla.example.langchain4j.toolspecification.schema.CityDataListSchema;
 import io.github.jtpadilla.example.langchain4j.toolspecification.tool.FilterLocationsTool;
 import io.github.jtpadilla.example.langchain4j.toolspecification.tool.GetCurrentTimeTool;
 import io.github.jtpadilla.example.util.SchemaException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -40,9 +42,10 @@ public class Filter {
         // Se inicializa la instancia de la tool con la lista de ciudades)
         final FilterLocationsTool filterLocationsTool = new FilterLocationsTool(ciudades);
 
+        HashMap<String, ToolExecutor> tools = new HashMap<>(Map.of(GetCurrentTimeTool.NAME, GetCurrentTimeTool.executor(), FilterLocationsTool.NAME, filterLocationsTool.executor()));
         FilterService service = AiServices.builder(FilterService.class)
                 .chatModel(chatModel)
-                .tools(Map.of(GetCurrentTimeTool.NAME, GetCurrentTimeTool.executor(), FilterLocationsTool.NAME, filterLocationsTool.executor()))
+                .tools(tools)
                 .build();
 
         String allData = rawData.stream()

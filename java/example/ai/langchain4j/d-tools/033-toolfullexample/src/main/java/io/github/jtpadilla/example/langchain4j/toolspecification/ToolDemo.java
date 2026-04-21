@@ -34,7 +34,6 @@ public class ToolDemo {
         } catch (TemperatureQueryException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     static public TemperatureQueryResult query(String provincia, List<String> ciudades) throws TemperatureQueryException {
@@ -67,7 +66,5 @@ public class ToolDemo {
             throw new TemperatureQueryException(e.getMessage(), e);
         }
     }
-
-
 
 }
