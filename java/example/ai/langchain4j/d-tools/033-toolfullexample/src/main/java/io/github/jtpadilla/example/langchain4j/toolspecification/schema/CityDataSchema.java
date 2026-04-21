@@ -17,7 +17,7 @@ public class CityDataSchema implements SchemaEnabled {
     static final private String LOCALDATETIME_PROPERTY = "localdatetime";
     static final private String TEMPERATURE_PROPERTY = "temperature";
 
-    static public JsonObjectSchema SCHEMA = JsonObjectSchema.builder()
+    static public JsonObjectSchema SPEC = JsonObjectSchema.builder()
             .description("Registro de temperatura de una ciudad en un momento determinado")
             .addStringProperty(CITY_PROPERTY, "Nombre de la ciudad")
             .addStringProperty(LOCALDATETIME_PROPERTY, "Fecha y hora de la medición de la temperatura en formato ISO-8601")

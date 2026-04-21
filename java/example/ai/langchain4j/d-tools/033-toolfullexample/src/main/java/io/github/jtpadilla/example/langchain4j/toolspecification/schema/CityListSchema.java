@@ -17,7 +17,7 @@ public class CityListSchema implements SchemaEnabled {
 
     static final private String LIST_PROPERTY = "list";
 
-    static final public JsonObjectSchema SCHEMA = JsonObjectSchema.builder()
+    static final public JsonObjectSchema SPEC = JsonObjectSchema.builder()
             .description("Lista de ciudades")
             .addProperty(LIST_PROPERTY, JsonArraySchema.builder()
                     .description("Lista de ciudades")

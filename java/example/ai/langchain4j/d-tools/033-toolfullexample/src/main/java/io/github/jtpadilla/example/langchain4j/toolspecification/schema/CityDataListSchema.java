@@ -16,11 +16,11 @@ public class CityDataListSchema implements SchemaEnabled {
 
     static final String LIST_PROPERTY = "list";
 
-    static public JsonObjectSchema SCHEMA = JsonObjectSchema.builder()
+    static public JsonObjectSchema SPEC = JsonObjectSchema.builder()
             .description("Lista de temperatures registradas por ciudades y en que hora se registro")
             .addProperty(LIST_PROPERTY, JsonArraySchema.builder()
                     .description("Lista de temperatures registradas por ciudades y en que hora se registro")
-                    .items(CityDataSchema.SCHEMA)
+                    .items(CityDataSchema.SPEC)
                     .build())
             .required(LIST_PROPERTY)
             .build();
