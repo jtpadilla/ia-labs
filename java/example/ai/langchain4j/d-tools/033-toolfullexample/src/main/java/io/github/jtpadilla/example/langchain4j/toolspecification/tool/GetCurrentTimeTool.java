@@ -1,4 +1,4 @@
-package io.github.jtpadilla.example.langchain4j.toolspecification.tool.currenttime;
+package io.github.jtpadilla.example.langchain4j.toolspecification.tool;
 
 import dev.langchain4j.agent.tool.Tool;
 import dev.langchain4j.agent.tool.ToolSpecification;

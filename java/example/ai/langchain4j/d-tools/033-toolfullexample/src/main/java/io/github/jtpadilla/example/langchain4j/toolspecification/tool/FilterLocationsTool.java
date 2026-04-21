@@ -1,4 +1,4 @@
-package io.github.jtpadilla.example.langchain4j.toolspecification.tool.filterlocations;
+package io.github.jtpadilla.example.langchain4j.toolspecification.tool;
 
 import dev.langchain4j.agent.tool.P;
 import dev.langchain4j.agent.tool.Tool;

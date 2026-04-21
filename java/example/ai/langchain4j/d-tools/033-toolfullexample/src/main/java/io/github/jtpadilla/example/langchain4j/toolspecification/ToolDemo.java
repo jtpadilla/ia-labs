@@ -4,9 +4,9 @@ import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import io.github.jtpadilla.example.langchain4j.toolspecification.schema.CityDataListSchema;
 import io.github.jtpadilla.example.langchain4j.toolspecification.schema.CityListSchema;
-import io.github.jtpadilla.example.langchain4j.toolspecification.service.filteragent.FilterAgent;
-import io.github.jtpadilla.example.langchain4j.toolspecification.service.querycitiesdataagent.QueryCitiesDataAgent;
-import io.github.jtpadilla.example.langchain4j.toolspecification.service.querycitiesagent.QueryCitiesAgent;
+import io.github.jtpadilla.example.langchain4j.toolspecification.service.FilterAgent;
+import io.github.jtpadilla.example.langchain4j.toolspecification.service.QueryCitiesDataAgent;
+import io.github.jtpadilla.example.langchain4j.toolspecification.service.QueryCitiesAgent;
 import io.github.jtpadilla.example.util.GoogleModels;
 import io.helidon.config.Config;
 

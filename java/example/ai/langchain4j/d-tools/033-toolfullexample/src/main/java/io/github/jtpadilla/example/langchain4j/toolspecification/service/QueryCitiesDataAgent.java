@@ -1,4 +1,4 @@
-package io.github.jtpadilla.example.langchain4j.toolspecification.service.querycitiesdataagent;
+package io.github.jtpadilla.example.langchain4j.toolspecification.service;
 
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.service.AiServices;
