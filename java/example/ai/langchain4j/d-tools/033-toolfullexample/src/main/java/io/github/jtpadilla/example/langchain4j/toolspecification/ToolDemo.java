@@ -1,20 +1,15 @@
 package io.github.jtpadilla.example.langchain4j.toolspecification;
 
-import dev.langchain4j.agent.tool.ToolExecutionRequest;
-import dev.langchain4j.agent.tool.ToolSpecification;
-import dev.langchain4j.data.message.AiMessage;
-import dev.langchain4j.data.message.ChatMessage;
-import dev.langchain4j.data.message.ToolExecutionResultMessage;
-import dev.langchain4j.data.message.UserMessage;
 import dev.langchain4j.model.chat.ChatModel;
-import dev.langchain4j.model.chat.request.ChatRequest;
-import dev.langchain4j.model.chat.request.json.JsonObjectSchema;
-import dev.langchain4j.model.chat.response.ChatResponse;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
+import io.github.jtpadilla.example.langchain4j.toolspecification.schema.CityDataListSchema;
+import io.github.jtpadilla.example.langchain4j.toolspecification.schema.CityListSchema;
+import io.github.jtpadilla.example.langchain4j.toolspecification.service.filteragent.FilterAgent;
+import io.github.jtpadilla.example.langchain4j.toolspecification.service.querycitiesdataagent.QueryCitiesDataAgent;
+import io.github.jtpadilla.example.langchain4j.toolspecification.service.querycitiesagent.QueryCitiesAgent;
 import io.github.jtpadilla.example.util.GoogleModels;
 import io.helidon.config.Config;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ToolDemo {
@@ -25,83 +20,33 @@ public class ToolDemo {
     static final ChatModel chatModel = GoogleAiGeminiChatModel.builder()
             .apiKey(API_KEY)
             .modelName(GoogleModels.geminiFlashLite())
-            .sendThinking(true)
-            .returnThinking(true)
             .build();
-
-    static final ToolSpecification toolSpecification = ToolSpecification.builder()
-            .name("getWeather")
-            .description("""
-                    Returns the weather forecast for a given city.
-                    Returns a plain text string with the following structure:
-                    "Tomorrow in {city}: {description}, {temperature}"
-                    Example: "Tomorrow in London: cloudy with light rain, 15°C."
-                    """)
-            .parameters(JsonObjectSchema.builder()
-                    .addStringProperty("city", "The city for which the weather forecast should be returned")
-                    .addEnumProperty("temperatureUnit", List.of("CELSIUS", "FAHRENHEIT"))
-                    .required("city")
-                    .build())
-            .build();
-
-    static final UserMessage firstMessage = UserMessage.from("What will the weather be like in London tomorrow?");
 
     public static void main(String[] args) {
 
-        // Primera petición con su respuesta
-        ChatResponse firstChatResponse = sendFirstRequest();
+        final String provincia = "Sevilla";
+        final List<String> ciudadesInteres = List.of("Sevilla", "Dos Hermanas", "Alcalá de Guadaíra");
 
-        // Se procesa con la primera respuesta la herramienta solicitada
-        List<ToolExecutionResultMessage> toolExecutionResultMessages = executeTools(firstChatResponse);
+        // 1. Obtiene la lista de ciudades de la provincia usando AI Services
+        System.out.println("=== Consultando ciudades de " + provincia + " ===");
+        CityListSchema cities = QueryCitiesAgent.call(chatModel, provincia);
+        System.out.println("Ciudades encontradas: " + cities.getList());
 
-        // Segunda petition con la primera pregunta + primera respuesta + resultado herramienta solicitada.
-        ChatResponse secondChatResponse = sendSecondRequest(firstChatResponse.aiMessage(), toolExecutionResultMessages);
-        System.out.println(secondChatResponse.aiMessage().text());
-    }
+        // 2. Consulta los datos meteorológicos de cada ciudad usando AI Services
+        System.out.println("\n=== Consultando datos meteorológicos ===");
+        List<CityDataListSchema> rawData = cities.getList().stream()
+                .map(city -> {
+                    System.out.println("  Consultando: " + city);
+                    return QueryCitiesDataAgent.call(chatModel, city);
+                })
+                .toList();
 
-    static private ChatResponse sendFirstRequest() {
-        final ChatRequest request = ChatRequest.builder()
-                .messages(firstMessage)
-                .toolSpecifications(List.of(toolSpecification))
-                .build();
-        return chatModel.chat(request);
-    }
+        // 3. Filtra y procesa los datos usando AI Services + @Tool
+        System.out.println("\n=== Filtrando datos con AI Services + @Tool ===");
+        CityDataListSchema filtered = FilterAgent.call(chatModel, rawData, ciudadesInteres);
 
-    static private List<ToolExecutionResultMessage> executeTools(ChatResponse chatResponse) {
-
-        final AiMessage aiMessage = chatResponse.aiMessage();
-
-        final List<ToolExecutionRequest> toolExecutionRequests = aiMessage.toolExecutionRequests();
-        System.out.println("Hay peticiónes de herramientas?: " + aiMessage.hasToolExecutionRequests());
-
-        if (toolExecutionRequests.size() == 1 && toolExecutionRequests.getFirst().name().equals("getWeather")) {
-            ToolExecutionRequest toolExecutionRequest = toolExecutionRequests.getFirst();
-            System.out.println("Herramienta invocada: " + toolExecutionRequest.name());
-            System.out.println("Argumentos          : " + toolExecutionRequest.arguments());
-            String result = WeatherTool.execute(toolExecutionRequest.arguments());
-            System.out.println("Resultado           : " + result);
-            final ToolExecutionResultMessage resultMessage = ToolExecutionResultMessage.from(toolExecutionRequest, result);
-            return List.of(resultMessage);
-        } else {
-            throw new IllegalStateException("No esta la tool solicitada disponible.");
-        }
-
-    }
-
-    static private ChatResponse sendSecondRequest(AiMessage firstResponseAi, List<ToolExecutionResultMessage> toolResults) {
-
-        List<ChatMessage> messages = new ArrayList<>();
-        messages.add(firstMessage);
-        messages.add(firstResponseAi);
-        messages.addAll(toolResults);
-
-        ChatRequest request = ChatRequest.builder()
-                .messages(messages)
-                .toolSpecifications(List.of(toolSpecification))
-                .build();
-
-        return chatModel.chat(request);
-
+        System.out.println("\n=== Resultado Final ===");
+        System.out.println(filtered.toJson());
     }
 
 }

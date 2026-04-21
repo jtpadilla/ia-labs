@@ -18,7 +18,7 @@ java_library(
 )
 
 java_binary(
-    name = "032-toolspecification",
+    name = "033-toolfullexample",
     main_class = "io.github.jtpadilla.example.langchain4j.toolspecification.ToolDemo",
     visibility = ["//visibility:public"],
     runtime_deps = [":schema-lib"],

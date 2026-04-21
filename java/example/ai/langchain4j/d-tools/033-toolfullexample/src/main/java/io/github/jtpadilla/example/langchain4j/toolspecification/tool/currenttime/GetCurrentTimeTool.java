@@ -1,5 +1,6 @@
 package io.github.jtpadilla.example.langchain4j.toolspecification.tool.currenttime;
 
+import dev.langchain4j.agent.tool.Tool;
 import dev.langchain4j.agent.tool.ToolSpecification;
 import dev.langchain4j.service.tool.ToolExecutor;
 import io.github.jtpadilla.example.langchain4j.toolspecification.schema.EmptySchema;
@@ -7,11 +8,6 @@ import io.github.jtpadilla.example.langchain4j.toolspecification.schema.LocalDat
 
 import java.time.LocalDateTime;
 
-/*
-Esta tool tiene los métodos estáticos porque no necesita tener datos inyectados para funcionar
-
-Simplemente se invoca su métoodo que es estático.
- */
 public class GetCurrentTimeTool {
 
     static public final String NAME = "get_current_time_tool";
@@ -32,6 +28,11 @@ public class GetCurrentTimeTool {
 
     private static LocalDateTimeSchema execute(EmptySchema emptySchema) {
         return new LocalDateTimeSchema(LocalDateTime.now());
+    }
+
+    @Tool("Obtiene la fecha y hora actual sin información de zona horaria. " + LocalDateTimeSchema.RETURN_DESCRIPTION)
+    public String getCurrentTime() {
+        return new LocalDateTimeSchema(LocalDateTime.now()).toJson();
     }
 
 }
