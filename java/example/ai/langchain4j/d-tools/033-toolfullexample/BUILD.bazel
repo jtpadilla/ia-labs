@@ -9,8 +9,7 @@ java_binary(
     deps = [
         "//java/example/ai/langchain4j/util",
         "@maven//:com_google_code_gson_gson",
-        "@maven//:com_google_genai_google_genai",
-        "@maven//:dev_langchain4j_langchain4j",
+"@maven//:dev_langchain4j_langchain4j",
         "@maven//:dev_langchain4j_langchain4j_agentic",
         "@maven//:dev_langchain4j_langchain4j_core",
         "@maven//:dev_langchain4j_langchain4j_google_ai_gemini",
