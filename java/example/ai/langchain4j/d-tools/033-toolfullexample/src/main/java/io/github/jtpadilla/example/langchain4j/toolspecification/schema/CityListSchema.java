@@ -1,6 +1,8 @@
 package io.github.jtpadilla.example.langchain4j.toolspecification.schema;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.annotations.SerializedName;
 import dev.langchain4j.model.chat.request.json.JsonArraySchema;
@@ -36,10 +38,20 @@ public class CityListSchema implements SchemaEnabled {
         }
     }
 
+    public static CityListSchema fromJsonFlex(String jsonString) {
+        JsonObject json = gson.fromJson(jsonString, JsonObject.class);
+        List<String> poblaciones = new ArrayList<>();
+        if (json.has(LIST_PROPERTY)) {
+            JsonArray array = json.getAsJsonArray(LIST_PROPERTY);
+            array.forEach(e -> poblaciones.add(e.getAsString()));
+        }
+        return new CityListSchema(poblaciones);
+    }
+
     @SerializedName(LIST_PROPERTY)
     private final List<String> list;
 
-    private CityListSchema(List<String> list) {
+    public CityListSchema(List<String> list) {
         this.list = new ArrayList<>(list);
     }
 

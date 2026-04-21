@@ -12,6 +12,8 @@ public class EmptySchema implements SchemaEnabled {
         return new EmptySchema();
     }
 
+    static public EmptySchema DEFAULT_INSTANCE = new EmptySchema();
+
     @Override
     public String toJson() {
         return "{}";
