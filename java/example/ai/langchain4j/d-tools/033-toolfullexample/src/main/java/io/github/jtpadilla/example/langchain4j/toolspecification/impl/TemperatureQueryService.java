@@ -10,15 +10,9 @@ import io.github.jtpadilla.example.langchain4j.toolspecification.service.QueryCi
 import java.util.ArrayList;
 import java.util.List;
 
-public class TemperatureQueryServiceServiceImpl {
+public class TemperatureQueryService {
 
-    private final ChatModel chatModel;
-
-    public TemperatureQueryServiceServiceImpl(ChatModel chatModel) {
-        this.chatModel = chatModel;
-    }
-
-    public TemperatureQueryResult query(String provincia, List<String> ciudades) throws TemperatureQueryException {
+    static public TemperatureQueryResult query(ChatModel chatModel, String provincia, List<String> ciudades) throws TemperatureQueryException {
         try {
             // Obtenemos la lista de ciudades con mas poblacion de la provincia proporcionada como parámetro
             CityListSchema cityList = QueryCitiesAgent.call(chatModel, provincia);
@@ -48,5 +42,6 @@ public class TemperatureQueryServiceServiceImpl {
             throw new TemperatureQueryException(e.getMessage(), e);
         }
     }
+
 
 }
