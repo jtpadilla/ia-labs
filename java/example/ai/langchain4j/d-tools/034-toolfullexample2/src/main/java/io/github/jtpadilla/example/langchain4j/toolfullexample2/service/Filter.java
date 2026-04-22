@@ -5,6 +5,8 @@ import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.service.AiServices;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.tool.ToolExecutor;
+import dev.langchain4j.service.tool.ToolProvider;
+import dev.langchain4j.service.tool.ToolProviderResult;
 import io.github.jtpadilla.example.langchain4j.toolfullexample2.schema.CityDataListSchema;
 import io.github.jtpadilla.example.langchain4j.toolfullexample2.tool.FilterLocationsTool;
 import io.github.jtpadilla.example.langchain4j.toolfullexample2.tool.GetCurrentTimeTool;
@@ -43,15 +45,17 @@ public class Filter {
         // Se inicializa la instancia de la tool con la lista de ciudades)
         final FilterLocationsTool filterLocationsTool = new FilterLocationsTool(ciudades);
 
-        final HashMap<ToolSpecification, ToolExecutor> tools = new HashMap<>(
-                Map.of(
-                        GetCurrentTimeTool.SPEC, GetCurrentTimeTool.executor(),
-                        FilterLocationsTool.SPEC, filterLocationsTool.executor()
-                )
-        );
+        // Se utiliza un provider que facilita la incorporacion de las tools.
+        ToolProvider toolProvider = (toolProviderRequest)->{
+            return ToolProviderResult.builder()
+                    .add(GetCurrentTimeTool.SPEC, GetCurrentTimeTool.executor())
+                    .add(FilterLocationsTool.SPEC, filterLocationsTool.executor())
+                    .build();
+        };
+
         FilterService service = AiServices.builder(FilterService.class)
                 .chatModel(chatModel)
-                .tools(tools)
+                .toolProvider(toolProvider)
                 .build();
 
         String allData = rawData.stream()
