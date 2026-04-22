@@ -2,7 +2,8 @@ package io.github.jtpadilla.example.langchain4j.toolspecification.tool;
 
 import dev.langchain4j.agent.tool.ToolExecutionRequest;
 import dev.langchain4j.service.tool.ToolExecutor;
-import io.github.jtpadilla.example.langchain4j.toolspecification.schema.LocalDateTimeSchema;
+import io.github.jtpadilla.example.langchain4j.toolfullexample1.schema.LocalDateTimeSchema;
+import io.github.jtpadilla.example.langchain4j.toolfullexample1.tool.GetCurrentTimeTool;
 import io.github.jtpadilla.example.util.SchemaException;
 import org.junit.Test;
 

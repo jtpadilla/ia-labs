@@ -18,8 +18,8 @@ java_library(
 )
 
 java_binary(
-    name = "033-toolfullexample",
-    main_class = "io.github.jtpadilla.example.langchain4j.toolspecification.ToolDemo",
+    name = "033-toolfullexample1",
+    main_class = "io.github.jtpadilla.example.langchain4j.toolfullexample1.ToolDemo",
     visibility = ["//visibility:public"],
     runtime_deps = [":schema-lib"],
 )

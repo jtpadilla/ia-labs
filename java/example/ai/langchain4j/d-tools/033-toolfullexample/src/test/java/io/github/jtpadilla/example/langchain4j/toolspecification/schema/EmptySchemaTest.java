@@ -1,5 +1,6 @@
 package io.github.jtpadilla.example.langchain4j.toolspecification.schema;
 
+import io.github.jtpadilla.example.langchain4j.toolfullexample1.schema.EmptySchema;
 import io.github.jtpadilla.example.util.SchemaException;
 import org.junit.Test;
 
