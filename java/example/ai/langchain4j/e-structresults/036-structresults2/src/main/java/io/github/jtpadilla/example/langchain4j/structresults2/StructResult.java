@@ -33,10 +33,10 @@ public class StructResult {
     public static void main(String[] args) {
 
         final JsonObjectSchema jsonObjectSchema = JsonObjectSchema.builder() // see [1] below
-                .addStringProperty("name")
-                .addIntegerProperty("age")
-                .addNumberProperty("height")
-                .addBooleanProperty("married")
+                .addStringProperty("name", "Full name of the person")
+                .addIntegerProperty("age", "Age of the person in years")
+                .addNumberProperty("height", "Height of the person in meters")
+                .addBooleanProperty("married", "Whether the person is currently married")
                 .required("name", "age", "height", "married") // see [2] below
                 .build();
 
